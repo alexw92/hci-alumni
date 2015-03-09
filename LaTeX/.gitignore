@@ -1,0 +1,9 @@
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+!*.pdf
+*.pdf
+!figures/*.pdf
