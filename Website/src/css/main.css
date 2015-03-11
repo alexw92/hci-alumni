@@ -95,6 +95,13 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.header
+{
+	height: 433px;
+	width: 1170px;
+	background-image: url(/img/banner.jpg);
+	background-size: contain;
+}
 
 
 

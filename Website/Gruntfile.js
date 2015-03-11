@@ -20,7 +20,8 @@ module.exports = function(grunt){
 
     watch_files : [
       'src/*',
-      'src/js/*']
+      'src/js/*',
+      'src/css/*']
   };
 
   /* Init
