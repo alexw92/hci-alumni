@@ -97,12 +97,14 @@ textarea {
 
 .header
 {
-	height: 433px;
-	width: 1170px;
-	background-image: url(/img/banner.jpg);
+    margin-top: 15px;
+	width: 100%;
 	background-size: contain;
 }
 
+.headerimage {
+    width: 100%;
+}
 
 
 
