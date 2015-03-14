@@ -8,3 +8,4 @@
 *.pdf
 !figures/*.pdf
 *.tcp
+*.tps
