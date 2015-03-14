@@ -24,21 +24,7 @@
         <div class="header">
             <img class="header-image" src="./img/banner.jpg" />
             <div class="panel panel-default panel-login-header">
-                <div class="panel-body">
-                    <div class="login-left-side">
-                        <div class="form-group login-input">
-                            <input type="text" class="form-control input-sm" id="login-user" placeholder="E-Mail / Benutzer">
-                        </div>
-                        <div class="form-group login-input">
-                            <input type="text" class="form-control input-sm" id="login-password" placeholder="Passwort">
-                        </div>
-                    </div>
-                    <div class="login-right-side">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                    <div class="login-bottom-side">
-                    <small><a href="#/forgotpw">Passwort vergessen?</a> &nbsp;|&nbsp; <a href="#/register">Registrieren</a></small>
-                    </div>
+                <div class="panel-body" id="login">
                 </div>
             </div>
         </div>
@@ -138,8 +124,10 @@
         <script src="js/vendor/sammy.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
-        <script src="js/Session.js"></script>
-        <script src="js/Router.js"></script>
+        <script src="js/utils/Session.js"></script>
+        <script src="js/utils/Router.js"></script>
+        <script src="js/utils/ContentHandler.js"></script>
+        <script src="js/controllers/LoginController.js"></script>
         <script src="js/controllers/RegistrationController.js"></script>
         <script src="js/main.js"></script>
     </body>

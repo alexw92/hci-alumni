@@ -17,12 +17,14 @@ module.exports = function(grunt){
 
     js_hint_files : [
       'src/js/main.js',
-      'src/js/controllers/*'],
+      'src/js/controllers/*',
+      'src/js/utils/*'],
 
     watch_files : [
       'src/*',
       'src/js/*',
       'src/js/controllers/*',
+      'src/js/utils/*',
       'src/css/*']
   };
 
