@@ -1,0 +1,30 @@
+{
+  "name": "hci-alumni-backend",
+  "version": "0.0.1",
+  "description": "Small prototype of the alumni portal backend",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexw92/hci-alumni"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexw92/hci-alumni/issues"
+  },
+  "homepage": "https://github.com/alexw92/hci-alumni",
+  "contributors": [
+    "Thomas Handwerker <thomas.handwerker@stud-mail.uni-wuerzburg.de>",
+    "Benedikt Pfaff <benedikt.pfaff@stud-mail.uni-wuerzburg.de>",
+    "Armin Beutel <armin.b.beutel@stud-mail.uni-wuerzburg.de>",
+    "Alexander Werthmann <alexander.werthmann@stud-mail.uni-wuerzburg.de>",
+    "Johannes Grohmann <johannes.grohmann@stud-mail.uni-wuerzburg.de>"
+  ],
+  "dependencies": {
+    "express": "^4.12.2",
+    "sql.js": "^0.2.21"
+  }
+}

@@ -1,7 +1,7 @@
 /* define global app context */
 var app = {
 	router: new Router(),
-	sqldb: new DatabaseController(),
+	//sqldb: new DatabaseController(),
 };
 
 jQuery(function () {
