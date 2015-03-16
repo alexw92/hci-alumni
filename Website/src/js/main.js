@@ -1,13 +1,13 @@
 /* define global app context */
 var app = {
 	router: new Router(),
-	//sqldb: new DatabaseController(),
+	//dbconn: new DatabaseHandler(),
 	loginCtrl: new LoginController(),
 };
 
 jQuery(function () {
 	app.router.run();
-	//app.sqldb.testfunct();
+	//app.dbconn.testfunct();
 	ContentHandler.loadView('loginform.html', '#login', function () {
 		app.loginCtrl.initialize();
 	});
