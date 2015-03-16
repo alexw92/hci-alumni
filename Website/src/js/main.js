@@ -1,10 +1,10 @@
 /* define global app context */
 var app = {
 	router: new Router(),
-	//sqldb: new DatabaseController(),
+	//dbconn: new DatabaseHandler(),
 };
 
 jQuery(function () {
 	app.router.run();
-	//app.sqldb.testfunct();
+	//app.dbconn.testfunct();
 });
