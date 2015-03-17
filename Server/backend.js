@@ -24,6 +24,7 @@ try {
 // stmt.step();
 // console.log(stmt.getAsObject());
 // stmt.free();
+// SELECT * FROM tablename ORDER BY column DESC LIMIT 1;
 writeToFile();
 
 app.use(bodyParser.json());
@@ -34,15 +35,51 @@ app.get('/', function (req, res) {
 	res.send('Hello World');
 });
 
+//get user by username or mail
+app.get('/user/:type/:data', function (req, res) {
+	if (req.params.type == 'name'){
+		var ans = db.exec("SELECT * FROM userdata WHERE username='" + req.params.data + "';");
+	} else if(req.params.type == 'mail'){
+		var ans = db.exec("SELECT * FROM userdata WHERE email='" + req.params.data + "';");
+	}	
+	var origin = (req.get('origin') || "*");
+	res.header('Access-Control-Allow-Origin', origin);
+	res.send(ans);
+});
+
+//getNewestUsers
+app.get('/newest', function (req, res) {
+	var ans = db.exec("SELECT * FROM userdata ORDER BY userid DESC LIMIT 5;");
+	var origin = (req.get('origin') || "*");
+	res.header('Access-Control-Allow-Origin', origin);
+	res.send(ans);
+});
+
+//insert new user
+app.post('/new', function(req,res){
+
+});
+
+
+
+//check if username or mail in use
+app.get('/check/:type/:val', function (req, res) {
+	if (req.params.type == 'user') {
+		console.log('request user wurde gesendet. username: ' + req.params.val + '');
+	} else if (req.params.type == 'mail'){
+		console.log('request mail wurde gesendet. mailadresse: ' + req.params.val + '');
+	}
+	// var ans = db.exec("SELECT * FROM userdata ORDER BY userid DESC LIMIT 5;");
+	// var origin = (req.get('origin') || "*");
+	// res.header('Access-Control-Allow-Origin', origin);
+	// res.send(ans);
+});
+
 app.post('/', function (req, res) {
 	res.send(req.body);
 	console.log(req.body);
 });
 
-app.post('/test', function (req, res) {
-	res.send('Das sollte hier aber nicht hin');
-	console.log(req.body);
-});
 
 function writeToFile(){
 	var data = db.export();
@@ -57,6 +94,6 @@ var server = app.listen(3001, function () {
 	var host = server.address().address;
 	var port = server.address().port;
 
-	console.log('Example app listening at http://%s:%s', host, port);
+	console.log('Backend listening at http://%s:%s', host, port);
 
 });
