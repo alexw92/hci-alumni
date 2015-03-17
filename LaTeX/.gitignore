@@ -4,6 +4,8 @@
 *.log
 *.out
 *.toc
+*.gz
+*.synctex.gz
 !*.pdf
 *.pdf
 !figures/*.pdf
