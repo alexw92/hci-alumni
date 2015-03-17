@@ -103,11 +103,56 @@ textarea {
 	background-size: contain;
 }
 
+#myCarousel
+{
+	data-pause: hover;
+	data-interval: false;
+	data-keyboard: true;
+}
 
+.navBackgroundColor
+{
+	background-color: #4D82BE;
+}
 
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #4D82BE;
+}
 
+/* fontColor Brand Element */
+.navbar-default .navbar-brand {
+  color: black;
+}
 
+/* fontColor Nav Elements */
+.navbar-default .navbar-nav > li > a {
+  color: black;
+}
 
+/* Hover Color Brand Element */
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #5e5e5e;
+  background-color: white;
+}
+
+/* HoverColor Nav Elements */
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #5e5e5e;
+  background-color: white;
+}
+
+/* ActiveColor Language Element */
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: white;
+}
 
 
 
