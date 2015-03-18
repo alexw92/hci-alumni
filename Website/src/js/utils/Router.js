@@ -4,6 +4,8 @@ var Router = function () {
 };
 
 Router.prototype.init = function() {
+	var self = this;
+
 	return Sammy('#main', function () {
 		this.get('/', function () {
 			console.log('home is where you come from');
@@ -20,6 +22,12 @@ Router.prototype.init = function() {
 
 		this.get('#/forgotpw', function () {
 			console.log('forgot pw? resend via email');
+		});
+
+		this.get('#/search', function () {
+			ContentHandler.loadView('search.html', '#content', function () {
+				var searchCtrl = new SearchController().initialize();
+			});
 		});
 	});
 };

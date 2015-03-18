@@ -25,7 +25,8 @@ module.exports = function(grunt){
       'src/js/*',
       'src/js/controllers/*',
       'src/js/utils/*',
-      'src/css/*']
+      'src/css/*',
+      'src/views/*']
   };
 
   /* Init

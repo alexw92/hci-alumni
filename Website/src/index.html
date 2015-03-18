@@ -70,7 +70,7 @@
       </nav>
 
       <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
+      <div class="jumbotron" id="content">
         <h1>Navbar example</h1>
         <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
         <p>
@@ -120,17 +120,20 @@
 
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="js/vendor/bootstrap.js"></script>
+		    <script src="js/vendor/bootstrap.js"></script>
+        <script src="js/vendor/typeahead.js"></script>
         <script src="js/vendor/sammy.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/utils/Session.js"></script>
         <script src="js/utils/Router.js"></script>
         <script src="js/utils/ContentHandler.js"></script>
+        <script src="js/utils/UserPreviewBuilder.js"></script>
         <script src="js/controllers/LoginController.js"></script>
         <script src="js/controllers/RegistrationController.js"></script>
-		<script src="js/controllers/DatabaseController.js"></script>
-		<script src="js/vendor/sql.js"></script>
+        <script src="js/controllers/SearchController.js"></script>
+    		<script src="js/controllers/DatabaseController.js"></script>
+    		<script src="js/vendor/sql.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
