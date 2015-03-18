@@ -25,7 +25,7 @@ Router.prototype.init = function() {
 		});
 
 		this.get('#/search', function () {
-			ContentHandler.loadView('search.html', '#content', function () {
+			ContentHandler.loadView('search.html', '.content', function () {
 				var searchCtrl = new SearchController().initialize();
 			});
 		});
