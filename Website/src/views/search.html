@@ -1,0 +1,79 @@
+<div id="search-panel">
+	<h2>Alumni suchen</h2>
+	<hr />
+	<form>
+	<div class="row search">
+		<div class="row search-header">
+			<div class="col-lg-8">
+				<div class="input-group">
+					<input type="text" class="form-control input-lg" placeholder="Suche nach ..." id="input-search">
+					<span class="input-group-btn">
+						<button class="btn btn-default btn-lg" type="button" id="btn-submit-search">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="col-lg-4" style="line-height: 3">
+				<a href="" id="btn-extended-search"><span class="caret"></span> weitere Suchoptionen</a>
+			</div>
+		</div>
+		<div class="search-extended">
+			<div class="row">
+				<div class="col-sm-4 form-group">
+					<label for="nameInput">Name</label>
+					<input type="text" id="nameInput" class="form-control" placeholder="z.B. 'Max Mustermann'">
+				</div>
+				<div class="col-sm-4 form-group">
+					<label for="organizationInput">Unternehmen</label>
+					<input type="text" id="organizationInput" class="form-control" placeholder="z.B. 'Mustermann GmbH'">
+				</div>
+				<div class="col-sm-2 form-group">
+					<label for="locationInput">Ort</label>
+					<input type="text" id="locationInput" class="form-control" placeholder="z.B. 'München'">
+				</div>
+				<div class="col-sm-2 form-group">
+					<label for="zipInput">PLZ</label>
+					<input type="text" id="zipInput" class="form-control" placeholder="z.B. '20459'">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 form-group">
+					<label for="interestsInput">Interessen</label>
+					<input type="text" id="interestsInput" class="form-control" placeholder="z.B. 'Fußball'">
+				</div>
+				<div class="col-sm-4 form-group">
+					<label for="departmentInput">Branche</label>
+					<input type="text" id="departmentInput" class="form-control" placeholder="z.B. 'Telekommunikation'">
+				</div>
+				<div class="col-sm-4 form-group">
+					<label for="stateInput">Bundesland</label>
+					<input type="text" id="stateInput" class="form-control" placeholder="Bundesland">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 form-group">
+					<label for="collegeInput">Hochschule</label>
+					<input type="text" id="collegeInput" class="form-control" placeholder="z.B. 'Universität Würzburg'">
+				</div>
+				<div class="col-sm-4 form-group">
+					<label for="facultyInput">Fakultät</label>
+					<input type="text" id="facultyInput" class="form-control" placeholder="z.B. 'Informatik'">
+				</div>
+				<div class="col-sm-2 form-group">
+					<label for="studyStartInput">Studienbeginn</label>
+					<input type="text" id="studyStartInput" class="form-control" placeholder="z.B. '2000'">
+				</div>
+				<div class="col-sm-2 form-group">
+					<label for="studyEndInput">Studienende</label>
+					<input type="text" id="studyEndInput" class="form-control" placeholder="z.B. '2003'">
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+
+	<h3>Ergebnisse &nbsp;&nbsp;&nbsp;<small>Es wurden <span id="search-result-length">{x}</span> Alumni gefunden</small></h3>
+	<hr />
+	<div class="search-result-wrapper"></div>
+</div>
