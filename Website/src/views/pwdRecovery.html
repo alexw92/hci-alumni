@@ -1,0 +1,62 @@
+<div class="row">
+	<!-- registration form-->
+	<div class="col-sm-8 blog-main"> 	
+		<div class="blog-post"> 
+			<h2 class="blog-post-title">Wiederherstellung Ihrer Logindaten</h2>
+			<hr>				
+			<p>Geben Sie Ihre E-Mail Adresse, mit welcher Sie sich registriert haben, in folgendes Eingabefeld und klicken Sie auf den Button "Logindaten zusenden". Sie erhalten daraufhin eine E-Mail mit Ihren Logindaten.</p>
+			<br>
+		</div> <!-- /.blog post -->
+	
+		<form id="pwdRecoveryForm" class="form-horizontal">
+			<div class="form-group">
+				<div class="col-xs-7">
+					<input type="email" class="form-control" name="passwordRecovery" placeholder="Email-Adresse" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-7 col-xs-offset-8">
+					<button type="submit" id="btnSubmitRecoveryPassword" class="btn btn-primary" name="signup" value="Sign up">Logindaten zusenden</button>
+				</div>
+			</div>
+		</form>
+		<br><br>
+		
+		<h2 class="blog-post-title">Email-Adresse erkennen</h2>
+		<hr>
+		<p> Geben Sie ihren Benutzernamen, mit welchem Sie sich registriert haben, in folgendes Eingabefeld ein und klicken Sie auf den Button "Email-Adresse erkennen". Sie erhalten daraufhin eine Nachricht auf Ihre Email-Adresse mit der Sie sich registriert haben.</p>
+		<form id="mailRecoveryForm" class="form-horizontal">
+			<div class="form-group">
+				<div class="col-xs-7">
+					<input type="text"  
+					class="form-control" name="emailRecovery" placeholder="Benutzername" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-7 col-xs-offset-8">
+					<button type="submit" id="btnSubmitRecoveryEmail" class="btn btn-primary" name="signup" value="Sign up">Email-Adresse erkennen</button>
+				</div>
+			</div>
+		</form>
+		
+	</div> <!-- blog main -->
+	
+	<!-- PWD Recovery Description (right side)-->
+	<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+		<div class="sidebar-module sidebar-module-inset">
+			<h3>Hinweise zur Wiederherstellung Ihrer Logindaten</h3>
+		</div>
+		<div class="sidebar-module sidebar-module-inset">
+			<h4>Sie haben Ihr Benutzernamen oder Passwort vergessen?</h4>
+				<p>Kein Problem. Hier können Sie sich Ihre Logindaten erneut per E-Mail zukommen lassen. Zur Sicherheit wird Ihr Kennwort dabei auf ein generiertes Zufallskennwort gesetzt. 
+					Sie können Ihr Kennwort nach erneutem Login wieder frei vergeben.</p>
+		</div>
+		
+		<div class="sidebar-module">
+            <h4>Sie wissen Ihre Registrierungs-Email-Adresse nicht mehr?</h4>
+			<p>Kein Problem. Geben Sie hier Ihren Benutzernamen ein und wir senden Ihnen eine Email an die Adresse, mit welcher Sie sich registriert haben.</p>
+		</div> 		
+
+
+	</div><!-- /.blog-sidebar -->
+</div> <!-- row -->

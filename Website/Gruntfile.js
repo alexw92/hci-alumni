@@ -22,11 +22,12 @@ module.exports = function(grunt){
 
     watch_files : [
       'src/*',
+      'src/views/*',
       'src/js/*',
       'src/js/controllers/*',
       'src/js/utils/*',
-      'src/css/*',
-      'src/views/*']
+      'src/js/vendor/*',
+      'src/css/*']
   };
 
   /* Init

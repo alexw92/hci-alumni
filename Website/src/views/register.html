@@ -1,0 +1,113 @@
+﻿<div class="row">
+	<!-- registration form-->
+	<div class="col-sm-8 blog-main"> 	
+		<div class="blog-post"> 
+			<h2 class="blog-post-title">Registrieren auf dem Alumni Portal</h2>
+			<hr>				
+			<p>Werden Sie kostenlos Teil der weltweiten Community und erhalten persönliche Einladungen, unseren Newsletter, Informationen und Portalzutritt.</p><br>
+		</div> <!-- /.blog post -->
+	
+		<h4 class="blog-post-title">Persönliche Daten</h4>
+		<form id="registrationForm" class="form-horizontal">
+			<div class="form-group">
+				<div class="col-xs-5">
+					<select type="text" class="form-control" name="title" placeholder="Anrede" >
+						<option selected>Anrede</option>
+						<option>Frau</option>
+						<option>Herr</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-5">
+					<input type="text" class="form-control" name="firstName" placeholder="Vorname" />
+				</div>
+				<div class="col-xs-5">
+					<input type="text" class="form-control" name="lastName" placeholder="Nachname" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-5">
+					<input type="text" class="form-control" name="street" placeholder="Straße und Hausnr." />
+				</div>
+				<div class="col-xs-5">
+					<input type="text" class="form-control" name="streetAdditional" placeholder="Adresszusatz" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-2">
+					<input type="text" class="form-control" name="zipCode" placeholder="PLZ" />
+				</div>
+				<div class="col-xs-8">
+					<input type="text" class="form-control" name="city" placeholder="Wohnort" />
+				</div>
+			</div>
+			
+			<h4 class="blog-post-title">Alumni Logindaten</h4>
+			<div class="form-group">
+				<div class="col-xs-10">
+					<input type="text" class="form-control" name="username" placeholder="Benutzername" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-10">
+					<input type="text" class="form-control" name="email" placeholder="Email-Adresse" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-10">
+					<input type="password" class="form-control" name="password" placeholder="Passwort" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-10">
+					<input type="password" class="form-control" name="passwordRepeat" placeholder="Passwort wdhl." />
+				</div>
+			</div>
+			
+			<hr>			
+			<h4 class="blog-post-title">Alumni-Verein Mitgliedschaft (optional)</h4>
+			<p>Sind Sie interessiert an einer optionalen, kostenpflichtigen Mitgliedschaft im Alumni-Verein?</p>
+			<div class="radio">
+				<label class="radio">
+					<input type="radio" name="membership" id="inlineRadio1" value="0" checked> Nein, im Moment nicht!
+				</label>
+				<label class="radio">
+					<input type="radio" name="membership" id="inlineRadio2" value="1"> Ja, Interesse!
+				</label>
+			</div>
+			<hr>
+			
+
+			<div class="form-group">
+				<div class="col-xs-8 col-xs-offset-8">
+					<button type="submit" id="btnSubmitReg" class="btn btn-primary" name="signup" value="Sign up">Jetzt registrieren</button>
+					<button type="abort" id="btnAbortReg" class="btn btn-primary" name="abort" value="Abort">Abbrechen</button>
+				</div>
+			</div>
+		</form>
+	</div> <!-- blog main -->
+	
+	<!-- Registration Description (right side)-->
+	<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+		<div class="sidebar-module sidebar-module-inset">
+			<h3>Hinweise zur Registrierung</h3>
+		</div>
+		<div class="sidebar-module sidebar-module-inset">
+			<h4>Was ist der Alumni-Verein?</h4>
+		<p>Wenn Sie andere aktuelle oder ehemalige Studierende, Mitarbeiter oder Dozenten der Universität Würzburg kennen, denen unser Alumni-Netzwerk noch nicht bekannt ist freuen wir uns, wenn Sie diese auf das Alumni-Netzwerk aufmerksam machen.</p>
+		</div>
+		<div class="sidebar-module">
+            <h4>Das Passwort muss</h4>
+            <ul class="list">
+				<li><p>mind. einen Großbuchstaben enthalten.</p></li>
+				<li><p>mind. eine Zahl enthalten.</p></li>
+				<li><p>zwischen 7 und 30 Zeichen lang sein.</p></li>
+				<li><p>frei von Sonderzeichen sein</p></li>
+            </ul>
+        </div>	  
+
+
+	</div><!-- /.blog-sidebar -->
+	
+</div> <!-- row -->

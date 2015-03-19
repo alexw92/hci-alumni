@@ -1,26 +1,6 @@
-var RegistrationController = function () {
-	this.TAG = 'RegistrationController =>';
-
-	this.exampleFunction();
-	this.initValidation();
-	this.setSubmitbutton();
-};
-
-RegistrationController.prototype.exampleFunction = function() {
-	console.log(this.TAG + 'constructor called');
-};
-
-RegistrationController.prototype.setSubmitbutton = function() {
-	console.log(this.TAG + 'submit');
-	$("#btnSubmitReg").on('click', function(event){
-		event.preventDefault();
-		console.log('SubmitBtn clicked');
-		$('#registrationForm').formValidation('validate');
-	});
-};
-
-RegistrationController.prototype.initValidation = function () {
-	$('#registrationForm').formValidation({
+$(document).ready(function() 
+{
+    $('#registrationForm').formValidation({
         framework: 'bootstrap',
         icon: 
 		{
@@ -38,7 +18,7 @@ RegistrationController.prototype.initValidation = function () {
 		{
             firstName: 
 			{
-
+                row: '.col-xs-4',
                 validators: 
 				{
                     notEmpty: 
@@ -49,6 +29,7 @@ RegistrationController.prototype.initValidation = function () {
             },
             lastName: 
 			{
+                row: '.col-xs-4',
                 validators: 
 				{
                     notEmpty: 
@@ -57,8 +38,9 @@ RegistrationController.prototype.initValidation = function () {
                     }
                 }
             },
-			street: 
+			lastName: 
 			{
+                row: '.col-xs-4',
                 validators: 
 				{
                     notEmpty: 
@@ -69,22 +51,28 @@ RegistrationController.prototype.initValidation = function () {
             },
 			streetAdditional: 
 			{
+                row: '.col-xs-4',
                 validators: 
 				{
+                    notEmpty: 
+					{
+                        //message: 'Bitte tragen Sie Ihre Adresse ein'
+                    }
                 }
             },
 			zipCode: 
 			{
                 validators: 
 				{
-					zipCode: 
-					{
-						country: 'DE',
-						message: 'Bitte tragen Sie eine gültige deutsche Postleitzahl ein'
-					},
                     notEmpty: 
 					{
                         message: 'Bitte tragen Sie Ihre PLZ ein'
+                    },
+					stringLength:
+					{
+                        min: 5,
+                        max: 6,
+                        message: 'Bitte geben Sie eine gültige Postleitzahl ein'
                     },
                 }
             },
@@ -104,7 +92,7 @@ RegistrationController.prototype.initValidation = function () {
 				{
                     notEmpty: 
 					{
-                        message: 'Bitte tragen Sie einen Benutzernamen ein'
+                        message: 'The username is required'
                     },
                     stringLength: 
 					{
@@ -115,7 +103,7 @@ RegistrationController.prototype.initValidation = function () {
                     regexp: 
 					{
                         regexp: /^[a-zA-Z0-9_\.]+$/,
-                        message: 'Ihr Benutzername muss aus Buchstaben und Zahlen bestehen und darf nur die Sonderzeichen "Punkt" oder "Unterstrich" enthalten'
+                        message: 'Ihr Benutzername muss aus Buchstaben und Zahlen bestehen und darf nur die Sonderzeichen Punkt oder Unterstrich enthalten'
                     }
                 }
             },
@@ -125,11 +113,11 @@ RegistrationController.prototype.initValidation = function () {
 				{
                     notEmpty: 
 					{
-                        message: 'Bitte tragen Sie Ihre Email-Adresse ein'
+                        message: 'Bitte tragen Sie Ihre Emailadresse ein'
                     },
                     emailAddress: 
 					{
-                        message: 'Dies ist keine gültige Email-Adresse'
+                        message: 'Dies ist keine gültige Emailadresse'
                     }
                 }
             },
@@ -144,7 +132,7 @@ RegistrationController.prototype.initValidation = function () {
                     different: 
 					{
                         field: 'username',
-                        message: 'Das Passwort darf nicht Ihrem Benutzername entsprechen'
+                        message: 'Das Passwort darf nicht Ihr Benutzername sein'
                     }
                 }
             },
@@ -156,13 +144,28 @@ RegistrationController.prototype.initValidation = function () {
 					{
                         message: 'Bitte wiederholen Sie ihr Passwort'
                     },
-                    identical: 
+                    different: 
 					{
                         field: 'password',
-                        message: 'Ihr Passwort stimmt nicht überein'
+                        message: 'The password cannot be the same as username'
+                    }
+                }
+            },
+            birthday: 
+			{
+                validators: 
+				{
+                    notEmpty: 
+					{
+                        message: 'The date of birth is required'
+                    },
+                    date: 
+					{
+                        format: 'YYYY/MM/DD',
+                        message: 'The date of birth is not valid'
                     }
                 }
             }
         }
     });
-};
+});
