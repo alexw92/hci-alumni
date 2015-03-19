@@ -1,6 +1,6 @@
 \documentclass[fontsize=12pt,a4paper]{scrartcl}
 
-\usepackage[utf8]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage[USenglish,american]{babel}
 \usepackage{hyperref}
 \usepackage{graphicx}
@@ -15,6 +15,12 @@
 \usepackage{breakcites}
 \usepackage[autostyle=true,german=quotes]{csquotes}
 
+\newcommand{\usecasepart}[1]{\subsection{Aufgabenteil: #1}}
+\newcommand{\problem}[1]{\subsubsection{Problem: #1}}
+\newcommand{\descript}[1]{\paragraph{Beschreibung:} #1} 
+\newcommand{\category}[1]{\paragraph{Kategorisierung des Problems:} #1}
+\newcommand{\improvement}[1]{\paragraph{Verbesserungsvorschlag:} #1}
+
 \begin{document}
 \titlehead{
 \includegraphics[scale=1.015]{figures/uni-wb-hci-header}
@@ -22,14 +28,14 @@
 
 \subject{Wintersemester 2014/2015\\ Einführung in die Mensch-Computer-Interaktion}
 
-\title{BEISPIEL Report}
+\title{Report}
 
 \subtitle{Cognitive Walkthrough}
 
 \publishers{
 Benedikt Pfaff, Matrikelnummer 2060170\\
 Armin Beutel, Matrikelnummer 1790705\\
-Johannes Grohmann, Matrikelnummer 1808010
+Johannes Grohmann, Matrikelnummer 1808010\\
 Thomas Handwerker, Matrikelnummer 1995289\\
 Alexander Werthmann, Matrikelnummer 1234567\\[3em] 
 \normalsize Supervisors: Chris Zimmerer, Kristof Korwisi}
@@ -52,18 +58,18 @@ Alexander Werthmann, Matrikelnummer 1234567\\[3em]
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
-{\inputencoding{latin1}\include{einleitung}}
+\input{einleitung}
 
-{\inputencoding{latin1}\include{vorbereitung}}
+\input{vorbereitung}
 
-{\inputencoding{latin1}\include{beispielwalkthrough}}
-{\inputencoding{latin1}\include{startseite}}
-{\inputencoding{latin1}\include{registrierung}}
-{\inputencoding{latin1}\include{freischaltung}}
-{\inputencoding{latin1}\include{passwortrecovery}}
-{\inputencoding{latin1}\include{nutzersuche}}
+\input{evaluationsergebnisse}
+\input{startseite}
+\input{registrierung}
+\input{freischaltung}
+\input{passwortrecovery}
+\input{nutzersuche}
 
-{\inputencoding{latin1}\include{zusammenfassung}}
+\input{zusammenfassung}
 
 
 %bisher nur die bib aus dem example report
