@@ -7,7 +7,8 @@ var app = {
 
 jQuery(function () {
 	app.router.run();
-	//app.dbconn.testfunct('username02');
+	console.log(app.dbconn.checkUsernameInUse('FHeer'));
+	console.log(app.dbconn.checkUsernameInUse('Fheer'));
 	ContentHandler.loadView('loginform.html', '#login', function () {
 		app.loginCtrl.initialize();
 	});
