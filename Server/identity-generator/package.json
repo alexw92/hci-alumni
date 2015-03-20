@@ -1,0 +1,15 @@
+{
+  "name": "identity-generator",
+  "version": "1.0.6",
+  "description": "Generate random identity objects including name, address, etc. This may be useful if you are trying to fill your application with random personal data.",
+  "main": "generate-identities.js",
+  "author": "Jan Petzold (original version: Travis Horn)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/janpetzold/identity-generator.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

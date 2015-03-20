@@ -1,28 +1,31 @@
 var DatabaseHandler = function () {
-	this.TAG = "DatabaseController => ";
-	var db = null;
-	this.routing = this.init();
-};
-
-DatabaseHandler.prototype.init = function() {	
-	//loadBinaryFile('./testdb.sqlite');
-};
-
+	this.TAG = "DatabaseHandler => ";
+};	
+	
 DatabaseHandler.prototype.getUserByEmail = function(mailaddr) {
 	$.get('http://localhost:3001/user/mail/' + mailaddr + '', function(response) { 
-		//handle the response
+		// var resobj = response[0]['values'][0];
+		// var newuser = new User(resobj);		
+		// return newuser;
 	});
 }
 
 DatabaseHandler.prototype.getUserByUsername = function(username) {
 	$.get('http://localhost:3001/user/name/' + username + '', function(response) { 
-		//handle the response
+		// var resobj = response[0]['values'][0];
+		// var newuser = new User(resobj);
+		// return newuser;
 	});
-}
+};
 
 DatabaseHandler.prototype.getNewestUsers = function() {
 	$.get('http://localhost:3001/newest/', function(response) { 
-		//handle the response
+		// var resobj = response[0]['values'];
+		// var uarray = [];
+		// for (i=0;i<=4;i++){
+			// uarray[i] = new User(resobj[i]);
+		// }
+		// return uarray;
 	});
 }
 
@@ -40,36 +43,23 @@ DatabaseHandler.prototype.checkMailInUse = function(mailaddr) {
 
 DatabaseHandler.prototype.checkUsernameInUse = function(username) {
 	$.get('http://localhost:3001/check/user/' + username + '', function(response) { 
-		//handle the response
+		return response;
 	});
 }
 
-DatabaseHandler.prototype.testfunct = function(username) {
-	$.get('http://localhost:3001/user/' + username + '', function(response) { 
-		console.log(response);
+DatabaseHandler.prototype.checkValidLogin = function(username, password) {
+	var shaObj = new jsSHA(password, "TEXT");
+	$.get('http://localhost:3001/login/' + username + '/' + shaObj.getHash("SHA-512", "HEX") + '', function(response) { 
+		//console.log(response);
 	});
 }
 
-//used to send SQL string to the Database (not sure if needed)
-// DatabaseHandler.prototype.sendSqlQuery = function(sqlstring) {
-
-// }
-
-//used to send other requests (not sure if needed)
-// DatabaseHandler.prototype.sendQuery = function(querystring) {
-
-// }
 
 
-// function loadBinaryFile(path) {		
-	// var xhr = new XMLHttpRequest();
-	// xhr.open('POST', path, true);
-	// xhr.responseType = 'arraybuffer';
-	// xhr.onload = function(e) {
-		
-	// };
-	// xhr.send();
-// };
+
+
+
+
 	
 
     
