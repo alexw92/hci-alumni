@@ -4,6 +4,8 @@ var fs = require('fs');
 var SQL = require('sql.js');
 var bodyParser = require('body-parser');
 var db = null;
+var emailServer = require('./utils/MailServer.js'),
+	EMail = require('./utils/EMail.js');
 
 try {
 	var filebuffer = fs.readFileSync('userdb.sqlite');
@@ -41,7 +43,7 @@ app.get('/user/:type/:data', function (req, res) {
 		var ans = db.exec("SELECT * FROM userdata WHERE username='" + req.params.data + "';");
 	} else if(req.params.type == 'mail'){
 		var ans = db.exec("SELECT * FROM userdata WHERE email='" + req.params.data + "';");
-	}	
+	}
 	var origin = (req.get('origin') || "*");
 	res.header('Access-Control-Allow-Origin', origin);
 	res.send(ans);
@@ -80,6 +82,30 @@ app.post('/', function (req, res) {
 	console.log(req.body);
 });
 
+app.post('/sendmail/:type', function (req, res) {
+	var mail = new EMail(req.body);
+		mail.parseMailType(req.params.type);
+
+	if(!mail.isTypeSupported())
+		return res.status(400).send({ error: true, message: 'Unkown mail type parameter in url' });
+
+	mail.verifyRequiredParams(function (result) {
+		if(result.error) {
+			return res.status(400).send({ error: result.error, message: result.message });
+		}
+		else {
+			mail.build();
+
+			emailServer.connect();
+			emailServer.sendMail(mail.getMail(), function (error, result) {
+				if(error)
+					return res.status(400).send({ error: true, details: error });
+				else
+					return res.status(200).send({ error: false, details: result });
+			});
+		}
+	});
+});
 
 function writeToFile(){
 	var data = db.export();
