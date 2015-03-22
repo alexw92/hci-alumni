@@ -20,30 +20,17 @@ try {
 	insertDatabasePopulation();
 	writeToFile();
 }
-// sqlstr = "INSERT INTO userdata(title, firstname, lastname, address, postalcode, city, email, password, username) VALUES('hans', 'wurst', 'adresse hier', 12345, 'stadt', 'a@b.de', 'blablapass', 'username01');";
-// db.run(sqlstr);
-// var uname = 'username03'
-// var res = db.exec("SELECT firstname, lastname FROM userdata WHERE username='" + uname + "';")
-// console.log(res);
-// var stmt = db.prepare("SELECT firstname, lastname FROM userdata WHERE username='" + uname + "';");
-// stmt.step();
-// console.log(stmt.getAsObject());
-// stmt.free();
-// SELECT * FROM tablename ORDER BY column DESC LIMIT 1;
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
+
 app.use(function(req, res, next) {
 	var origin = (req.get('origin') || "*");
     res.setHeader("Access-Control-Allow-Origin", origin);
     return next();
 });
 
-app.get('/', function (req, res) {
-	res.send('Hello World');
-});
 
 //get user by username or mail
 //returns json containing the user data
@@ -64,10 +51,22 @@ app.get('/newest', function (req, res) {
 });
 
 //insert new user
-//returns true if the user was created successfully, false otherwise
+//returns success if the user was inserted successfully, failure otherwise
 app.post('/new', function(req,res){
-	//TODO
-	writeToFile();
+	try {
+		// console.log(req.body);
+		// console.log(req.body[0]);
+		// var dataset = req.body.split(";");
+		// console.log(dataset);
+		//sqlstr = "INSERT INTO userdata(title, firstname, lastname, address, addressaddition, postalcode, city, email, username, password, birthday) VALUES('" + 
+		//dataset[0] + "', '" + dataset[1] + "','" + dataset[2] + "','" + dataset[3] + "','" + dataset[4] + "','" + dataset[5] + "','" + 
+		//dataset[6] + "','" + dataset[7] + "','" + dataset[8] + "','" + dataset[9] + "','" + dataset[10] + "',);";
+		//db.run(sqlstr);
+		//writeToFile();
+		// res.send('success');
+	} catch (err) {
+		// res.send('failure');
+	}
 });
 
 
