@@ -54,18 +54,26 @@ app.get('/newest', function (req, res) {
 //returns success if the user was inserted successfully, failure otherwise
 app.post('/new', function(req,res){
 	try {
-		// console.log(req.body);
-		// console.log(req.body[0]);
-		// var dataset = req.body.split(";");
-		// console.log(dataset);
-		//sqlstr = "INSERT INTO userdata(title, firstname, lastname, address, addressaddition, postalcode, city, email, username, password, birthday) VALUES('" + 
-		//dataset[0] + "', '" + dataset[1] + "','" + dataset[2] + "','" + dataset[3] + "','" + dataset[4] + "','" + dataset[5] + "','" + 
-		//dataset[6] + "','" + dataset[7] + "','" + dataset[8] + "','" + dataset[9] + "','" + dataset[10] + "',);";
-		//db.run(sqlstr);
-		//writeToFile();
-		// res.send('success');
+		var addressadditionString = "";
+		var birthdayString = "";
+		if (req.body.addressaddition === ""){
+			addressadditionString = null;
+		} else {
+			addressadditionString = "'" + req.body.addressaddition + "'";
+		}
+		if (req.body.birthday === ""){
+			birthdayString = null;
+		} else {
+			birthdayString = "'" + req.body.birthday + "'";
+		}
+		sqlstr = "INSERT INTO userdata(title, firstname, lastname, address, addressaddition, postalcode, city, email, username, password, birthday) VALUES('" + 
+		req.body.title + "', '" + req.body.firstname + "','" + req.body.lastname + "','" + req.body.address + "'," + addressadditionString + ",'" + req.body.postalcode + "','" + 
+		req.body.city + "','" + req.body.email + "','" + req.body.username + "','" + req.body.password + "'," + birthdayString + ");";
+		db.run(sqlstr);
+		writeToFile();
+		res.send('success');
 	} catch (err) {
-		// res.send('failure');
+		res.send('failure');
 	}
 });
 
@@ -96,6 +104,20 @@ app.get('/login/:uname/:passw', function (req, res) {
 		res.send('false');
 	}
 });
+
+
+//update user info
+app.get('/update/:type/:uname/:newval', function (req, res) {
+	try {
+		sqlstr = "UPDATE userdata SET " + req.params.type + "='" + req.params.newval + "' WHERE username='" + req.params.uname + "';";
+		db.run(sqlstr);
+		writeToFile();
+		res.send('success');
+	} catch (err) {
+		res.send('failure');
+	}
+});
+
 
 app.post('/sendmail/:type', function (req, res) {
 	var mail = new EMail(req.body);

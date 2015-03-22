@@ -32,7 +32,9 @@ jQuery(function () {
 	app.dbconn.insertNewUser(n, function(result){
 		console.log(result);
 	});
-	
+	app.dbconn.updateUserinfo('username','FHeer','FHeer123',function(result){
+		console.log(result);
+	});
 	
 	
 });

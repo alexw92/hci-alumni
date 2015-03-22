@@ -27,3 +27,4 @@ Die Entwicklungs- und Build-Umgebung ist nun vollständig eingerichtet. Starte i
 * `Bootstrap`: Empfehlenswertes HTML, CSS und JavaScript Framework für Responsive Webdesign und Mobile First
 * `sql.js`: SQLite Datenbank auf Basis von JavaScript
 * `identity-generator`: JavaScript-Modul zum Generieren von zufälligen Testnutzern als Basispopulation der Datenbank. [identity-generator](https://github.com/janpetzold/identity-generator)
+* `emailjs`: Javascript-Framework zum Versenden von Mails

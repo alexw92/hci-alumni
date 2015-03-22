@@ -29,9 +29,10 @@ var User = function(resobj){
 		//leer initialisiert
 	}
 	
-	this.toString = function(){
+	this.toJson = function(){
 		var shaObj = new jsSHA(password, "TEXT");
-		return title + ';' + firstname + ';' + lastname + ';' + address + ';' + addressaddition + ';' + postalcode + ';' + city + ';' + email + ';' + username + ';' + shaObj.getHash("SHA-512", "HEX") + ';' + birthday;
+		return {title: this.title, firstname: this.firstname, lastname: this.lastname, address: this.address, addressaddition: this.addressaddition, postalcode: this.postalcode, city: this.city, 
+				email: this.email, username: this.username, password: shaObj.getHash("SHA-512", "HEX"), birthday: this.birthday};
 	};
 	
 	//Getter
