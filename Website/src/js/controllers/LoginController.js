@@ -18,23 +18,19 @@ var LoginController = (function () {
 
 	var bindLoginEvents = function () {
 		$(loginPnl).find('#btn-submit-login').on('click', function () {
-			var credentials = getLoginInput();
+			var credentials = getLoginInput(),
+				dbHandler = new DatabaseHandler();
 			hideError();
 
-			if(isValidCredentials(credentials)) {
-				console.log('%s login done; store session', TAG);
-				// TODO dbhandler -> get user data from db ;)
-				Session.setUser(getUserData(credentials));
-				ContentHandler.loadView('userpanel.html', '#login', function (event) {
-					console.log('%s %s', TAG, event);
-					bindLogoutEvents();
-				});
-			}
-			else {
-				console.log('%s something went wrong while login', TAG);
-				clearPasswordField();
-				showError();
-			}
+			dbHandler.checkValidLogin(credentials.username, credentials.password, function (isValid) {
+				if(isValid === true) {
+					loadUserDataAndLogin(credentials);
+				}
+				else {
+					clearPasswordField();
+					showError();
+				}
+			});
 		});
 
 		$(inputUser.selector + ", " + inputPassword.selector).on('focus', function () {
@@ -58,34 +54,37 @@ var LoginController = (function () {
 		return true;
 	};
 
-	var isValidCredentials = function (credentials) {
-		// TODO: check via dbhandler and database
-		if((credentials.username === 'Test' ||
-			credentials.username === 'Max.Mustermann@muster.de') &&
-			credentials.password === 'test')
-				return true;
-		return false;
-	};
-
-	var getUserData = function (credentials) {
-		//var dbHandler = new DbHandler();
+	var loadUserDataAndLogin = function (credentials) {
+		var dbHandler = new DatabaseHandler();
 
 		if(credentials.isEmail) {
-			// return dbHandler.getUserByEmail(credentials.username);
-			return { username: 'Test',
-				password: 'test',
-				firstname: 'Max',
-				lastname: 'Mustermann',
-				email: 'Max.Mustermann@muster.de' };
+			dbHandler.getUserByEmail(credentials.username, function (user) {
+				logUserIn(user);
+			});
 		}
 		else {
-			// return dbHandler.getUserByUsername(credentials.username);
-			return { username: 'Test',
-				password: 'test',
-				firstname: 'Max',
-				lastname: 'Mustermann',
-				email: 'Max.Mustermann@muster.de' };
+			dbHandler.getUserByUsername(credentials.username, function (user) {
+				logUserIn(user);
+			});
 		}
+	};
+
+	var logUserIn = function (user) {
+		Session.setUser(user);
+		ContentHandler.changeUrlHash('userpanel');
+		ContentHandler.loadView('userpanel_header.html', '#login', function (event) {
+			setLoginPanelInfo(user);
+			bindLogoutEvents();
+		});
+
+	};
+
+	var setLoginPanelInfo = function (userInfo) {
+		var loginPanel = $('#login');
+		$(loginPanel).find('#user-firstname').text(userInfo.firstname);
+		$(loginPanel).find('#number-messages').text(3);
+		$(loginPanel).find('#number-events').text(1);
+		$(loginPanel).find('#number-friendrequests').text(7);
 	};
 
 	var clearPasswordField = function () {
@@ -103,6 +102,9 @@ var LoginController = (function () {
 	var bindLogoutEvents = function () {
 		$('#login').find('button').on('click', function () {
 			Session.clear();
+
+			ContentHandler.changeUrlHash('');
+			ContentHandler.loadView('home.html', '.content');
 			ContentHandler.loadView('loginform.html', '#login', function() {
 				publicMethods.initialize();
 			});

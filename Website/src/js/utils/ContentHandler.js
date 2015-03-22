@@ -11,6 +11,9 @@ var ContentHandler = (function () {
 				if(typeof(callback) === 'function' && callback !== undefined)
 					callback('view-loaded');
 			});
+		},
+		changeUrlHash: function (pageHash) {
+			window.location.hash = '#/' + pageHash;
 		}
 	};
 })();

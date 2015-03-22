@@ -19,7 +19,7 @@ Router.prototype.init = function() {
 				console.log('register form loaded');
 			});
 		});
-		
+
 		this.get('#/forgotpw', function () {
 			ContentHandler.loadView('pwdRecovery.html', '.content', function () {
 				var pwdRecovery = new PwdRecoveryController();
@@ -30,6 +30,12 @@ Router.prototype.init = function() {
 		this.get('#/verify/:verifyCode', function () {
 			var code = this.params.verifyCode;
 			console.log('account verification with code: %s', code);
+		});
+
+		this.get('#/userpanel', function () {
+			if(Session.isSessionActive()) {
+				ContentHandler.loadView('userpanel.html', '.content');
+			}
 		});
 
 		this.get('#/mentoring', function () {
@@ -51,7 +57,7 @@ Router.prototype.init = function() {
 			ContentHandler.loadView('alumniSearch.html', '.content', function () {
 				console.log('mentoring content form loaded');
 			});
-		});		
+		});
 		this.get('#/events', function () {
 			ContentHandler.loadView('events.html', '.content', function () {
 				console.log('mentoring content form loaded');
