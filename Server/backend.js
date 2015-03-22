@@ -82,11 +82,14 @@ app.post('/new', function(req,res){
 //returns true if username/mail is in use, false otherwise
 app.get('/check/:type/:val', function (req, res) {
 	if (req.params.type == 'user') {
+		//check if username is in use somewhere else as username or email, since both username and email are allowed to log in
 		var ans = db.exec("SELECT * FROM userdata WHERE username='" + req.params.val + "';");
+		var ans2 = db.exec("SELECT * FROM userdata WHERE email='" + req.params.val + "';");
 	} else if (req.params.type == 'mail'){
 		var ans = db.exec("SELECT * FROM userdata WHERE email='" + req.params.val + "';");
+		var ans2;
 	}
-	if (typeof ans !== 'undefined' && ans.length > 0) {
+	if ((typeof ans !== 'undefined' && ans.length > 0) || (typeof ans2 !== 'undefined' && ans2.length > 0)) {
 		res.send('true');
 	} else {
 		res.send('false');
@@ -101,7 +104,12 @@ app.get('/login/:uname/:passw', function (req, res) {
 	if (typeof ans !== 'undefined' && ans.length > 0) {
 		res.send('true');
 	} else {
-		res.send('false');
+		var ans = db.exec("SELECT * FROM userdata WHERE email='" + req.params.uname + "' and password='" + req.params.passw + "';");
+		if (typeof ans !== 'undefined' && ans.length > 0) {
+			res.send('true');
+		} else {
+			res.send('false');
+		}
 	}
 });
 
