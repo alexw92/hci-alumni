@@ -3,6 +3,7 @@ var User = function(resobj){
 	var title = null;
 	var firstname = null;
 	var lastname = null;
+	var fullname = null;
 	var address = null;
 	var addressaddition = null;
 	var postalcode = null;
@@ -11,28 +12,54 @@ var User = function(resobj){
 	var username = null;
 	var password = null; 
 	var birthday = null;
-	
+	var company = null;
+	var sector = null;
+	var state = null;
+	var university = null;
+	var faculty = null;
+	var course = null;
+	var study_start = null;
+	var study_end = null;
+	var interests = null;
+
 	if(resobj !== 'undefined' && typeof(resobj) === 'object') { 
 		userid = resobj[0];
 		title = resobj[1];
 		firstname = resobj[2];
 		lastname = resobj[3];
-		address = resobj[4];
-		addressaddition = resobj[5];
-		postalcode = resobj[6];
-		city = resobj[7];
-		email = resobj[8];
-		username = resobj[9];
-		password = resobj[10];
-		birthday = resobj[11];
+		completename = resobj[4];
+		address = resobj[5];
+		addressaddition = resobj[6];
+		postalcode = resobj[7];
+		city = resobj[8];
+		email = resobj[9];
+		username = resobj[10];
+		password = resobj[11];
+		birthday = resobj[12];
+		company = resobj[13];
+		sector = resobj[14];
+		state = resobj[15];
+		university = resobj[16];
+		faculty = resobj[17];
+		course = resobj[18];
+		study_start = resobj[19];
+		study_end = resobj[20];
+		interests = resobj[21];
 	} else { 
 		//leer initialisiert
 	}
 	
-	this.toJson = function(){
+	this.toJsonNewUser = function(){
 		var shaObj = new jsSHA(password, "TEXT");
 		return {title: this.title, firstname: this.firstname, lastname: this.lastname, address: this.address, addressaddition: this.addressaddition, postalcode: this.postalcode, city: this.city, 
 				email: this.email, username: this.username, password: shaObj.getHash("SHA-512", "HEX"), birthday: this.birthday};
+	};
+	
+	this.toJson = function(){
+		var shaObj = new jsSHA(password, "TEXT");
+		return {title: this.title, firstname: this.firstname, lastname: this.lastname, fullname: this.fullname, address: this.address, addressaddition: this.addressaddition, postalcode: this.postalcode, city: this.city, 
+				email: this.email, username: this.username, password: shaObj.getHash("SHA-512", "HEX"), birthday: this.birthday, company: this.company, sector: this.sector, state: this.state, university: this.university,
+				faculty: this.faculty, course: this.course, study_start: this.study_start, study_end: this.study_end, interests: this.interests};
 	};
 	
 	//Getter
@@ -46,6 +73,9 @@ var User = function(resobj){
         return firstname;
     });
 	this.__defineGetter__("lastname", function(){
+        return lastname;
+    });
+	this.__defineGetter__("completename", function(){
         return lastname;
     });
 	this.__defineGetter__("address", function(){
@@ -72,6 +102,33 @@ var User = function(resobj){
 	this.__defineGetter__("birthday", function(){
         return birthday;
     });
+	this.__defineGetter__("company", function(){
+        return birthday;
+    });
+	this.__defineGetter__("sector", function(){
+        return birthday;
+    });
+	this.__defineGetter__("state", function(){
+        return birthday;
+    });
+	this.__defineGetter__("university", function(){
+        return birthday;
+    });
+	this.__defineGetter__("faculty", function(){
+        return birthday;
+    });
+	this.__defineGetter__("course", function(){
+        return birthday;
+    });
+	this.__defineGetter__("study_start", function(){
+        return birthday;
+    });
+	this.__defineGetter__("study_end", function(){
+        return birthday;
+    });
+	this.__defineGetter__("interests", function(){
+        return birthday;
+    });
 	
 	//Setter
     this.__defineSetter__("userid", function(val){
@@ -85,6 +142,9 @@ var User = function(resobj){
     });
 	this.__defineSetter__("lastname", function(val){
         lastname = val;
+    });
+	this.__defineSetter__("completename", function(val){
+        completename = val;
     });
 	this.__defineSetter__("address", function(val){
         address = val;
@@ -108,6 +168,33 @@ var User = function(resobj){
         password = val;
     });
 	this.__defineSetter__("birthday", function(val){
+        birthday = val;
+    });
+	this.__defineSetter__("company", function(val){
+        birthday = val;
+    });
+	this.__defineSetter__("sector", function(val){
+        birthday = val;
+    });
+	this.__defineSetter__("state", function(val){
+        birthday = val;
+    });
+	this.__defineSetter__("university", function(val){
+        birthday = val;
+    });
+	this.__defineSetter__("faculty", function(val){
+        birthday = val;
+    });
+	this.__defineSetter__("course", function(val){
+        birthday = val;
+    });
+	this.__defineSetter__("study_start", function(val){
+        birthday = val;
+    });
+	this.__defineSetter__("study_end", function(val){
+        birthday = val;
+    });
+	this.__defineSetter__("interests", function(val){
         birthday = val;
     });
 };
