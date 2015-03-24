@@ -15,11 +15,14 @@
 \usepackage{breakcites}
 \usepackage[autostyle=true,german=quotes]{csquotes}
 
-\newcommand{\usecasepart}[1]{\subsection{Aufgabenteil: #1}}
-\newcommand{\problem}[1]{\subsubsection{Problem: #1}}
-\newcommand{\descript}[1]{\paragraph{Beschreibung:} #1} 
-\newcommand{\category}[1]{\paragraph{Kategorisierung des Problems:} #1}
-\newcommand{\improvement}[1]{\paragraph{Verbesserungsvorschlag:} #1}
+%counts also paragraphs
+\setcounter{secnumdepth}{4}
+\newcommand{\usecase}[1]{\subsection{Use-Case: #1}}
+\newcommand{\usecasepart}[1]{\subsubsection{Aufgabenteil: #1}}
+\newcommand{\problem}[1]{\paragraph{Problem: #1}}
+\newcommand{\descript}[1]{\subparagraph{Beschreibung:} #1} 
+\newcommand{\category}[1]{\subparagraph{Kategorisierung des Problems:} #1}
+\newcommand{\improvement}[1]{\subparagraph{Verbesserungsvorschlag:} #1}
 
 \begin{document}
 \titlehead{
