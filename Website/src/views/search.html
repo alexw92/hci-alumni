@@ -1,12 +1,18 @@
 <div id="search-panel">
 	<h2>Alumni suchen</h2>
 	<hr />
+	<div class="row search-navigation">
+		<ul class="nav nav-tabs" id="search-nav" role="tablist">
+			<li role="presentation" class="active"><a href="#" id="contact">nach Kontaktdaten</a></li>
+			<li role="presentation"><a href="#" id="course">nach Studien- und Jahrgang</a></li>
+		</ul>
+	</div>
 	<form>
-	<div class="row search">
+	<div class="row search" id="search-contact-panel">
 		<div class="row search-header">
 			<div class="col-lg-8">
 				<div class="input-group">
-					<input type="text" class="form-control input-lg" placeholder="Suche nach ..." id="input-search">
+					<input type="text" class="form-control input-lg" placeholder="Suche nach Vor- und Nachname ..." id="input-search">
 					<span class="input-group-btn">
 						<button class="btn btn-default btn-lg" type="button" id="btn-submit-search">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -73,7 +79,13 @@
 	</div>
 	</form>
 
-	<h3>Ergebnisse &nbsp;&nbsp;&nbsp;<small>Es wurden <span id="search-result-length">{x}</span> Alumni gefunden</small></h3>
-	<hr />
-	<div class="search-result-wrapper"></div>
+	<div class="row search" id="search-course-panel" style="display: none">
+		text kommt für die studiengangliste hier :)
+	</div>
+
+	<div class="row search" id="search-result" style="display: none">
+		<h3>Ergebnisse &nbsp;&nbsp;&nbsp;<small>Es wurden <span id="search-result-length">{x}</span> Alumni gefunden</small></h3>
+		<hr />
+		<div class="search-result-wrapper"></div>
+	</div>
 </div>

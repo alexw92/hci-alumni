@@ -7,10 +7,10 @@ var User = function(resobj){
 	var address = null;
 	var addressaddition = null;
 	var postalcode = null;
-	var city = null; 
+	var city = null;
 	var email = null;
 	var username = null;
-	var password = null; 
+	var password = null;
 	var birthday = null;
 	var company = null;
 	var sector = null;
@@ -22,7 +22,7 @@ var User = function(resobj){
 	var study_end = null;
 	var interests = null;
 
-	if(resobj !== 'undefined' && typeof(resobj) === 'object') { 
+	if(resobj !== 'undefined' && typeof(resobj) === 'object') {
 		userid = resobj[0];
 		title = resobj[1];
 		firstname = resobj[2];
@@ -45,23 +45,23 @@ var User = function(resobj){
 		study_start = resobj[19];
 		study_end = resobj[20];
 		interests = resobj[21];
-	} else { 
+	} else {
 		//leer initialisiert
 	}
-	
+
 	this.toJsonNewUser = function(){
 		var shaObj = new jsSHA(password, "TEXT");
-		return {title: this.title, firstname: this.firstname, lastname: this.lastname, address: this.address, addressaddition: this.addressaddition, postalcode: this.postalcode, city: this.city, 
+		return {title: this.title, firstname: this.firstname, lastname: this.lastname, address: this.address, addressaddition: this.addressaddition, postalcode: this.postalcode, city: this.city,
 				email: this.email, username: this.username, password: shaObj.getHash("SHA-512", "HEX"), birthday: this.birthday};
 	};
-	
+
 	this.toJson = function(){
 		var shaObj = new jsSHA(password, "TEXT");
-		return {title: this.title, firstname: this.firstname, lastname: this.lastname, fullname: this.fullname, address: this.address, addressaddition: this.addressaddition, postalcode: this.postalcode, city: this.city, 
+		return {title: this.title, firstname: this.firstname, lastname: this.lastname, fullname: this.fullname, address: this.address, addressaddition: this.addressaddition, postalcode: this.postalcode, city: this.city,
 				email: this.email, username: this.username, password: shaObj.getHash("SHA-512", "HEX"), birthday: this.birthday, company: this.company, sector: this.sector, state: this.state, university: this.university,
 				faculty: this.faculty, course: this.course, study_start: this.study_start, study_end: this.study_end, interests: this.interests};
 	};
-	
+
 	//Getter
 	this.__defineGetter__("userid", function(){
         return userid;
@@ -103,33 +103,33 @@ var User = function(resobj){
         return birthday;
     });
 	this.__defineGetter__("company", function(){
-        return birthday;
+        return company;
     });
 	this.__defineGetter__("sector", function(){
-        return birthday;
+        return sector;
     });
 	this.__defineGetter__("state", function(){
-        return birthday;
+        return state;
     });
 	this.__defineGetter__("university", function(){
-        return birthday;
+        return university;
     });
 	this.__defineGetter__("faculty", function(){
-        return birthday;
+        return faculty;
     });
 	this.__defineGetter__("course", function(){
-        return birthday;
+        return course;
     });
 	this.__defineGetter__("study_start", function(){
-        return birthday;
+        return study_start;
     });
 	this.__defineGetter__("study_end", function(){
-        return birthday;
+        return study_end;
     });
 	this.__defineGetter__("interests", function(){
-        return birthday;
+        return interests;
     });
-	
+
 	//Setter
     this.__defineSetter__("userid", function(val){
         userid = val;
@@ -171,31 +171,31 @@ var User = function(resobj){
         birthday = val;
     });
 	this.__defineSetter__("company", function(val){
-        birthday = val;
+        company = val;
     });
 	this.__defineSetter__("sector", function(val){
-        birthday = val;
+        sector = val;
     });
 	this.__defineSetter__("state", function(val){
-        birthday = val;
+        state = val;
     });
 	this.__defineSetter__("university", function(val){
-        birthday = val;
+        university = val;
     });
 	this.__defineSetter__("faculty", function(val){
-        birthday = val;
+        faculty = val;
     });
 	this.__defineSetter__("course", function(val){
-        birthday = val;
+        course = val;
     });
 	this.__defineSetter__("study_start", function(val){
-        birthday = val;
+        study_start = val;
     });
 	this.__defineSetter__("study_end", function(val){
-        birthday = val;
+        study_end = val;
     });
 	this.__defineSetter__("interests", function(val){
-        birthday = val;
+        interests = val;
     });
 };
 

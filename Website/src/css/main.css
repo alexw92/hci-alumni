@@ -104,11 +104,11 @@ textarea {
     max-height: 275px;
     position: relative;
 }
-.header-image 
+.header-image
 {
     width: 100%;
 }
-.panel-login-header 
+.panel-login-header
 {
     float: right;
     position: absolute;
@@ -116,42 +116,43 @@ textarea {
     bottom: 0;
     max-width: 300px;
 }
-.panel-body 
+.panel-body
 {
     padding: 10px;
 }
-.login-input 
+.login-input
 {
     margin-bottom: 2px;
 }
-.login-left-side 
+.login-left-side
 {
     float: left;
     width: 175px;
 }
-.login-right-side 
+.login-right-side
 {
     float:right;
     padding-left: 10px;
 }
-.login-bottom-side 
+.login-bottom-side
 {
     clear: both;
     margin: 0 auto;
     text-align: center;
 }
-.error-msg 
+.error-msg
 {
     display: none;
     font-size: x-small;
     color: red;
 }
+
 /* Navigation Background Color*/
 .navBackgroundColor
 {
 	/*background-color: #4D82BE; */
 	background-color: #004994;  /* uni color*/
-	
+
 }
 /* Active dropdown menu background color*/
 .navbar-default .navbar-nav > .open > a,
@@ -163,7 +164,7 @@ textarea {
   background-color: white;  /* uni color*/
 }
 /*Active dropdown menu font color */
-.dropdown-menu > li > a 
+.dropdown-menu > li > a
 {
   color: white;
 }
@@ -201,7 +202,7 @@ textarea {
 }
 
 
-hr 
+hr
 {
     border-top: 2px solid #004994;
 }
@@ -218,8 +219,10 @@ hr
 }
 
 .result-image {
-  width: 100%;
-  margin: 0 auto;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 15px;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
@@ -235,6 +238,12 @@ hr
 
 .search-extended {
   display: none;
+}
+
+.search-navigation {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 20px;
 }
 
 #membershipData

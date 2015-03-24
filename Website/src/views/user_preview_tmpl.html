@@ -1,21 +1,21 @@
 <div class="row">
 	<div class="col-md-3">
-		<img src="test.jpg" class="result-image img-thumbnail">
+		<img src="" class="result-image img-thumbnail">
 	</div>
 	<div class="col-md-9">
-		<h4><strong><span class="search-result-firstname">{Vorname}</span> <span class="search-result-lastname">{Nachname}</span></strong> {Flagge}<br /></h4>
+		<h4><strong><span class="search-result-firstname">{Vorname}</span> <span class="search-result-lastname">{Nachname}</span></strong><br /></h4>
 		<p>
-			<small>geboren am <span class="search-result-dateofbirth">{Datum}</span> und ist jetzt
-				<span class="search-result-age">{Alter}</span> Jahre alt<br />
-				stammt aus <span class="search-result-origin">{Heimatort}</span><br />
+				<span id="birthday-row" style="display: none">geboren am <span class="search-result-birthdate">{Datum}</span> und ist jetzt
+				<span class="search-result-age">{Alter}</span> Jahre alt<br /></span>
+				<span id="origin-row" style="display:none">stammt aus <span class="search-result-origin">{Heimatort}</span><br /></span>
 				lebt derzeit in <span class="search-result-city">{Wohnort}</span><br />
-				ist tätig bei/an der <span class="search-result-firm">{Uni/Firma}</span> in <span class="search-result-firmcity">{OrtFirma}</span></small>
+				<span class="search-result-company" style="display: none"></span>
+				<span class="search-result-university" style="display: none"></span>
 		</p>
 		<p>
-			<small><a href="#/user/:id">Profil anschauen</a>&nbsp;&nbsp;&nbsp;|
+			<a href="#/user/:id">Profil anschauen</a>&nbsp;&nbsp;&nbsp;|
 				&nbsp;&nbsp;&nbsp;<a href="#/message/:id">Nachricht senden</a>&nbsp;&nbsp;&nbsp;|
 				&nbsp;&nbsp;&nbsp;<a href="">Als Freund hinzufügen</a>
-			</small>
 		</p>
 	</div>
 </div>

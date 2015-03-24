@@ -10,7 +10,9 @@ jQuery(function () {
 	ContentHandler.loadView('loginform.html', '#login', function () {
 		app.loginCtrl.initialize();
 	});
-	
+
+	/*
+
 	//Examples: How to use dbconn
 	app.dbconn.checkUsernameInUse('FHeer', function(result) {
 		console.log(result); //true
@@ -35,6 +37,6 @@ jQuery(function () {
 	app.dbconn.updateUserinfo('username','FHeer','FHeer123',function(result){
 		console.log(result);
 	});
-	
-	
+	*/
+
 });

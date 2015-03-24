@@ -4,7 +4,7 @@ var SearchController = (function () {
 		searchBtn = null,
 		searchInput = null,
 		extendedSearchBtn = null,
-		names = ['Thomas Handwerker', 'Alexander Werthmann', 'Armin Beutel', 'Benedikt Pfaff', 'Vanessa Weltner', 'Jessica Voll', 'Max Mustermann'];
+		names = null;
 
 	/**
 	 * private methods
@@ -58,22 +58,22 @@ var SearchController = (function () {
 	};
 
 	var startSearch = function (searchValue) {
-		console.log('%s => searching for: %s', TAG, searchValue);
-
-		var resultSet = [{firstname: 'Thomas', lastname: 'Handwerker'}, {firstname: 'Armin', lastname: 'Beutel'}];
-
-		displaySearchResult(resultSet);
-		updateResultCount(resultSet.length);
-		updateBrowserLocation(searchValue);
+		var dbHandler = new DatabaseHandler();
+		dbHandler.getUsersByFullname(searchValue, function (resultSet) {
+			displaySearchResult(resultSet);
+			updateResultCount(resultSet.length);
+			updateBrowserLocation(searchValue);
+		});
 	};
 
 	var displaySearchResult = function (resultSet) {
 		var resultDomArray = [];
 
 		renderPageination();
+		$(searchPanel).find('#search-result').show();
 
-		$(resultSet).each(function (index, resultUser) {
-			userBuilder = new UserPreviewBuilder(resultUser);
+		$(resultSet).each(function (index, user) {
+			userBuilder = new UserPreviewBuilder(user.toJson());
 			userBuilder.build(function (result) {
 				resultDomArray.push(result);
 
@@ -111,7 +111,27 @@ var SearchController = (function () {
 		extSearchPnl.fadeToggle('slow');
 	};
 
-	var bindAutoComplete = function () {
+	var initSearchNavigation = function () {
+		$(searchPanel).find('#search-nav a').on('click', function (e) {
+			e.preventDefault();
+			var tabID = $(this).attr('id'),
+				tabParent = $(this).parent();
+
+			if(tabID === 'course') {
+				$(searchPanel).find('#search-contact-panel').hide();
+				$(searchPanel).find('#search-course-panel').show();
+			}
+			else if(tabID === 'contact') {
+				$(searchPanel).find('#search-contact-panel').show();
+				$(searchPanel).find('#search-course-panel').hide();
+			}
+
+			$(this).tab('show');
+			$(searchPanel).find('#search-result').hide();
+		});
+	};
+
+	var bindAutoComplete = function (names) {
 		$(searchInput).typeahead({
 			hint: true,
 			highlight: true,
@@ -124,6 +144,14 @@ var SearchController = (function () {
 		});
 	};
 
+	var loadFullNameList = function () {
+		var dbHandler = new DatabaseHandler();
+
+		dbHandler.getFullnames(function (nameList) {
+			bindAutoComplete(nameList);
+		});
+	};
+
 	var searchMatcher = function (strs) {
 		return function findMatches(q, callback) {
 			var matches, substrRegex;
@@ -131,13 +159,21 @@ var SearchController = (function () {
 			substrRegex = new RegExp(q, 'i');
 
 			$.each(strs, function(i, str) {
-				if(substrRegex.test(str)) {
-					matches.push({ value : str });
+				if(substrRegex.test(str) && $.inArray(str, matches) === -1) {
+					matches.push(str);
 				}
 			});
 
-			callback(matches);
+			callback(buildMatchesArray(matches));
 		};
+	};
+
+	var buildMatchesArray = function (stringArray) {
+		var matches = [];
+		stringArray.forEach(function (item, index) {
+			matches.push({ value : item });
+		});
+		return matches;
 	};
 
 	/**
@@ -149,9 +185,11 @@ var SearchController = (function () {
 
 			setDomElements();
 			bindEvents();
-			bindAutoComplete();
+			initSearchNavigation();
+			loadFullNameList();
 
 			if(searchString !== '') {
+				$(searchPanel).find('#input-search').val(searchString);
 				startSearch(searchString);
 			}
 		}
