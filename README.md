@@ -12,7 +12,7 @@ Prototypische Umsetzung des Alumni Portal der Universität Würzburg. Der Protot
 * Stelle sicher, dass du [node](https://nodejs.org/) mit [npm](https://www.npmjs.com/) installiert hast - NodeJS beinhaltet bereits den Paketmanager npm
 * Zur Überprüfung schau ob die Befehle `node` sowie `npm` in der Konsole ausführbar sind
 * Falls noch nicht geschehen, öffne ein Konsolenfenster
-* Führe den Befehle ```npm install -g grunt-cli``` aus
+* Führe den Befehle `npm install -g grunt-cli` aus
 * Wechsle in das Verzeichnis `Website` des Git Repository
 * Dort führst du den Befehl `npm install` aus, so dass alle notwendigen Pakete installiert werden
 * Öffne ein zweites Konsolenfenster und wechsel in das Verzeichnis `Server` des Repository
