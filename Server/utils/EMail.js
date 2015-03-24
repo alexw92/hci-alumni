@@ -8,7 +8,7 @@ var EMail = (function (mailData) {
 	 */
 	var setText = function () {
 		if(_type === MailType.CONFIRM_REGISTER)
-			_mail.text = 'Registierung bestätigt; No-HTML Fallback Text';
+			_mail.text = 'Registrierung erfolgreich; No-HTML Fallback Text';
 		else if(_type === MailType.SEND_PASSWORD)
 			_mail.text = 'Passwort wird zugesendet; No-HTML Fallback Text';
 		else if(_type === MailType.SEND_ACCOUNT)
@@ -29,7 +29,14 @@ var EMail = (function (mailData) {
 		var htmlMessage = '<html>';
 
 		if(_type === MailType.CONFIRM_REGISTER)
-			htmlMessage += '<b>Registrierung</b> ... blubb';
+			htmlMessage += '<div style="max-width:650px; padding: 15px;"><h3 style="Margin-top: 0;color: #555;font-weight: normal;font-size: 18px;line-height: 26px;Margin-bottom: 16px;font-family: Georgia,serif">' +
+								'Sehr geehrte/r ' + _reqParams.salutation + ' ' + _reqParams.lastname + ',</h3><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">es freut uns Ihnen mitteilen zu k&#246;nnen, dass ihre Registrierung beim Alumni-Portal der Uni W&#252;rzburg erfolgreich war.</p>' +
+								'<p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Mit Klick auf folgenden Link ' +
+								'<a href="http://localhost:3001/#/verify/' + _reqParams.verify_code + '" target="_blank">https://uni-wuerzburg.alumnionline.de/verify/' + _reqParams.verify_code + '</a> wird ihre Registrierung abgeschlossen und Sie k&#246;nnen sich mit dem Benutzernamen ' +
+								'&lsquo;' + _reqParams.username + '&rsquo; und dem von Ihnen gew&#228;hlten Passwort einloggen.</p>' +
+								'<p style="Margin-top: 0;color: #565656;font-family:Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Bei Fragen stehen unsere ehrenamtlichen Alumni-Unterst&#252;tzer Ihnen nat&#252;rlich jederzeit gerne zur Verf&#252;gung!</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Wir w&#252;nschen Ihnen viel Spa&#223; im Alumni-Portal!</p>' +
+								'<p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Viele Gr&#252;&#223;e, Ihr</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Alumni-Team<br />___________________________<br />' +
+								'Alumni Universit&#228;t W&#252;rzburg<br />Am Hubland<br />97074 W&#252;rzburg<br />Tel. 0931/1234567</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 24px"><em>P.S. Wir m&#246;chten unser Netzwerk weiter vergr&#246;&#223;ern - sagen Sie doch auch Ihren Kontakten Bescheid - vielen Dank!</em></p></div>';
 		else if(_type === MailType.SEND_PASSWORD)
 			htmlMessage += '<b>Passwort vergessen</b> ... blubb';
 		else if(_type === MailType.SEND_ACCOUNT)
@@ -47,7 +54,7 @@ var EMail = (function (mailData) {
 
 	var setSubject = function () {
 		if(_type === MailType.CONFIRM_REGISTER)
-			_mail.subject = 'Alumni-Portal: Registrierungsbestätigung';
+			_mail.subject = 'Ihre Registrierung bei Alumni der Uni Würzburg';
 		else if(_type === MailType.SEND_PASSWORD)
 			_mail.subject = 'Alumni-Portal: Passwort vergessen';
 		else if(_type === MailType.SEND_ACCOUNT)
@@ -119,7 +126,7 @@ var MailType = {
 };
 
 var MailRequiredParams = [
-	['recipient', 'recipient_mail', 'username', 'password'], // Confirm-Register
+	['recipient', 'recipient_mail', 'username', 'lastname', 'salutation', 'verify_code'], // Confirm-Register
 	['username', 'email'], // Send-Password
 	['username', 'email'] // Send-Acount
 ];
