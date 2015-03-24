@@ -1,7 +1,7 @@
 \documentclass[fontsize=12pt,a4paper]{scrartcl}
 
 \usepackage[utf8x]{inputenc}
-\usepackage[USenglish,american]{babel}
+\usepackage[ngerman]{babel}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{caption}
@@ -16,13 +16,15 @@
 \usepackage[autostyle=true,german=quotes]{csquotes}
 
 %countdepth
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{4}
 \newcommand{\usecase}[1]{\subsection{Use-Case: #1}}
 \newcommand{\usecasepart}[1]{\subsubsection{Aufgabenteil: #1}}
-\newcommand{\problem}[1]{\paragraph{Problem: #1}}
-\newcommand{\descript}[1]{\subparagraph{Beschreibung:} #1} 
-\newcommand{\category}[1]{\subparagraph{Kategorisierung:} #1}
-\newcommand{\improvement}[1]{\subparagraph{Verbesserungsvorschlag:} #1}
+%\newcommand{\problem}[1]{\paragraph{Problem: #1}}
+%\newcommand{\descript}[1]{\subparagraph{Beschreibung:} #1} 
+%\newcommand{\category}[1]{\subparagraph{Kategorisierung:} #1}
+%\newcommand{\improvement}[1]{\subparagraph{Verbesserungsvorschlag:} #1}
+\newcommand{\problem}[4]{\paragraph*{Problem: #1}\quad \\ \quad \\
+\textit{Beschreibung:}#2 \vspace{5pt} \\  \textit{Kategorisierung:} #3 \vspace{5pt} \\\textit{Verbesserungsvorschlag:} #4}
 
 \begin{document}
 \titlehead{
@@ -83,7 +85,7 @@ Alexander Werthmann, Matrikelnummer 1234567\\[3em]
 
 \section{Designalternativen}
 BLABLA, weitere Sachen die uns aufgefallen sind, die aber nicht Bestandteil unseres Walkthroughs waren
-
+\input{table}
 
 
 \end{document}

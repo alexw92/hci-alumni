@@ -12,166 +12,148 @@ Außerdem sind die Funktionalitäten sehr übersichtlich gehalten, um den User n
 Allgemein ist das Design sehr schlank und schlicht gehalten, um User nicht zu überfordern. 
 
 \problem{Uneinheitliches Erscheinungsbild}
-\descript{Beim ersten Blick fällt dem User sofort das uneinheitliche Erscheinungsbild der Startseite auf. Dies äußert sich in mehreren Punkten, die hier zusammen gefasst werden. 
+{Beim ersten Blick fällt dem User sofort das uneinheitliche Erscheinungsbild der Startseite auf. Dies äußert sich in mehreren Punkten, die hier zusammen gefasst werden. 
 So werden insgesamt (exklusive Logos) 8 verschiedene Schrifttypen verwendet, die zudem nicht immer einen semantischen Unterschied signalisieren. In den beiden Textspalten, werden beispielsweise zwei unterschiedliche Schrifttypen verwendet. 
 
 Hinzu kommt ein viel zu kleiner Hinweistext in grau am Beginn der Seite, der darauf hinweist, dass nicht alle Funktionen ohne Login verfügbar sind.
 In der linken Textspalte, ist zudem der Textsatz nicht überprüft worden, was dazu führt, dass das Wort \glqq sind\grqq~in die zweiten Zeile direkt neben die Weltkarte gequetscht ist.
 Zusätzlich ist die Überschrift der rechten Spalte \glqq Alle Detailansichten im eingeloggten Bereich\grqq keine Überschrift und sorgt für Verwirrung.
 }
-
-\category{Durch das uneinheitliche Erscheinungsbild, wird es wird dem Nutzer erschwert sich auf der Seite zurecht zu finden. Dennoch sind nach etwas längerem Suchen die Struktur und alle Funktionen der Seite erkennbar, das Problem ist also nicht besonders schwerwiegend, sondern nur etwas störend (Kategorie 1).
+{Durch das uneinheitliche Erscheinungsbild, wird es wird dem Nutzer erschwert sich auf der Seite zurecht zu finden. Dennoch sind nach etwas längerem Suchen die Struktur und alle Funktionen der Seite erkennbar, das Problem ist also nicht besonders schwerwiegend, sondern nur etwas störend (Kategorie~1).
 }
+{Durch die Reduktion auf 3 bis 4 verschiedene Schriftarten, sowie Reduktion auf weniger aussagekräftige Überschriften und die deutlichere Hervorhebung von Hinweistexten kann das allgemeine Auftreten und der erste Eindruck der Startseite schon deutlich verbessert werden.
+}\label{prob:start:erschbild}
 
-\improvement{Durch die Reduktion auf 3 bis 4 verschiedene Schriftarten, sowie Reduktion auf weniger aussagekräftige Überschriften und die deutlichere Hervorhebung von Hinweistexten kann das allgemeine Auftreten und der erste Eindruck der Startseite schon deutlich verbessert werden.
-}
-
-\problem{Weltkarte ist nur als Nutzer auswählbar}
-
-\descript{Als nächstes fällt sofort die ansprechende Weltkarte auf der Startseite ins Auge, siehe Abbildung \ref{TODO:WELTKARTE}. 
+\problem{Weltkarte ist nur als Nutzer verfügbar}
+{Als nächstes fällt sofort die ansprechende Weltkarte auf der Startseite ins Auge, siehe Abbildung \ref{TODO:WELTKARTE}. 
 Der User möchte die Karte anklicken und erwartet eine größere und interaktive Version der Weltkarte zur Verfügung zu haben.
 Der Zugriff auf die Weltkarte wird einem Besucher jedoch (unverständlicherweise) nach dem Klick verwehrt und der Nutzer wird auf eine Login-Seite verlinkt. 
 Dies stellt eine Dissonanz zwischen der Erwartung des Nutzers und dem Verhalten des Systems dar.
-}
-\category{Da die Weltkarte derart auffällig platziert ist, lockt sie die Aufmerksamkeit des Nutzers an. Dieser wird durch die Nichtverfügbarkeit abgeschreckt. 
-Die fehlende Funktionalität der interaktiven Weltkarte stellt deshalb einen schweren Fehler dar, da der Nutzer bereits hier wegen fehlender Motivation abbrechen könnte (Kategorie 4).
-}
-\improvement{Die Weltkarte kann zweifellos auch ohne Login zugänglich und bedienbar gemacht werden. Dadurch fühlt sich der User nicht im \glqq Stöberverhalten\grqq beeinträchtigt. 
-\footnote{Obwohl nicht Teil des eigentlichen Use Cases, ist die Weltkarte außerdem auch Werbung und Aushängeschild der Universität Würzburg. Sie sollte auch für nicht-Alumni und Interessenten der Universität verfügbar gemacht werden, da diese sich überhaupt nicht anmelden können.}
-}
+}{Da die Weltkarte derart auffällig platziert ist, lockt sie die Aufmerksamkeit des Nutzers an. Dieser wird durch die Nichtverfügbarkeit abgeschreckt. 
+Die fehlende Funktionalität der interaktiven Weltkarte stellt deshalb einen schweren Fehler dar, da der Nutzer bereits hier wegen fehlender Motivation abbrechen könnte (Kategorie~4).}
+{Die Weltkarte kann zweifellos auch ohne Login zugänglich und bedienbar gemacht werden.\footnote{Obwohl nicht Teil des eigentlichen Use Cases, ist die Weltkarte außerdem auch Werbung und Aushängeschild der Universität Würzburg. Sie sollte auch für nicht-Alumni und Interessenten der Universität verfügbar gemacht werden, da diese sich überhaupt nicht anmelden können.}
+Dadurch fühlt sich der User nicht im \glqq Stöberverhalten\grqq~ beeinträchtigt.
+}\label{prob:start:weltkarte}
 
 \problem{Zweispaltiges Design}
-\descript{
-Der Text der Startseite ist in zwei Spalten aufgeteilt. Dies führt zu einer schlechteren Lesbarkeit, da zudem keine Hierarchie erkennbar ist, also beiden Spalten gleich viel Platz eingeräumt wird.
+{Der Text der Startseite ist in zwei Spalten aufgeteilt. Dies führt zu einer schlechteren Lesbarkeit, da zudem keine Hierarchie erkennbar ist, also beiden Spalten gleich viel Platz eingeräumt wird.
 Dadurch wird kein Leitartikel erkennbar, was es für den User schwer macht in die Website einzusteigen. 
 Durch die Seitenränder und das Seitenmenü findet eine weitere Einengung statt, sodass der Text der stark in die Länge gezogen wird, der User also weit nach unten scrollen muss.
 Hinzu kommt, dass die linke Spalte deutlich weniger Text beinhaltet als die rechte Spalte, was dazu führt, das am Ende der Seite nurnoch etwa ein Viertel der Webseite überhaupt genutzt wird. Dies führt natürlich zu einer weiteren Streckung des Textes. 
-}
-
-\category{
-Die Zweiteilung wirkt sehr ungeschickt und verhindert zudem, dass der gesamte Platz der Website genutzt werden kann. Es führt allerdings nicht zu einer Behinderung des Nutzers, weshalb es als leichtes Problem eingestuft werden kann (Kategorie 2).
-}
-
-\improvement{Wichtig wäre hier vor allem eine klare Hierarchie vorzugeben, die sich auch in der Platzaufteilung zeigt. Dadurch wird die Aufmerksamkeit des Users direkt auf diese Spalte gebunden und es gibt einen klar erkennbaren \glqq Anfang\grqq der Seite.
-}
+}{Die Zweiteilung wirkt sehr ungeschickt und verhindert zudem, dass der gesamte Platz der Website genutzt werden kann. Es führt allerdings nicht zu einer Behinderung des Nutzers, weshalb es als leichtes Problem eingestuft werden kann (Kategorie~2).
+}{Wichtig wäre hier vor allem eine klare Hierarchie vorzugeben, die sich auch in der Platzaufteilung zeigt. Dadurch wird die Aufmerksamkeit des Users direkt auf diese Spalte gebunden und es gibt einen klar erkennbaren \glqq Anfang\grqq der Seite.}
 
 \problem{Scrollpanel in linker Spalte} 
-\descript{
-In der linken Spalte befindet sich ein Scrollpanel mit der Überschrift \glqq Aktuelles\grqq. Dem User erscheint dieses Scrollpanel jedoch vollkommen fehl am Platz.
+{In der linken Spalte befindet sich ein Scrollpanel mit der Überschrift \glqq Aktuelles\grqq. Dem User erscheint dieses Scrollpanel jedoch vollkommen fehl am Platz.
 Zunächst sind die Informationen im Scrollpanel viel zu klein dargestellt und jede Nachricht ist auf 2 Zeilen begrenzt. Außerdem erübrigt sich der platzsparende Charakter eines Scrollpanels, da durch die rechte Spalte die Website ohnehin nach unten expandiert wird. 
 Dies führt dazu, dass der Rest der linken Spalte leer bleibt, während der Nutzer im viel zu klein geratenen Panel nach unten scrollen muss.
-}
-\category{Der Sinn des gesamten Panels erschließt sich dem User keineswegs. Es spart keinen Platz, sondern führt nur dazu, dass der User gezwungen ist selbst im Panel zu scrollen. Das führt zu Verärgerung und Verwirrung, da sich der Sinn dem User überhaupt nicht erschließt, das Tool hier also völlig falsch angewandt wurde (Kategorie 3).
-}
-\improvement{In diesem Fall, wäre es besser das Scrollpanel einfach wegzulassen und den Newsfeed \glqq Aktuelles\grqq einfach als Artikel unter der Weltkarte normal anzuzeigen. Gegebenenfalls kann das Scrollpanel auch so eingestellt werden, dass es sich bis zum Seitenende expandiert, also beide Spalten ausgeglichen lang sind. 
+}{
+Der Sinn des gesamten Panels erschließt sich dem User keineswegs. Es spart keinen Platz, sondern führt nur dazu, dass der User gezwungen ist selbst im Panel zu scrollen. Das führt zu Verärgerung und Verwirrung, da sich der Sinn dem User überhaupt nicht erschließt, das Tool hier also völlig falsch angewandt wurde (Kategorie~3).
+}{
+In diesem Fall, wäre es besser das Scrollpanel einfach wegzulassen und den Newsfeed \glqq Aktuelles\grqq einfach als Artikel unter der Weltkarte normal anzuzeigen. Gegebenenfalls kann das Scrollpanel auch so eingestellt werden, dass es sich bis zum Seitenende expandiert, also beide Spalten ausgeglichen lang sind. 
 }
 
 \problem{Zurücksetzen der Startseite auf Englisch} 
-\descript{TODO
+{TODO
 }
-\category{
+{hallo
 }
-\improvement{
+{hallo
 }
 
 \problem{Statisches Websitedesign passt sich nicht an Auflösung an} 
-\descript{TODO
+{TODO
 }
-\category{
+{hallo	
 }
-\improvement{
+{hallo
 }
 
 \usecasepart{Betrachten der Menüs}
 
 Im Folgenden untersucht der User die Startmenüs und ihre Funktionen noch etwas genauer. TODO BILD?
 
-\problem{Verwendung zweier Menüs}\label{subsubsec:zweimenus}
-\descript{Zunächst fällt dem User auf, dass sowohl ein Header-Menü, als auch ein Menü am linken Seitenrand vorhanden sind. Das ist verwirrend, da auch keine semantische Trennung in den Funktionen beider Menüs vorhanden ist. 
-}
-\category{Das Vorhandenseins zweier Menüs an unterschiedlicher Stelle verwirrt den User. Da dennoch alle Funktionen verfügbar sind, ist das Problem allerdings nicht besonders schwerwiegend (Kategorie 2).
-}
-\improvement{Hier wäre eine Reduktion auf ein Menü ratsam (vorzugsweise das Header-Menü). Dadurch wären alle verfügbaren Funktionen klar sortiert und somit zugänglicher. 
+\problem{Verwendung zweier Menüs}
+{Zunächst fällt dem User auf, dass sowohl ein Header-Menü, als auch ein Menü am linken Seitenrand vorhanden sind. Das ist verwirrend, da auch keine semantische Trennung in den Funktionen beider Menüs vorhanden ist. 
+}{Das Vorhandenseins zweier Menüs an unterschiedlicher Stelle verwirrt den User. Da dennoch alle Funktionen verfügbar sind, ist das Problem allerdings nicht besonders schwerwiegend (Kategorie~2).
+}{Hier wäre eine Reduktion auf ein Menü ratsam (vorzugsweise das Header-Menü). Dadurch wären alle verfügbaren Funktionen klar sortiert und somit zugänglicher. 
 }
 
 \problem{Redundante Funktionen} 
-\descript{Die Buttons \glqq Start\grqq~und \glqq Alumni-Hompage\grqq, sowie \glqq Portal in Englisch\grqq~und \glqq English version\grqq sind jeweils redundant in beiden Menüs mit unterschiedlicher Benennung angebracht, verfolgen aber den gleichen Zweck. Außerdem ist der \glqq Alumni-Portal\grqq~-Button in beiden Menüs vorhanden.
+{Die Buttons \glqq Start\grqq~und \glqq Alumni-Hompage\grqq, sowie \glqq Portal in Englisch\grqq~und \glqq English version\grqq sind jeweils redundant in beiden Menüs mit unterschiedlicher Benennung angebracht, verfolgen aber den gleichen Zweck. Außerdem ist der \glqq Alumni-Portal\grqq~-Button in beiden Menüs vorhanden.
 }
-\category{Durch die doppelte Platzierung und unterschiedliche Benennung der Buttons wird dem User ein semantischer Unterschied suggeriert, der nicht vorhanden ist. Das führt zwar zur Verwirrung, die Funktionen sind aber dennoch verfügbar und auffindbar (Kategorie 1).
+{Durch die doppelte Platzierung und unterschiedliche Benennung der Buttons wird dem User ein semantischer Unterschied suggeriert, der nicht vorhanden ist. Das führt zwar zur Verwirrung, die Funktionen sind aber dennoch verfügbar und auffindbar (Kategorie~1).
 }
-\improvement{Die redundanten Buttons können entfernt werden, um dem User eine klare Übersicht über die verfügbaren Funktionen zu geben. 
+{Die redundanten Buttons können entfernt werden, um dem User eine klare Übersicht über die verfügbaren Funktionen zu geben. 
 }
 
 \problem{Menüpunkt: Logindaten vergessen} 
-\descript{Die Funktion \glqq Logindaten vergessen\grqq~ist im Menü recht unüblich. Der User nimmt an, dass die Funktionen des Menüs zur Navigation dienen. Das Problem der vergessenen Logindaten passt nicht in diesen Kontext.
+{Die Funktion \glqq Logindaten vergessen\grqq~ist im Menü recht unüblich. Der User nimmt an, dass die Funktionen des Menüs zur Navigation dienen. Das Problem der vergessenen Logindaten passt nicht in diesen Kontext.
 }
-\category{Der User wird durch die zusätzliche/unnötige Funktion verwirrt und von seiner eigentlichen Intention abgelenkt (Kategorie 2).
+{Der User wird durch die zusätzliche/unnötige Funktion verwirrt und von seiner eigentlichen Intention abgelenkt (Kategorie~2).
 }
-\improvement{Die Funktion sollte in der Nähe der Login-Funktion angebracht werden, da sie nur in diesem Kontext gebraucht wird. Außerdem ist das mittlerweile auch die übliche Platzierung, an dem ein User sie zuerst suchen würde.
+{Die Funktion sollte in der Nähe der Login-Funktion angebracht werden, da sie nur in diesem Kontext gebraucht wird. Außerdem ist das mittlerweile auch die übliche Platzierung, an dem ein User sie zuerst suchen würde.
 }
 
-\problem{Menüpunkt: Registrieren} \label{subsubsec:menuregistrieren}
-\descript{Der Menüpunkt \glqq Registrieren\grqq ist nicht im üblichen Kontext in der Nähe des Anmeldefensters angeordnet. Bei einem Klick öffnet sich ein Untermenü, das dem User zwei Optionen bietet: \glqq Registrieren\grqq~und \glqq Freischalten\grqq.
+\problem{Menüpunkt: Registrieren}
+{Der Menüpunkt \glqq Registrieren\grqq ist nicht im üblichen Kontext in der Nähe des Anmeldefensters angeordnet. Bei einem Klick öffnet sich ein Untermenü, das dem User zwei Optionen bietet: \glqq Registrieren\grqq~und \glqq Freischalten\grqq.
 Die Funktion \glqq Freischalten\grqq~im ist vollkommen unklar. Der User weiß nicht, was die Funktion bewirkt oder wofür sie da ist. Auch der Unterschied zwischen Registrieren und Freischalten wird nicht deutlich.
-}
-\category{Die Funktion ist nicht in ihrem üblichen Kontext angeordnet. Der User wird zudem durch die zusätzliche/unnötige Funktion verwirrt. Es entsteht der Eindruck, zur erfolgreichen Registrierung eine weitere Aktion ausführen zu müssen (Kategorie 3).
-}
-\improvement{Die Registrierungsfunktion sollte in den Kontext des Anmeldefensters verschoben werden. Außerdem sollte die Funktion des Freischaltens deutlicher erklärt werden. Alternativ wäre ein Zugang zum Freischalten auch nur mittels einem in der Registrierungsmail verschickten Link oder eine Verlinkung nach dem ersten erfolgreichen Login denkbar.
+}{Die Funktion ist nicht in ihrem üblichen Kontext angeordnet. Der User wird zudem durch die zusätzliche/unnötige Funktion verwirrt. Es entsteht der Eindruck, zur erfolgreichen Registrierung eine weitere Aktion ausführen zu müssen (Kategorie~3).}{Die Registrierungsfunktion sollte in den Kontext des Anmeldefensters verschoben werden. Außerdem sollte die Funktion des Freischaltens deutlicher erklärt werden. Alternativ wäre ein Zugang zum Freischalten auch nur mittels einem in der Registrierungsmail verschickten Link oder eine Verlinkung nach dem ersten erfolgreichen Login denkbar.
 }
 
 \problem{Menüpunkt: Freischalten} 
-\descript{Die Funktion Freischalten ist erstens bereits im Menü vorhanden, zweitens ist die Funktion dem User hier nicht klar (siehe Abschnitt~\ref{subsubsec:menuregistrieren}). 
+{Die Funktion Freischalten ist erstens bereits im Menü vorhanden, zweitens ist die Funktion dem User hier nicht klar (siehe Abschnitt~\ref{subsubsec:menuregistrieren}). 
 Zusätzlich verlinken die beiden Funktionen mit dem Titel \glqq Freischalten\grqq~auf verschiedene Sites, die aber beide die gleiche Funktion erfüllen. Dem User wird dies jedoch nicht klar, da es sich um zwei verschiedene Links handelt.
 }
-\category{Durch den Mangel an Information und des Vorhandenseins zweier verschiedener Links, wird dem User zudem suggeriert es handele sich bei \glqq Freischalten\grqq um zwei verschiedene Funktionen (Kategorie 3).
+{Durch den Mangel an Information und des Vorhandenseins zweier verschiedener Links, wird dem User zudem suggeriert es handele sich bei \glqq Freischalten\grqq um zwei verschiedene Funktionen (Kategorie~3).
 }
-\improvement{
+{
 Da die Funktion bereits einmal im Menü vorhanden ist, genügt hier die Reduktion auf eine der beiden Optionen.
 }
 
 \problem{Menüpunkt: Start} 
-\descript{Im linken Seitenmenü taucht zusätzlich ein weiterer Button \glqq Start\grqq~auf. Auch hier ist die Funktion überhaupt nicht klar. Der User würde erwarten auf die Startseite der Website verlinkt zu werden, es geschieht jedoch eine Weiterleitung auf die Alumni-Hompage. 
+{Im linken Seitenmenü taucht zusätzlich ein weiterer Button \glqq Start\grqq~auf. Auch hier ist die Funktion überhaupt nicht klar. Der User würde erwarten auf die Startseite der Website verlinkt zu werden, es geschieht jedoch eine Weiterleitung auf die Alumni-Hompage. 
 }
-\category{Dem User ist sich überhaupt nicht über die Funktion und deren Effekt im Klaren, was zu Verwirrung führt (Kategorie 3).
+{Dem User ist sich überhaupt nicht über die Funktion und deren Effekt im Klaren, was zu Verwirrung führt (Kategorie~3).
 }
-\improvement{Da der Button ohnehin redundant mit dem Funktion \glqq Alumni-Homepage\grqq~im Header-Menü ist, kann die Funktion ohne weiteres entfernt werden.
+{Da der Button ohnehin redundant mit dem Funktion \glqq Alumni-Homepage\grqq~im Header-Menü ist, kann die Funktion ohne weiteres entfernt werden.
 }
 
 \problem{Menüpunkt: Portal in Englisch} 
-\descript{Der Menüpunkt \glqq Portal in Englisch\grqq wirkt fehl am Platz. Sollte der User tatsächlich nach einer Übersetzung der Seite suchen, würde er dies rechts oben in der Ecke oder an sonstigen exponierten oder markanten Stellen tun. 
+{Der Menüpunkt \glqq Portal in Englisch\grqq wirkt fehl am Platz. Sollte der User tatsächlich nach einer Übersetzung der Seite suchen, würde er dies rechts oben in der Ecke oder an sonstigen exponierten oder markanten Stellen tun. 
 Der User stolpert hier im Menü nur über den Punkt, weil er ihn nicht an dieser Stelle erwartet hätte.
 }
-\category{Der unerwartete Menüpunkt führt zum Stutzen des Users, hält ihn jedoch nicht lange auf (Kategorie 1).
+{Der unerwartete Menüpunkt führt zum Stutzen des Users, hält ihn jedoch nicht lange auf (Kategorie~1).
 }
-\improvement{Die Funktion sollte in die rechte obere Ecke, neben anderen Sprachoptionen eingegliedert werden, wo der User sie erwarten würde.
+{Die Funktion sollte in die rechte obere Ecke, neben anderen Sprachoptionen eingegliedert werden, wo der User sie erwarten würde.
 }
 
 \problem{Menüpunkt: Impressum} 
-\descript{Die Funktion \glqq Impressum\grqq im linken Seitenmenü wirkt ebenfalls fehl am Platz. Der User erwartet ein Impressum am Fuß der Seite, eine eigene Funktion im Menü lässt das Menü schnell überladen wirken.
+{Die Funktion \glqq Impressum\grqq im linken Seitenmenü wirkt ebenfalls fehl am Platz. Der User erwartet ein Impressum am Fuß der Seite, eine eigene Funktion im Menü lässt das Menü schnell überladen wirken.
 }
-\category{Das Menü besitzt eine unnötige Funktion, die das Menü schnell überladen kann, der User findet das Impressum allerdings trotzdem falls er danach sucht (Kategorie 1).
+{Das Menü besitzt eine unnötige Funktion, die das Menü schnell überladen kann, der User findet das Impressum allerdings trotzdem falls er danach sucht (Kategorie~1).
 }
-\improvement{Das Impressum sollte nicht als Menüpunkt, sondern an den Fuß der Seite eingebunden werden, sodass der User es schneller findet, wenn er danach sucht. 
+{Das Impressum sollte nicht als Menüpunkt, sondern an den Fuß der Seite eingebunden werden, sodass der User es schneller findet, wenn er danach sucht. 
 Außerdem wird das Impressum so auch auf jeder Seite angezeigt und nicht nur auf der Startseite verlinkt. 
 }
 
 \problem{Pop-Up Aktionen} 
-\descript{Mehrere Aktionen der Menüs sind als Pop-Up Funktionen implementiert. Durch Klick auf \glqq Start\grqq, \glqq Portal in Englisch\grqq, \glqq English version\grqq~und \glqq Alumni Portal\grqq~öffnet sich ein Pop-Up Fenster, das von modernen Browsern grundsätzlich blockiert wird. 
+{Mehrere Aktionen der Menüs sind als Pop-Up Funktionen implementiert. Durch Klick auf \glqq Start\grqq, \glqq Portal in Englisch\grqq, \glqq English version\grqq~und \glqq Alumni Portal\grqq~öffnet sich ein Pop-Up Fenster, das von modernen Browsern grundsätzlich blockiert wird. 
 Der User bekommt dies meistens nicht einmal mehr mit. Stattdessen erscheint nur ein kleiner Text auf der Seite, der darauf hinweist, dass die Seite in einem externen Fenster geöffnet wurde mit einem Link, um das öffnen manuell auszuführen.
 Das Ergebnis ist, dass der User zwei mal klicken muss, um auf die gewünschte Site zu kommen.
 }
-\category{Da Pop-Ups in der Regel geblockt werden, ist das also eine klare Dissonanz zwischen den Erwartungen des Users (Ein neues Fenster öffnet sich) und der Reaktion des Systems (Es wird nur ein kleiner Hinweistext angezeigt). Da Pop-Ups auf modernen Seiten im wesentlichen Vermieden werden, stellt dies einen groben Fehler da, da es Nutzer dazu bringen kann aufgrund von fehlendem Feedback abzubrechen (Kategorie 4).
+{Da Pop-Ups in der Regel geblockt werden, ist das also eine klare Dissonanz zwischen den Erwartungen des Users (Ein neues Fenster öffnet sich) und der Reaktion des Systems (Es wird nur ein kleiner Hinweistext angezeigt). Da Pop-Ups auf modernen Seiten im wesentlichen Vermieden werden, stellt dies einen groben Fehler da, da es Nutzer dazu bringen kann aufgrund von fehlendem Feedback abzubrechen (Kategorie~4).
 }
-\improvement{Hier sollte auf die Verwendung von Pop-Ups grundsätzlich verzichtet werden.
+{Hier sollte auf die Verwendung von Pop-Ups grundsätzlich verzichtet werden.
 }
 
 \problem{Dynamisches Seitenmenü} 
-\descript{Das Seitenmenü ist dynamisch an das Header-Menü gekoppelt. Das bedeutet, wenn der User durch das Header-Menü auf eine andere Seite wechselt, ändern sich die angebotenen Funktionen im Seitenmenü. Das ist äußerst problematisch, da für den User ohne ersichtlichen Grund wichtige Funktionen, wie \glqq Registrieren\grqq~plötzlich nicht mehr zur Verfügung stehen. Es ist auch nicht ersichtlich, wie es möglich ist, diese Funktionen wieder zu aktivieren.
+{Das Seitenmenü ist dynamisch an das Header-Menü gekoppelt. Das bedeutet, wenn der User durch das Header-Menü auf eine andere Seite wechselt, ändern sich die angebotenen Funktionen im Seitenmenü. Das ist äußerst problematisch, da für den User ohne ersichtlichen Grund wichtige Funktionen, wie \glqq Registrieren\grqq~plötzlich nicht mehr zur Verfügung stehen. Es ist auch nicht ersichtlich, wie es möglich ist, diese Funktionen wieder zu aktivieren.
 Zusätzlich ist das Seitenmenü auf allen Seiten außer der Startseite völlig funktionslos. 
 }
-\category{Das plötzliche Verschwinden wichtiger Funktionen, kann dazu führen, dass der User den Use-Case nicht beenden kann und abbricht (Kategorie 4).
+{Das plötzliche Verschwinden wichtiger Funktionen, kann dazu führen, dass der User den Use-Case nicht beenden kann und abbricht (Kategorie~4).
 }
-\improvement{Das Seitenmenü sollte statisch bleiben und auf jeder der Unterseiten die gleichen Funktionen anbieten.
+{Das Seitenmenü sollte statisch bleiben und auf jeder der Unterseiten die gleichen Funktionen anbieten.
 }
 
 \subsubsection*{Fazit: Seitenmenü}
