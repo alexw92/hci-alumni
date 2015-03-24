@@ -1,19 +1,25 @@
 var SearchController = (function () {
 	var TAG = 'SearchController',
+		dbHandler = new DatabaseHandler(),
 		searchPanel = null,
+		coursePanel = null,
 		searchBtn = null,
 		searchInput = null,
+		courseListPanel = null,
 		extendedSearchBtn = null,
-		names = null;
+		names = null,
+		courses = null;
 
 	/**
 	 * private methods
 	 */
 	var setDomElements = function () {
 		searchPanel = $('#search-panel');
+		coursePanel = $('#search-course-panel');
 		searchBtn = $(searchPanel).find('#btn-submit-search');
 		searchInput = $(searchPanel).find('#input-search');
 		extendedSearchBtn = $(searchPanel).find('#btn-extended-search');
+		courseListPanel = $(coursePanel).find('#course-list');
 	};
 
 	var getSearchQuery = function (urlHash) {
@@ -58,7 +64,6 @@ var SearchController = (function () {
 	};
 
 	var startSearch = function (searchValue) {
-		var dbHandler = new DatabaseHandler();
 		dbHandler.getUsersByFullname(searchValue, function (resultSet) {
 			displaySearchResult(resultSet);
 			updateResultCount(resultSet.length);
@@ -145,11 +150,57 @@ var SearchController = (function () {
 	};
 
 	var loadFullNameList = function () {
-		var dbHandler = new DatabaseHandler();
-
 		dbHandler.getFullnames(function (nameList) {
 			bindAutoComplete(nameList);
 		});
+	};
+
+	var loadFullCourseList = function () {
+		dbHandler.getCourses(function (resultSet) {
+			courses = resultSet.sort();
+			displayCourseList();
+			initLetterNavigation();
+		});
+	};
+
+	var displayCourseList = function (letter) {
+		if(typeof(letter) === 'undefined')
+			renderCourseList(courses);
+			return;
+	};
+
+	var initLetterNavigation = function () {
+		var letterArray = $(coursePanel).find('#course-letter-nav').find('a');
+
+		letterArray.on('click', function (e) {
+			e.preventDefault();
+
+			$(letterArray).parent().removeClass('label-letter label-primary');
+			$(letterArray).removeClass('letter-active');
+
+			$(this).parent().addClass('label-letter label-primary');
+			$(this).addClass('letter-active');
+
+			filterCourseList($(courseListPanel.find('ul:first')), $(this).text());
+		});
+	};
+
+	var renderCourseList = function (courses) {
+		var courseListDom = $(courseListPanel).find('ul:first');
+
+		$.each(courses, function (index, course) {
+			$(courseListDom).append('<li class="list-group-item" name="' + course + '"><span class="badge">3</span>' + course + '</li>');
+		});
+	};
+
+	var filterCourseList = function (list, filter) {
+		$(list).find('li').show();
+
+		if(filter === 'Alle')
+			return;
+
+		$(list).find('li[name^=' + filter + ']').show();
+		$(list).find('li').not('li[name^=' + filter +']').hide();
 	};
 
 	var searchMatcher = function (strs) {
@@ -187,6 +238,7 @@ var SearchController = (function () {
 			bindEvents();
 			initSearchNavigation();
 			loadFullNameList();
+			loadFullCourseList();
 
 			if(searchString !== '') {
 				$(searchPanel).find('#input-search').val(searchString);
