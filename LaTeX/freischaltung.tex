@@ -1,166 +1,167 @@
 %Armin
 \usecase{Freischaltung}
 \label{subsec:freischaltung}
+Der Nutzer erhält die Mail mit dem Freischaltcode und schließt den Registrierungsprozess ab.
+
+\usecasepart{Mail}
 
 \subsubsection*{Positive Beobachtungen}
-\label{subsubsec:freischaltungpositiv}
-Mail ist sehr freundlich gehalten\newline
-Beim Absenden der Daten erhält der Nutzer durch drehende Zahnräder visuelles Feedback, dass seine Daten gerade verarbeitet werden.
+\label{subsubsec:freischaltung_mail_positiv}
+Mail ist sehr freundlich gehalten
 
 %Probleme in der Mail
 \problem{Anrede in der Mail fehlt}
-
-\descript{
+{
 Beim Erhalt der Mail fällt sofort auf, dass eine Anrede fehlt. Stattdessen steht als \glqq Ersatz\grqq für die Anrede nur der Nachname da.
 }
-\category{
+{
 Bei einer offiziellen Seite erwartet der Nutzer die Einhaltung gewisser Konventionen, welche hier nicht gegeben ist. Die fehlende Anrede vermittelt zudem einen Mangel an Seriosität, was dem Vertrauen in die Seite abträglich ist. Der Nutzer könnte sich dadurch stark verunsichert fühlen und in Zweifel geraten, dass er sich auf einer seriösen Seite befindet. Es handelt sich hierbei also um ein auffälliges Problem (Kategorie~3).
 }
-\improvement{
+{
 Überarbeitung des Mailtextes unter Beachtung allgemeiner sprachlicher Konventionen.
 }
 
 \problem{Mail ist nicht formatiert}
-
-\descript{
+{
 Neben der fehlenden Anrede fällt auch sofort die fehlende Formatierung der Mail ins Auge. Am Anfang der Mail drängt sich ein Bild, dessen Beitrag zum Inhalt der Mail sich nicht sofort erschließt, zwischen die \glqq Anrede\grqq ~und den eigentlichen Text. Außerdem beginnt der Text sehr weit links, was je nach verwendetem Programm zu Problemen bei der Lesbarkeit führt.
 }
-\category{
+{
 Die Mängel bei der Formatierung führen nicht dazu, dass der Nutzer seinen Arbeitsablauf abbrechen muss. Es dauert nur etwas länger, sich zurechtzufinden und die Mail zu lesen. Es ist daher nur ein leichtes Problem (Kategorie~2).
 }
-\improvement{
+{
 Hier ist eine Überarbeitung der Formatierung, insbesondere des HTML-Anteils, nötig. Des Weiteren sollte man das Bild entweder anders positionieren, oder eventuell auch ganz weglassen.
 }
 
 \problem{Erstmalige Erwähnung von stud\hbox{-}mail-Adressen}
-
-\descript{
+{
 In der Mail wird zum ersten Mal im gesamten Registrierungsprozess erwähnt, dass Studenten keine stud\hbox{-}mail-Adressen als Kontaktadressen verwenden sollen.
 }
-\category{
+{
 Dieses Problem könnte bei Nutzern, die noch Studenten sind, für Verwirrung und zusätzlichen, unnötigen Arbeitsaufwand sorgen. Der Nutzer wird dazu gezwungen, seine gerade gewählte E\hbox{-}Mail-Adresse nach dem Login zu ändern, damit er auch in Zukunft sicher erreichbar ist. Der Nutzer kann dies als behindernd empfinden, da er so lange nicht sein Ziel verfolgen kann und durch die zusätzliche Arbeit abgelenkt wird. Es handelt sich also um ein störendes, auffälliges Problem (Kategorie~3).
 }
-\improvement{
+{
 Dieses Problem lässt sich dadurch beheben, dass bereits bei der Eingabe der E\hbox{-}Mail-Adresse zur Registrierung deutlich darauf hingewiesen wird, dass diese Adressen nicht verwendet werden sollen. Das Eingabefeld für die E\hbox{-}Mail-Adresse kann zusätzlich noch mit einer Validierung versehen werden, um sicherzustellen, dass keine stud\hbox{-}mail-Adressen verwendet werden.
 }
 
 \problem{Link zur Freischaltung in der Mail}
-
-\descript{
+{
 Der Link führt zur gleichen Seite wie der Menüpunkt \glqq Freischalten\grqq ~im Alumni-Portal. Dort gibt es allerdings noch einen Untermenüpunkt \glqq Freischalten\grqq ~mit einer anderen URL im Menü  \glqq Registrieren\grqq.
 }
-\category{
+{
 Das Problem wird einem normalen Nutzer nicht auffallen, da er einfach dem Link in der E\hbox{-}Mail folgt und damit auf der Freischaltungsseite landet (Kategorie~0).
 }
-\improvement{
+{
 Es ist kein Problem, das dem Nutzer auffällt oder ihn in seiner Arbeit beeinträchtigt, dennoch ist es sinnvoll, die Links zur Freischaltung zu vereinheitlichen. Der Link zu \texttt{www.alumni.uni-wuerzburg.de} kann an dieser Stelle weggelassen werden, da es für den Nutzer einen Umweg bedeutet, und er sich erst auf der Seite zurechtfinden muss, um dann den Weg zum Alumni-Portal zu finden.
 }
 
+\usecasepart{Webseite Freischaltung}
 %Probleme auf der Webseite zur Freischaltung
-\problem{Button für mailto-Links}
 
-\descript{
-
-}
-\category{
-text  (Kategorie~2).
-}
-\improvement{
-
-}
+\subsubsection*{Positive Beobachtungen}
+\label{subsubsec:freischaltung_webseite_positiv}
+Es werden Tipps zur Wahl von Nutzername und Passwort angezeigt.
 
 \problem{Eingabe der E-Mail-Adresse}
-
-\descript{
-
+{
+In das oberste Feld der Seite soll der Nutzer nochmals seine E\hbox{-}Mail-Adresse eingeben.
 }
-\category{
+{
 text  (Kategorie~3).
 }
-\improvement{
+{
+Dieses Feld ist unnötig, da der seine E\hbox{-}Mail-Adresse bereits bei der Registrierung eingegeben hat. Es kann also einfach weggelassen werden. Die eindeutige Identifizierung sollte über den Freischaltcode möglich sein.
+}
 
+\problem{Button für mailto-Links}
+{
+Rechts neben dem Eingabefeld für die E\hbox{-}Mail-Adresse befindet sich ein kleiner Button. Erst bei genauem Hinschauen erkennt man, dass es sich um einen Briefumschlag mit ein @-Zeichen handelt. Hat man noch keine Mailadresse eingetragen, erhält man durch den Klick ein Alert mit dem Hinweistext \glqq Bitte geben sie eine gültige E\hbox{-}Mail-Adresse an\grqq . Ist bereits eine Mailadresse eingetragen, öffnet sich ein Popup, in dem man eine Anwendung für mailto-Links auswählen soll.
+}
+{
+Der Button bringt dem Nutzer keinen Mehrwert. Auch ohne ihn wird ersichtlich, dass man in das Feld seine E\hbox{-}Mail-Adresse eintragen soll. Ist bereits eine Mailadresse vom Nutzer eingetragen, hat der Button sogar eine negative Wirkung, da der Nutzer dazu aufgefordert wird, eine externe Anwendung für mailto-Links zu bestimmen. Diese Links dienen normalerweise dazu, für den Nutzer das Programm seiner Wahl zu öffnen, um damit Mails an andere zu verschicken. Dem Nutzer erschließt sich hier nicht der Sinn, das auch für seine eigene E\hbox{-}Mail-Adresse zu tun, und er wird dadurch in seinem Arbeitsfluss unterbrochen. Dieses Problem erhält daher die Kategorie~2, da es für den Nutzer eventuell störend ist, aber die Funktion nicht die Nutzung des Angebots komplett verhindert.
+}
+{
+Der Button kann weggelassen werden, da er dem Nutzer weder Mehrwert noch zusätzliche Informationen liefert und ihn möglicherweise zusätzlich noch verwirrt und behindert.
 }
 
 \problem{Händische Eingabe des Freischaltcodes}
-
-\descript{
-
+{
+text
 }
-\category{
+{
 text  (Kategorie~2).
 }
-\improvement{
-
+{
+text
 }
 
 \problem{Wahl von Nutzername und Passwort bei der Freischaltung}
-
-\descript{
-
+{
+text
 }
-\category{
+{
 text  (Kategorie~2).
 }
-\improvement{
-
+{
+text
 }
 
 \problem{Verfügbarkeit des gewählten Nutzernamens}
-
-\descript{
-
+{
+text
 }
-\category{
+{
 text  (Kategorie~2).
 }
-\improvement{
-
+{
+text
 }
 
 \problem{Grüner Warntext bei der Wahl des Passworts}
-
-\descript{
-
+{
+text
 }
-\category{
+{
 text  (Kategorie~4).
 }
-\improvement{
-
+{
+text
 }
 
 \problem{Längenbeschränkung des Passwortfelds}
-
-\descript{
-
+{
+text
 }
-\category{
+{
 text  (Kategorie~4).
 }
-\improvement{
-
+{
+text
 }
+
+\usecasepart{Absenden der Daten}
+
+\subsubsection*{Positive Beobachtungen}
+\label{subsubsec:freischaltung_absenden_positiv}
+Beim Absenden der Daten erhält der Nutzer durch drehende Zahnräder visuelles Feedback, dass seine Daten gerade verarbeitet werden.
 
 \problem{Validierung erst beim Absenden der Daten}
-
-\descript{
-
+{
+text
 }
-\category{
+{
 text  (Kategorie~2).
 }
-\improvement{
-
+{
+text
 }
 
 \problem{Speichern der Daten dauert sehr lange}
-
-\descript{
-Man muss nach dem Klick auf Speichern lange warten (4-5 Sekunden), bis die Daten gespeichert wurden und man sich einloggen kann. Hier ist jedoch positiv zu vermerken, dass der Nutzer in dieser Zeit Feedback erhält (siehe \ref{subsubsec:freischaltungpositiv}).
+{
+Man muss nach dem Klick auf Speichern lange warten (4-5 Sekunden), bis die Daten gespeichert wurden und man sich einloggen kann. Hier ist jedoch positiv zu vermerken, dass der Nutzer in dieser Zeit Feedback erhält (siehe \ref{subsubsec:freischaltung_absenden_positiv}).
 }
-\category{
+{
 Da der Nutzer Feedback erhält und nur ein paar Sekunden warten muss, ist es kein Problem (Kategorie~0).
 }
-\improvement{
+{
 Hier ist es sicher möglich, Verbesserungen an der darunter liegenden Infrastruktur (Datenbank etc.) vorzunehmen, um die Verarbeitungszeit zu verkürzen.
 }
