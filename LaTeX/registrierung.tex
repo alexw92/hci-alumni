@@ -6,81 +6,82 @@ bietet teils gut, teils weniger gut informiert wurde, hat er sich nun für eine 
 in größerem Umfang zu nutzen.
 
 \subsubsection*{Positive Beobachtungen}
-Von der Hauptseite des Portals befindet sich der Menüpunkt "Registrieren" gut sichtbar zusammen mit einer Reihe anderer Aktionen,
+Von der Hauptseite des Portals befindet sich der Menüpunkt ”Registrieren” gut sichtbar zusammen mit einer Reihe anderer Aktionen,
 wie bereits in obigem UseCase beschrieben. Das Auffinden dieses Menüpunkts stellt keine Probleme da und User kann nach einem Klick darauf direkt mit der Registrierung
 beginnen.
 
 
 \problem{Fehlende Erklärung des roten Sterns ”*”}
 {
-An vielen Eingabeformularen befindet sich über der oberen rechten Kante ein roter Stern ”*”.
+An vielen Eingabeformularen befindet sich über der oberen rechten Kante ein roter Stern ”*”. Allerdings findet sich nirgends auf der Seite eine Erklärung des Zeichens.
+Obwohl diese Kennzeichnung heute allgemein für Pflichtfelder benutzt wird, muss berücksichtigt werden, dass die Alumni-Gemeinschaft insbesondere aus älteren Personen besteht, die nicht wissen, wie der Stern zu interpretieren ist. Nach einem Klick auf ”Weiter” wird der Nutzer darüber informiert, dass er mit Stern gekennzeichnete Felder ausfüllen muss.
 }
-{  (Kategorie 3).
+{Besonders deprimierend wird es schließlich für den Nutzer, wenn er ein Pflichtfeld nicht ausfüllt und erst die Eingabefelder suchen muss die er nicht ausgefüllt hat. Diese werden nicht wie es in modernen Websiten üblich ist hervorgehoben. Dieses Problem sorgt bei unerfahrenen Nutzern für Verwirrung und ist somit ein in Kategorie 3 einzustufen.
 }
-{
+{Eine Möglichkeiten zur Verbesserung dieses Problems wäre eine einfache Erklärung des Sternchens anzuzeigen. Wir haben uns im Prototypen allerdings dazu entschlossen die Anzahl der Eingabemasken zu reduzieren und optionale Parameter direkt wegzulassen, sodass eine Kennzeichnen einzelner Formulare nicht mehr notwendig ist
 }
-
-
-
-
-
-\problem{Funktion neben dem Email-Eingabefeld wird nicht erklärt}
-{
-}
-{  (Kategorie 2 oder 1).
-}
-{
-} 
 
 \problem{Unklare oder missverständliche Eingabefelder}
 {
-Grundlegende Tips zur Anmeldung fehlen...
+Leider gibt es auf der Registrierungsseite mehrere Unklarheiten, was in den Formularfeldern eingegeben werden soll. Da sich diese Probleme hinsichtlich der Reaktion
+des Nutzers sehr ähnlich sind, sind sie im folgendenen als ein Problem aufgeführt.
+
 \begin{enumerate}
-	\item {“Berufliche Einbindung” → Popup neben “Branche” missverständlich}
-	\item {Abschluss-Auswahl: Ist der bereits erreiche Abschluss oder der aktuelle in Arbeit Abschluss gemeint? }
-	\item {Mitgliedschaft in anderen Vereinen wird nicht genau erklärt}
+	\item {Registrierung(1/2): “Berufliche Einbindung” → Popup neben “Branche” missverständlich}
+	\item {Registrierung(1/2): Funktion neben dem Email-Eingabefeld wird nicht erklärt}
+	\item {Registrierung(2/2): “Abschluss-Auswahl”: Ist der bereits erreiche Abschluss oder der aktuelle Abschluss, der in Arbeit ist, gemeint? }
+	\item {Registrierung(2/2): “Mitgliedschaft in anderen Vereinen” Missverständliche Eingabeformulare}	
+Auf der ersten Seite der Registrierung verwirrt das Pop, das sich neben dem “Branche” -Feld befindet. Intuitiv ist nicht sofort klar, dass hier ein eigener
+Name für eine Branche eingegeben werden soll.\\
+Ebenfalls unerklärt bleibt ein kleines Icon auf beim Email-Eingabefeld, dessen Nutzen sich für Nutzer nicht erschliessen lässt.
+Auf Seite zwei der Registrierung befindet sich unter anderem ein Formular, das die Eingabe des “höchsten Abschlusses” fordert. Trotzdem ist diese Formulierung nicht eindeutig,
+denn es kann der höchste erreichte Abschluss oder der Abschluss der aktuell in Arbeit ist eingegeben werden.\\
+Zuletzt fällt ein Textfeld und eine Scrollbalken für die Mitgliedschaft in anderen Vereinen ins Auge. Das Textfeld nimmt sehr viel Platz weg und was hier eingegeben werden soll, ist ebenfalls fraglich, denn unter dem Textfeld bietet ein Scrollbalken eine Auswahl an konkreten Vereinen. Diese Darstellung kann ohne weitere Erklärung für redundante Eingaben seitens der Nutzer führen.
 	
 \end{enumerate}
+}
+{Die genannten Probleme lassen sich als missverständliche Eingabefelder zusammenfassen und frustieren in ihrer Summe Anwender, die selbsterklärende Eingabemasken gewohnt sind. Die aktuelle Darstellung obiger Eingaben verwirrt Nutzer und ist folglich ein Kategorie 3 Problem.
 
 }
-{  (Kategorie 3).
-}
 {
+Es sollte bei Eingaben stehts der Grundsatz beachtet werden “Wenn du ein Formular erklären kannst, erkläre es. Wenn nicht - Lass es weg!”. Bereits ein kurzer Satz wäre hier schon hilfreich und nimmt den Nutzer Unsicherheit. Um redundante Eingaben zu vermeiden sollten doppelte Eingabefelder vermieden werden. Man könnte entweder die Dropdown-Liste mit Vorschlägen so erweitern, dass sich jede Kategorie finden lässt (für den unwichtigen Rest kann man ein “Andere”-Listenelement einfügen) und die andere Eingabemöglichkeit entfernen oder nur eigene Eingaben ohne Dropdown zulassen. Da erstere Lösung allerdings das Filtern bei der suche und Einordnen in eine Datenbank erleichtert, ist diese zu bevorzugen.
+}
+  
+
+
+
+\problem{Fehlende HTML-Links}
+{Auf der ersten Registrierungsseite befinden sich zwei Verweise zu Seiten(http://www.alumni.uni-wuerzburg.de/alumnicard/  und www.alumni.uni-wuerzburg.de/mentoring), die nicht wie allgemein üblich als Wert eines href-Attributs in Umgebung eines <a>-HTML-Tags verwendet werden, sondern ohne Link-Kennzeichnung für den Browser im Fliesstext stehen. Das führt dazu, dass der Nutzer den Link erst kopieren und in die URL-Leiste des Browsers kopieren muss, was unnötig und nervig ist.
+}
+{Obwohl dieser Fehler im Quellcode vermeidbar und fehlende Links nervig für Nutzer sind, wird jeder verstehen, dass es sich hier um einen Link handelt der in einen Browser eingegeben werden kann. Für Verwirrung sorgt diesers Problem nicht. Es handelt sich um einen leichten Fehler der Kategorie 2.
+}
+{Dieses Problem ist sehr leicht mit einem HTML-Link zu lösen.
 } 
 
-
-\problem{ Kein HTML-Link bei "Informationen zum Mentoring..." und andere(1)}
-{
+\problem{Verweis auf fehlende Spalte mit Tipps}
+{Auf der ersten Registrierungsseite wird im Bereich “Zusätzliche Mitgliedschaft” darauf hingewiesen, dass ein gewisser Link sich ebenfalls in der “rechten Spalte bei den Tipps”  befinden würde. Allerdings existieren auf der Seite weder eine rechte Spalte noch Tipps. Die Seite wurde offensichtlich nicht komplett aktualisiert und die Tatsache, dass dem Nutzer auf dieser Seite erste Hoffnung auf Tipps zur Registrierung gemacht werden, dieses Versprechen aber nicht eingehalten wird, ist frustrierend für den Nutzer.
 }
-{  (Kategorie 1).
+{Ein Verweis auf etwas, das nicht mehr aktuell ist, ist verwirrend und damit klar ein Kategorie 3 Problem.
 }
-{
+{Dieser Verweis sollte im aktuellen Zustand der Seite einfach gestrichen werden. Der Link auf den verwiesen wird könnte hier direkt eingefügt werden. Im Prototyp wurde eine rechte Spalte eingeführt, auf der sich Tipps zur Registrierung befinden.
 } 
 
-\problem{Es wird auf eine nicht existente rechte Spalte mit Tips verwiesen}
-{
+\problem{Einzelne Buchstaben als Fach auswählbar}
+{Unglücklicherweise lassen sich im Dropdownmenü “Fach” auf Seite 2 der Registrierung einzelne Buchstaben, die nur als Überschriften dienen sollen, selektieren und somit als Fach auswählen. 
 }
-{  (Kategorie 3).
+{Es handelt sich um einen kleinen Fehler in der Formatierung der DropDown-Liste, der sofort vom Nutzer erkannt wird. Es ist sehr unwahrscheinlich, dass jemand unabsichtlich einen Buchstaben als Fach wählt. Deshalb ist dieser Fehler nicht verwirrent und nur in Kategorie 2.
 }
-{
-} 
-
-\problem{Man kann einzelne Buchstaben als Fach auswählen}
-{
-}
-{  (Kategorie 3).
-}
-{
+{Der Fehler lässt sich leicht beheben indem man zum Beispiel im <select>-Tag das label-Attribut innerhalb eines <optgroup>-Tags setzt, statt 'A', 'B' usw. als value-Attribut in einem <option>-Tag zu verwenden.
 } 
 
 
 
 \problem{Eingabe von Beginn und Ende des Studiums auf den Tag genau}
-{
- Kein Mensch weiß wann er angefangen hat zu studieren oder aufgehört auf den Tag genau. Meldung unten drunter
-zeigt zwar an, dass man schätzen soll, allerdings wird sowieso niemand den tag genau wisen deswegen kann man eig den tag direkt au dem auswahl rausstreichen.
+{Es ist extrem unwahrscheinlich dass ein Alumni auf den Tag genau noch weiß, wann er angefangen oder aufgehört hat zu studieren. 
+Eine Meldung darunter zeigt zwar an, dass man hier schätzen soll, allerdings ist es dann fraglich wieso der Tag dann überhaupt zur Auswahl steht.
 }
-{  (Kategorie 1).
+{Die Eingabe eines exakten Datums ist nicht nötig, allerdings kein Fehler. Wer gewissenhaft ein Formular ausfüllen fühlt sich allerdings unwohl, beim Runden eines
+Wertes. Daher ist diese überflüssige Eingabe in Kategorie 1 anzusiedeln.
 }
 {
 } 
