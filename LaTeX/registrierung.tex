@@ -1,41 +1,40 @@
 %Alex
 \usecase{Registrierung}
-\usecasepart{Teil 1}
+\usecasepart{Ausfüllen des Eingabeformulars}
+Nachdem sich der Nutzer einen Überblick über die Seite geschaffen hat und nun über viele Funktionen, die die Seite
+bietet teils gut, teils weniger gut informiert wurde, hat er sich nun für eine kostenlosen Registrierung entschieden, um das Alumni-Portal
+in größerem Umfang zu nutzen.
 
 \subsubsection*{Positive Beobachtungen}
-... 
-
-\problem{fehlt ein Hinweis zur Bedeutung des roten Sterns ”*”}
-\descript{
-}
-\category{  (Kategorie 3).
-}
-\improvement{
-}
+Von der Hauptseite des Portals befindet sich der Menüpunkt "Registrieren" gut sichtbar zusammen mit einer Reihe anderer Aktionen,
+wie bereits in obigem UseCase beschrieben. Das Auffinden dieses Menüpunkts stellt keine Probleme da und User kann nach einem Klick darauf direkt mit der Registrierung
+beginnen.
 
 
-\problem{Fehlende/Falsche reguläre Ausdrücke bei Formularvalidierung}
-\descript{
-	- Postleitzahl akzeptiert auch reine Strings(4)
-	- Email überprüft keinen regex wie asdsa@asdsa.de oder so sondern akzeptiert alles(4)
+\problem{Fehlende Erklärung des roten Sterns ”*”}
+{
+An vielen Eingabeformularen befindet sich über der oberen rechten Kante ein roter Stern ”*”.
 }
-\category{  (Kategorie 4).
+{  (Kategorie 3).
 }
-\improvement{
+{
 }
+
+
 
 
 
 \problem{Funktion neben dem Email-Eingabefeld wird nicht erklärt}
-\descript{
+{
 }
-\category{  (Kategorie 2 oder 1).
+{  (Kategorie 2 oder 1).
 }
-\improvement{
+{
 } 
 
-\problem{Grundlegende Tips zur Anmeldung fehlen}
-\descript{
+\problem{Unklare oder missverständliche Eingabefelder}
+{
+Grundlegende Tips zur Anmeldung fehlen...
 \begin{enumerate}
 	\item {“Berufliche Einbindung” → Popup neben “Branche” missverständlich}
 	\item {Abschluss-Auswahl: Ist der bereits erreiche Abschluss oder der aktuelle in Arbeit Abschluss gemeint? }
@@ -44,77 +43,93 @@
 \end{enumerate}
 
 }
-\category{  (Kategorie 3).
+{  (Kategorie 3).
 }
-\improvement{
+{
 } 
 
 
 \problem{ Kein HTML-Link bei "Informationen zum Mentoring..." und andere(1)}
-\descript{
+{
 }
-\category{  (Kategorie 1).
+{  (Kategorie 1).
 }
-\improvement{
+{
 } 
 
 \problem{Es wird auf eine nicht existente rechte Spalte mit Tips verwiesen}
-\descript{
+{
 }
-\category{  (Kategorie 3).
+{  (Kategorie 3).
 }
-\improvement{
+{
 } 
 
 \problem{Man kann einzelne Buchstaben als Fach auswählen}
-\descript{
+{
 }
-\category{  (Kategorie 3).
+{  (Kategorie 3).
 }
-\improvement{
+{
 } 
 
-
-
-\problem{Fehlermeldung bei Validierung als Popup realisiert}
-\descript{
-(alert()) → hässlich und unschön”(3)
-}
-\category{  (Kategorie 3).
-}
-\improvement{
-Formular Validierung erst beim Absenden des Formular → besser interaktiv
-} 
-
-
-
-\problem{Bereits vergebene Mail resultiert in Neuladen der Seite}
-\descript{
-E-Mail bereits vergeben → neu laden der Seite, Hinweis über Formular; manche Felder sind nun wieder leer (müssen neu ausgefüllt werden)
-}
-\category{  (Kategorie 3).
-}
-\improvement{
-}
 
 
 \problem{Eingabe von Beginn und Ende des Studiums auf den Tag genau}
-\descript{
+{
  Kein Mensch weiß wann er angefangen hat zu studieren oder aufgehört auf den Tag genau. Meldung unten drunter
 zeigt zwar an, dass man schätzen soll, allerdings wird sowieso niemand den tag genau wisen deswegen kann man eig den tag direkt au dem auswahl rausstreichen.
 }
-\category{  (Kategorie 1).
+{  (Kategorie 1).
 }
-\improvement{
+{
 } 
 
 \problem{Überflüssige Date-Picker}
-\descript{
+{
 Die Date-Picker neben den Datumseingaben verführen zur schnellen und einfachen Eingabe des Datums. Allerdings
-merkt man schnell das diese Freude unbegründet ist, denn man kann kein direktes Jahr eingeben sondern muss Jahr für
-Jahr zurückscrollen was extrem nervig ist. (Bsp. Geburtsjahr)
+merkt man schnell das diese Freude unbegründet ist, denn es nicht möglich direkt ein Jahr einzugeben sondern ist gezwungen Jahr für
+Jahr zurückzuscrollen was extrem nervig ist. (Bsp. Geburtsjahr)
 }
-\category{  (Kategorie 2).
+{  (Kategorie 2).
 }
-\improvement{
+{
+}
+
+
+
+
+\usecasepart{Abschicken des Eingabeformulars}
+
+Nachdem der Benutzer die Eingabemasken mit allen notwendigen Parametern gefüllt hat, möchte er nun die Registrierung beenden und abschicken. Sobald
+er die erste Hälfte der Registrierung beenden will, klickt er auf den "Weiter"-Button und sieht -falls vorhanden- seine fehlerhaften Eingaben. Hat er nach korrektem
+Ausfüllen der ersten Formularseite auch die zweite ausgefüllt und mit einem erneuten Klick auf "Weiter" wieder alle Fehler berichtigt, ist die Registrierung abgeschlossen
+und wird mit einer Erfolgsmeldung auf der Seite bestätigt.
+
+\problem{Fehlermeldung bei Validierung als Popup realisiert}
+{
+(alert()) → hässlich und unschön”(3)
+}
+{  (Kategorie 3).
+}
+{
+Formular Validierung erst beim Absenden des Formular → besser interaktiv
+}
+
+\problem{Fehlende/Falsche reguläre Ausdrücke bei Formularvalidierung}
+{
+	- Postleitzahl akzeptiert auch reine Strings(4)
+	- Email überprüft keinen regex wie asdsa@asdsa.de oder so sondern akzeptiert alles(4)
+}
+{  (Kategorie 4).}
+{
+} 
+
+\problem{Bereits vergebene Mail resultiert in Neuladen der Seite}
+{
+E-Mail bereits vergeben → neu laden der Seite, Hinweis über Formular; manche Felder sind nun wieder leer (müssen neu ausgefüllt werden)
+}
+{  (Kategorie 3).
+}
+{
 }  
