@@ -38,5 +38,7 @@ jQuery(function () {
 		console.log(result);
 	});
 	*/
-
+	app.dbconn.getUsersByFullname('ichhassedich', function(result){
+		console.log(result)
+	});
 });

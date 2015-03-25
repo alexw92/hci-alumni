@@ -21,6 +21,8 @@ var User = function(resobj){
 	var study_start = null;
 	var study_end = null;
 	var interests = null;
+	var image_id = null;
+	var is_unlcoked = null;
 
 	if(resobj !== 'undefined' && typeof(resobj) === 'object') {
 		userid = resobj[0];
@@ -45,6 +47,8 @@ var User = function(resobj){
 		study_start = resobj[19];
 		study_end = resobj[20];
 		interests = resobj[21];
+		image_id = resobj[22];
+		is_unlocked = resobj[23];
 	} else {
 		//leer initialisiert
 	}
@@ -59,7 +63,7 @@ var User = function(resobj){
 		var shaObj = new jsSHA(password, "TEXT");
 		return {title: this.title, firstname: this.firstname, lastname: this.lastname, fullname: this.fullname, address: this.address, addressaddition: this.addressaddition, postalcode: this.postalcode, city: this.city,
 				email: this.email, username: this.username, password: shaObj.getHash("SHA-512", "HEX"), birthday: this.birthday, company: this.company, sector: this.sector, state: this.state, university: this.university,
-				faculty: this.faculty, course: this.course, study_start: this.study_start, study_end: this.study_end, interests: this.interests};
+				faculty: this.faculty, course: this.course, study_start: this.study_start, study_end: this.study_end, interests: this.interests, image_id: this.image_id, is_unlocked: this.is_unlocked};
 	};
 
 	//Getter
@@ -129,6 +133,12 @@ var User = function(resobj){
 	this.__defineGetter__("interests", function(){
         return interests;
     });
+	this.__defineGetter__("image_id", function(){
+        return image_id;
+    });
+	this.__defineGetter__("is_unlocked", function(){
+        return is_unlocked;
+    });
 
 	//Setter
     this.__defineSetter__("userid", function(val){
@@ -196,6 +206,12 @@ var User = function(resobj){
     });
 	this.__defineSetter__("interests", function(val){
         interests = val;
+    });
+	this.__defineSetter__("image_id", function(val){
+        image_id = val;
+    });
+	this.__defineSetter__("is_unlocked", function(val){
+        is_unlocked = val;
     });
 };
 
