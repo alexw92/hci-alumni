@@ -51,8 +51,11 @@ app.post('/user/extended', function(req,res){
 	if (req.body.name !== ""){
 		optionstring = optionstring + "AND completename like '%" + req.body.name + "%' ";
 	}
-	if (req.body.company !== ""){
-		optionstring = optionstring + "AND company like '%" + req.body.company + "%' ";
+	if (req.body.interests !== ""){
+		optionstring = optionstring + "AND interests like '%" + req.body.interests + "%' ";
+	}
+	if (req.body.street !== ""){
+		optionstring = optionstring + "AND address like '%" + req.body.street + "%' ";
 	}
 	if (req.body.city !== ""){
 		optionstring = optionstring + "AND city like '%" + req.body.city + "%' ";
@@ -60,8 +63,8 @@ app.post('/user/extended', function(req,res){
 	if (req.body.postalcode !== ""){
 		optionstring = optionstring + "AND postalcode like '%" + req.body.postalcode + "%' ";
 	}
-	if (req.body.interests !== ""){
-		optionstring = optionstring + "AND interests like '%" + req.body.interests + "%' ";
+	if (req.body.company !== ""){
+		optionstring = optionstring + "AND company like '%" + req.body.company + "%' ";
 	}
 	if (req.body.sector !== ""){
 		optionstring = optionstring + "AND sector like '%" + req.body.sector + "%' ";
