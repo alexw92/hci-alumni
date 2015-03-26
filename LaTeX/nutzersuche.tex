@@ -1,10 +1,196 @@
 %Thomas
-\usecase{Suchen eines Nutzers}
-\usecasepart{Teil 1}
+\usecase{Besucher sucht einen ehemaligen Kommilitionen}
+\usecasepart{Mit persönlichen Zugangsdaten am Portal anmelden}
 
 \subsubsection*{Positive Beobachtungen}
-... 
+Das Eingabefeld für die Anmeldung am Portal ist an einer sinnvollen Stelle im oberen linken Bereich der Webseite platziert und somit für den Besucher direkt einsehbar. Es werden lediglich zwei Eingabefelder angeboten, anhand derer die notwendigen Zugangsdaten des Benutzers erfragt werden. Eine eventuelle Fehleingabe oder gar missverstehen von Seitens des Anwenders entsteht durch die klare Struktur erst gar nicht. Der mit Anmelden beschriftete Button führt wie erwartet den Login aus. Weiterhin ist positiv anzumerken, dass nach Absenden des Formulars dem Benutzer visuelles Feedback eingeblendet wird, welches veranschaulicht dass das System die Loginanfrage verarbeitet.
 
-\problem{X}{}{}{}
-\problem{Y}{}{}{}
-\problem{Z}{}{}{} 
+\problem{Unauffälliges Feedback bei fehlerhafter Eingabe der Zugangsdaten}
+{
+	Erfolgt eine fehlerhafte / ungültige Eingabe von Zugangsdaten durchläuft das System vorerst wie gewöhnlich Vorgang der Anmeldung, verarbeitet die Logindaten und lädt abschließend die Portalseite neu (bzw. leitet auf die Startseite weiter, sofern der Nutzer sich zum Zeitpunkt des Logins auf einer Unterseite befand). Auf der neu geladenen Startseite wird dem Endanwender zwar Feedback und ein erläuternder Satz eingeblendet, der auf die Umstände einer fehlerhaften Authentifizierung hinweist. Die Platzierung und Formatierung des Feedback ist allerdings sehr schlicht und eher unauffällig gewählt. Bei unerfahrenen Nutzern kann es deshalb durchaus passieren, dass die Meldung schlichtweg übersehen wird und Unverständnis entsteht, warum das System nicht wie erwartet den Anwender anmeldet.
+}
+{
+	Das aufgeführte Problem ist nicht so schwerwiegend, als das es die Funktionalität oder gar Bedienbarkeit der Website stark einschränkt. Jedoch kann es durch  verminderte Aufmerksamkeit durch den Endanwender zu Missverständnissen durch unauffällig gestaltetes Feedback auf ausgeführte Aktionen kommen. Aus den genannten Gründen lässt sich dieses Problem der Kategorie “leichtes Problem” zuordnen.		
+}
+{
+	Ziel ist es, dass der Nutzer eingeblendetes Feedback, welches von der Website erzeugt wird, schnell und ohne große Mühen dargestellt bekommt. Aus diesem Grund empfiehlt sich eine entsprechende Farbgestaltung: rot für Fehlermeldungen, gelb für Warnungen und grün für erfolgreich durchgeführte Aktionen. Schriftgröße sollte angemessen und nicht zu klein gewählt werden. Weiterhin ist eine einheitliche Platzierung des Feedback erstrebenswert, so dass der Endanwender nicht gezielt danach Ausschau halten muss.
+}
+
+\problem{‘Passwort vergessen’ wirkt deplatziert}
+{
+	not my business? :D
+}
+{
+	...
+}
+{
+	..
+}
+
+% Aufgabenteil
+% ------------
+\usecasepart{Aufrufen der Alumni-Suchfunktion über das Menü}
+
+\subsubsection*{Positive Beobachtungen}
+Das horizontal angelegte Menü unterhalb der Headergrafik ist schlicht und übersichtlich gehalten. Die darin aufgelisteten Menüpunkte sind eindeutig und leicht verständlich beschrieben. Weiterhin lässt deren Benennung einen direkten Rückschluss zu, welche Funktionalität der Webseite sich hinter ihnen verbirgt. Somit hat der Benutzer sofort eine klare Vorstellung davon, was ihn nach einem Klick auf den Menüpunkt \emph{Alumni} suchen erwartet. Zu dieser Handlungssequenz sind bei der Durchführung des Cognitive Walkthrough keine Probleme aufgetaucht, die störend oder gar hinderlich für den Nutzer sein könnten. 
+
+\problem{Suchanfrage wird bereits nach erfolgreichem Laden der Seite gestartet}
+{
+	Nach einem Klick auf \emph{Alumni} suchen im Navigationsmenü öffnet sich direkt die Suche nach Kontaktdaten. Zu diesem Zeitpunkt ist das Suchfeld vom Anwender unberührt - es erfolgte keine Eingabe. Trotzdem führt der Aufruf der Seite unaufgefordert einen Suchvorgang mit leerem Suchbegriff aus und vermeldet, dass keine passenden Datensätze zur Suche vorhanden sind. Dem Benutzer wird neben dieser Meldung zusätzlich die Pageinationelemente angezeigt, die aufgrund der fehlenden Trefferliste jedoch nicht notwendig sind.
+}
+{
+	Der sofortige Suchvorgang trotz fehlender Eingabe durch den Anwender wirkt deplatziert und ist zudem nicht notwendig. Zudem werden zu diesem Zeitpunkt bereits Elemente zum blättern innerhalb der Trefferliste angezeigt, die aufgrund fehlender Ergebnisse nicht genutzt werden können. Da wiederum die Funktionalität und Bedienbarkeit nicht negativ beeinträchtigt wird, lassen sich diese Umstände der Kategorie leichtes Problem zuordnen.
+}
+{
+	Das sofortige Auslösen der Suche nach dem vollständigen Laden der Seite entfernen. Daraufhin werden dem Nutzer zudem keine Funktionselemente angezeigt, für die er zum derzeitigen Zeitpunkt keine Verwendung findet. Weiterhin lässt sich Ladezeit sowie eine überflüssige Abfrage an die Datenbank vermeiden. 
+} 
+
+% Aufgabenteil
+% ------------
+\usecasepart{Auswahl der gewünschten Suchmaske im linken Menübereich}
+
+%\subsubsection*{Positive Beobachtungen}
+%... 
+
+\problem{Linkes Seitenmenü unübersichtlich und missverständlich gestaltet}
+{
+	Im linken Bereich der ‘Alumni suchen’-Seite befindet sich ein zusätzliches Menü über welches der Nutzer die Eingabemaske für die Suche wechseln kann. Die Darstellung der vertikal angelegten Menüelemente ist allerdings unüblich gewählt, so dass nicht deutlich erkennbar ist, welcher Menüpunkt aktiv ist. Dem Anwender fehlt hierdurch das Verständnis, welche Suchmaske ihm aktuell angezeigt wird. Bekannte MouseOver-Effekt bei Linkelementen finden in der Menüleiste keine Verwendung. Die verwendete Farbe schwarz für einen Hyperlink in den Navigationselementen ist weiterhin von Nachteil. Erfahrene Nutzer gehen dabei von normalen Textelementen aus und erwarten nicht einen klickbaren Link.
+}
+{
+	Die ungewöhnliche Wahl der Formatierung für Hyperlinks und die fehlende Hervorhebung des aktiv gewählten Menüelements sorgt beim Endanwender für Verwirrung und führt zur falschen Verwendung der in der Navigation angebotenen Aktionen. Aufgrund dieser Umstände lässt sich dieses Problem in die Kategorie “leichtes Problem” einstufen. Die Funktionalität der Website ist hierdurch nicht eingeschränkt.
+}
+{
+	Das seitliche Menü präsenter im mittleren Bereich der Suchseite als zusätzliche horizontale Navigation platzieren. Dadurch wird die Aufmerksamkeit des Nutzers angezogen und die Existenz der unterschiedlichen Eingabemasken hervorgehoben. Weiterhin empfiehlt sich eine die Formatierung von Linkelementen an die Gewohnheiten erfahrener Nutzer anzupassen: Hyperlink unterstreichen, eigene Farbe für Links die sich von Textfarbe abhebt, entsprechende MouseOver Effekte.
+}
+
+% Aufgabenteil
+% ------------
+\usecasepart{Eingabe eines Suchbegriffs (Vor- und Nachname, Wohnort, etc.) in die Suchleiste}
+
+%\subsubsection*{Positive Beobachtungen}
+%... 
+
+\problem{Suchvorgang lässt sich mit leerer Eingabe ausführen}
+{
+	Eine Eingabe in die Suchmaske ist nicht zwingend erforderlich. Dem Anwender wird die Möglichkeit geboten einen Suchvorgang mit leerer Eingabe zu starten. Nach einem Neuaufbau der Seite wird ein visuelles Feedback eingeblendet, das darauf hinweist, dass mindestens ein Suchbegriff notwendig ist. Trotz gescheiterter Suche wird wiederum eine leere, nicht benötigte Trefferliste mit dazugehörigen Pageinationelementen angezeigt.
+}
+{
+	Das beschriebene Probleme schränkt den Anwender der Webseite hinsichtlich Bedienung und Funktionalität nicht ein. Die Tatsache, dass eine leere Suche nicht im Vorfeld bereits von Seiten des System unterbunden wird, kann beim Benutzer jedoch auf Unverständnis treffen. Insgesamt lässt sich die Problematik der Kategorie ‘leichtes Problem’ zuordnen.
+}
+{
+	Eine denkbare Lösung ist, den Knopf zum Starten der Suche so lange zu deaktivieren, bis der Endanwender mindestens ein Suchbegriff / -wort eingegeben hat. Danach kann der Suchvorgang wie gewohnt über den daneben liegenden Button gestartet werden. Ein alternativer Verbesserungsvorschlag ist, dem Nutzer unmittelbar Feedback zu präsentieren und ihn auf das fehlen eines Suchbegriffs hinzuweisen. Dadurch wird das Neuladen der Webseite verhindert, als auch eine aus Sicht des Anwenders überflüssige Wartezeit.
+}
+\problem{Geforderte Eingabe für das Suchfeld ist nicht eindeutig definiert bzw. vorgegeben}
+{
+	Bei der Suche nach einem Alumni anhand von Kontaktdaten ist die Eingabe in das vorgesehen Feld nicht eindeutig vorgegeben. Intuitiv geht der Nutzer davon aus, dass in erster Linie der Name der zu suchenden Person erwartet wird. Bei einem ausführlichen Test wird allerdings ersichtlich, dass alle personenbezogenen Daten Gegenstand einer Suchenanfrage sein können. Darunter fällt unter anderem der Wohnort, Straßenname, E-Mail Adresse, derzeitige Tätigkeit und Firma, etc.
+}
+{
+	Aufgrund der Tatsache, dass nahezu alle Eingaben gültig sind, wird der Nutzer in den meisten Fällen ein Ergebnis mit entsprechenden Treffern erhalten. Abgesehen von der unklaren Begriffseingabe funktioniert die Suche wie erwartet, wodurch es sich bei dieser Beobachtung lediglich um ein leichtes Problem handelt.
+}
+{
+	Da die Webseite eine erweiterte Suchfunktionalität dem Benutzer anbietet, ist es denkbar die grundlegende Sucheingabe auf den Vor- und Nachnamen der zu suchenden Person zu beschränken. Ein erklärender Hinweis hinsichtlich gültiger Eingabewerte für den Suchenden ist notwendig. Eine Suche mit detaillierten Angaben zur Person sollte künftig über die erweiterte Suche getätigt werden.
+}
+\problem{Überflüssige Anzeige der Trefferanzahl während Eingabe des Suchbegriffs}
+{
+	Tippt der Nutzer einen Suchbegriff ein, so wird umgehend eine Abfrage an die Datenbank gesendet, welche die Anzahl an Treffern mit dieser Eingabe zurückliefert. Erkenntlich ist dies an der Lade-Animation rechts neben dem Eingabefeld, wo nach erfolgreicher Abfrage das Resultat angezeigt wird. Diese Funktionalität bietet dem Anwender zum genannten Zeitpunkt keinerlei wertvollen Informationsgehalt. Zumal der Suchvorgang explizit über den Knopf Suchen gestartet werden muss bevor eine Trefferliste angezeigt wird. Das eingeblendete Ladesymbol kann den Endanwender zusätzlich verwirren, da die Eingabe noch nicht beendet hat, aber es den Eindruck erweckt als hätte er die Suche bereits gestartet.
+}
+{
+	Das unmittelbar während der Eingabe erscheinende Ladesymbol und die noch nicht abgeschickte Suche können den Nutzer durchaus verwirren. Zudem ist die Position, sowie die Art des Feedbacks zum Zeitpunkt der Eingabe für den Nutzer in diesem Sinne wertlos. Somit lässt sich dieses Problem durchaus der Kategorie “auffälliges Problem” zuweisen.
+}
+{
+	Zum Zeitpunkt der Eingabe kann der Nutzer sehr gut auf die Anzahl der Treffer mit dem eben eingetippten Suchbegriff verzichten. Aus diesem Grund sollte die zudem wenig aussagekräftige Information schlichtweg vollständig weg gelassen werden. Durchaus interessanter und vom Informationsgehalt wertvoller dürfte eine AutoComplete-Funktion sein. Diese schlägt dem Nutzer während der Eingabe mögliche Vervollständigungen an, die aufgrund der bereits getätigten Eingabe und dem Datenbestand der Alumni Benutzerliste getroffen werden können.
+} 
+
+\problem{Eingabe der Suche durchsucht alle (bzw. wahllos) Datenfelder des Benutzers}
+{
+	Entscheidet sich der Nutzer einen Alumni anhand des Studiengangs zu finden, so nutzt er die Suchfunktion hinter dem Menüpunkt “Studiengangs- / Jahrgangsliste” in der linken Navigation. Nach dem Klick präsentiert sich dem Anwender zunächst ein leerer Content-Bereich. Da zu diesem Zeitpunkt kein Feedback vom System vermittelt wird, das der Ladevorgang der Studiengangsliste noch in Arbeit ist, wird der Eindruck erweckt als befände sich auf dieser Unterseite keinerlei Inhalt. Erst nach einiger Wartezeit erscheint unerwartet die ausführliche Liste aller Studiengänge.
+}
+{
+	Durch die fehlende Vermittlung von Informationen an den Endanwender, dass im Hintergrund noch die Daten für die Liste geladen werden, wird dieser womöglich den Abschluss der Ladezeiten gar nicht abwarten und die Seite sofort wieder verlassen. 
+}
+{
+	Abhilfe schafft das anzeigen von Feedback für den Nutzer. Die einfachste Möglichkeit hierfür ist eine Animation in Form eines Ladebalken oder “Spinner”, die dem wartenden Benutzer angezeigt wird. Dadurch wird signalisiert, dass das System im Hintergrund noch arbeitet und in absehbarer Zeit das Ergebnis präsentiert wird.
+} 
+
+% Aufgabenteil
+% ------------
+\usecasepart{Kommilitonen über erweiterte Suchemaske finden}
+
+\subsubsection*{Positive Beobachtungen}
+Das ausgeklappte, erweiterte Suchmenü wirkt auf den Benutzer ordentlich gegliedert und auf den ersten Blick aufgeräumt. Die zu tätigenden Eingaben sind nach Obergruppen (private und geschäftl. Kontaktdaten, etc.) strukturiert und beinhalten die zugehörigen Eingabefelder.
+
+\problem{Zu viele Eingabefelder für den Nutzer}
+{
+	Zwar sind die Eingabefelder gruppiert und wirken auf den ersten Blick aufgeräumt. Bei näherem Betrachten fällt jedoch der hohe Detailgrad auf, mit dem die Suche ausgefüllt werden kann. Viele der anzugebenden Informationen stehen dem Suchenden im Regelfall gar nicht zur Verfügung und sind unbekannt. Durch diese Umstände wirkt die Eingabemaske unnötig überladen.
+}
+{
+	Das beschriebene Problem lässt sich der Kategorie “unauffälliges Problem” zuordnen. Die Funktionalität der Website sowie die Suchfunktion sind aufgrund der Fülle an Eingabemöglichkeiten nicht in irgendeiner Weise eingeschränkt. Auf den ersten Blick schreckt die sehr umfrangreiche Suchmaske lediglich den Suchenden ab, dieses entsprechend auszufüllen.
+}
+{
+	Der Umfang der erweiterten Suche lässt sich stark reduzieren. Dazu können überflüssige, bzw. zu detaillierte Formularfelder bezüglich Werdegang oder geschäftlichen Kontaktdaten schlichtweg weg gelassen werden. Es macht wenig Sinn anhand zu detaillierter Kriterien eine Suche nach ehemaligen Kommilitionen bzw. Alumni-Mitgliedern zu starten.
+}
+\problem{Speichern / laden der erweiterten Suche nicht implementiert}
+{
+	Dem Anwender wird am Ende der erweiterten Suchmaske die Funktionalität angeboten, das ausgefüllte Formular zu speichern und für eine spätere Suche wieder zu verwenden. Das Gegenstück, eine zuvor ausgefüllte Suche laden, wird ebenfalls über einen Hyperlink bereitgestellt. Nach Klick auf “Suche speichern” wird der Anwender aufgefordert eine Bezeichnung für die ausgefüllte Suche zu vergeben. Hinter dem Knopf “Speichern”, um die Eingabe zu persistieren, verbirgt sich allerdings keinerlei Funktionalität. Das Abspeichern der Suchmaske ist somit schlichtweg nicht implementiert auf dem Alumni Portal. Umgekehrt ist somit das Laden einer zuvor gespeicherten Suche nicht durchführbar, da im Vorfeld dem Nutzer nicht gestattet ist überhaupt eine abzuspeichern.
+}
+{
+	Bei der beschriebenen Situation handelt es sich um einen klaren Showstopper. Der Anwender wird eine Funktionalität bereitgestellt, die aber keineswegs die erwartete Aktion ausführt. Aus diesem Grund lässt handelt es sich um schwerwiegendes Problem, das den Anwender bei der Bedienung der Webseite in die Irre führt.
+}
+{
+	Eine Möglichkeit besteht darin, das Speichern einer Suchmaske zu implementieren. Dadurch erhält der Benutzer die zuvor schon dar gebotene Funktionalität und kann diese wie erwartet nutzen. Alternativ kann die Funktion Suche speichern gänzlich von der Webseite entfernt werden. Es ist eher ungewöhnlich das Speichern einer Suchmaske anzubieten. Ein sinnvoller Anwendungsfall tritt nur sehr selten auf und die Funktionalität bietet geringen Mehrwert für den Nutzer des Systems.
+}
+
+% Aufgabenteil
+% ------------
+\usecasepart{Alumni anhand der Studiengangsliste finden - Eingrenzen der Liste anhand verschiedener Filterkategorien}
+
+\subsubsection*{Positive Beobachtungen}
+Durch die große Anzahl verschiedener Studiengänge wird die daraus resultierende Liste sehr lange. Mit Hilfe der bereitgestellten Filter wird dem Anwender eine hilfreiches Werkzeug an die Hand gegeben, den Umfang der Aufzählung stark zu reduzieren. Dies ist ihm sowohl anhand des Anfangbuchstaben gestattet, als auch per Jahreszahl des Studienbeginn und -ende. 
+
+\problem{Unübersichtliche Darstellung der ausführlichen Studiengangsliste in einer Spalte}
+{
+	Die Liste, welche alle eingetragenen Studiengänge beinhaltet, erstreckt sich über eine Spalte und ist entsprechend sehr lange. Durch die relativ kurzen Bezeichnungen der Studiengänge wird die Breite des Content-Bereichs zudem nicht vollständig ausgeschöpft. Der Nutzer wird deshalb dazu gedrängt entsprechend weit herunter zu scrollen, möchte er die im Alphabet zuletzt angesiedelten Studiengänge betrachten.
+}
+{
+	Bei dem eben beschriebenen Problem handelt es sich lediglich um kleine Mängel am User Interface. Es sind keinerlei Einschränkungen der Funktionalität dadurch gegeben. Das Problem lässt sich daher als unauffällig kategorisieren.
+}
+{
+	An dieser Stelle würde sich ein mehrspaltiges Layout für die Liste aller Studiengänge anbieten. Hiermit wird der Content-Bereich besser ausgenutzt und es entsteht beim Anwender nicht der Eindruck einer nicht enden wollenden Auflistung. Die Studiengänge lassen sich somit viel schneller auffassen ohne groß auf der Webseite herunter scrollen zu müssen.
+}
+\problem{Ungültige Studiengänge erscheinen in der Liste}
+{
+	In der Studiengangliste sind zum teil fehlerhafte und schlichtweg falsche Studiengänge aufgelistet. Diese sind bei der Anmeldung durch einen neuen Alumni enstanden. Das Anmeldeformular gestattet bei der Registrierung die Eingabe von individuellen Studiengängen, wodurch fehlerhafte Eingaben entstehen können. Diese Problematik ist allerdings Bestandteil eines anderen UseCase der in diesem Walkthrough behandelt wird.
+}
+{
+	Aufgrund des falsch zugeordneten Studiengangs ist es durchaus möglich, dass der Benutzer den gesuchten Alumni nicht unter dem erwarteten Studiengang findet. Deshalb handelt es sich bei dem beschriebenen Problem um die Kategorie “leichtes Problem” und sollte definitiv durch Validierung der Eingabedaten bei der Registrierung abgefangen werden.
+}
+{
+	siehe UseCase XYZ [ergänzen]
+}
+
+% Aufgabenteil
+% ------------
+\usecasepart{Durchsuchen der Trefferliste um gewünschten Alumni zu finden (inklusive Blättern in der Liste)}
+
+\subsubsection*{Positive Beobachtungen}
+Die Trefferliste ist klar und gut strukturiert aufgebaut. Die einzelnen Resultate heben sich mit Hilfe einer unterschiedlichen Hintergrundfarbe gut voneinander ab. Zudem erhält der Endanwender direkt in der Ergebnisliste die ersten wichtigen Informationen zu den Personen wie der aktuelle Wohnort, ein Profilbild (sofern vorhanden) und selbstverständlich den vollständigen Namen. Weiterhin positiv anzumerken sind die Pagination-Elemente mit deren Hilfe sich der Anwender durch die gesamte Ergebnisliste blättern kann. Dabei stehen ihm folgenden Funktionen zur Verfügung: vorwärts und rückwärts blättern, sowie an den Anfang bzw. das Ende der Trefferliste zu springen. 
+
+\problem{Hinweis ‘Unbekannter Typ’ bei einigen Suchtreffern}
+{
+	In der Liste aller Treffer erscheint bei einzelnen Resultaten der Hinweistext ‘Unbekannter Typ’ in roter, fett gedruckter Schrift. Dieser ist zurück zu führen auf eine wohl fehlende / fehlerhafte Eingabe im persönlichen Profil des betroffenen Alumni. Dieser Hinweistext hat für den Anwender jedoch keinerlei Informationsgehalt und trägt viel mehr zur Verwirrung bei. Der Grund für diesen auffällig gestalteten Text ist jedoch nicht ersichtlich. Die Aufmerksamkeit des Nutzer wird somit unnötigerweise auf diesen gezogen.
+}
+{
+	Der eingeblendete Hinweistext ist für den Benutzer nicht nachvollziehbar, schränkt die Funktionalität der Website allerdings nicht ein. Aus diesem Grund ist diese Auffälligkeit lediglich der Kategorie “leichtes Problem” zu zu ordnen.
+}
+{
+	Handelt es sich um eine fehlende Eingabe von Seiten des entsprechenden Alumni kann dieser Hinweistext ebenso gut ausgeblendet und nicht präsent sein. Somit entsteht für den Suchenden erst gar nicht die Fragen, welche Informationen damit verbunden sind. Eine alternative Verbesserung ist, die Meldung mit mehr Informationsgehalt auszustatten, so dass der Benutzer versteht, wieso an dieser Stelle ein Hinweistext angezeigt wird.
+}
+\problem{Feste Trefferanzahl pro Seite und eingeschränkte Blätterfunktion}
+{
+	Bei den Suchergebnissen ist die Anzahl der Treffer fest auf fünf pro Seite festgelegt. Dadurch ist der Anwender gezwungen sehr oft zu blättern, sofern sich der gesuchte Alumni weit hinten in der Liste befindet. Dabei wird auch die eingeschränkte Funktionalität ersichtlich, zwischen den Seiten der Ergebnisliste hin und her zu springen. Es ist dem Anwender lediglich gestattete eine Seite vor- bzw rückwärts zu scrollen, bzw. direkt an den Anfang / das Ende der Trefferliste zu springen. Aufgrund dieser Tatsachen ist die Bedienung der Blätterfunktion stark eingeschränkt und macht die Nutzung durchaus unangenehm.
+}
+{
+	Die Bedienung der Webseite ist durch dieses Problem nicht vollständig eingeschränkt. Allerdings wird der Benutzer stark eingeschränkt, was das umher navigieren in den Suchergebnissen betrifft. Aufgrunddessen lässt sich diese Problematik der Kategorie “leichtes Problem” zuordnen.}
+{
+	Die Anzahl der Treffer pro Seite lässt sich durchaus variabel gestalten oder dem Nutzer die Funktion bieten, diese Einstellung selbst zu bestimmen. Beispielsweise in Form eines Dropdown-Menü in dem verschiedene Trefferanzahlen pro Seite angeboten werden. Die Blätterfunktion lässt sich dahingehend verbessern, dass nicht nur ein Vorwärts- und Rückwärtsbutton angeboten wird. Das Pageination-Element lässt sich komplett umgestalten und es wird die aktuelle Seitenzahl angezeigt auf der sich der Nutzer in der Trefferliste befindet. Vor und nach dieser Seitenzahl sind die vorgehenden bzw nachfolgenden fünf Seitenzahlen aufgelistet, die der per Mausklick selektiert werden können, um so direkt zu dieser Seite zu springen.
+}
