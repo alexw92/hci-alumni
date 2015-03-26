@@ -69,6 +69,12 @@ Router.prototype.init = function() {
 				var searchCtrl = new SearchController().initialize();
 			});
 		});
+		this.get('#/pwdChange', function() {
+			ContentHandler.loadView('pwdChange.html', '.content', function () {
+				var pwdChange = new PwdChangeController();
+				console.log('password change form loaded');
+			});
+		});
 	});
 };
 

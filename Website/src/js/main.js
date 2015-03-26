@@ -11,7 +11,7 @@ jQuery(function () {
 		app.loginCtrl.initialize();
 	});
 	
-	//Examples: How to use dbconn
+/*	//Examples: How to use dbconn
 	app.dbconn.checkUsernameInUse('FHeer', function(result) {
 		console.log(result); //true
 	});
@@ -36,5 +36,5 @@ jQuery(function () {
 		console.log(result);
 	});
 	
-	
+	*/
 });
