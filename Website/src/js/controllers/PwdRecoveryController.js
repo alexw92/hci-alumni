@@ -29,12 +29,44 @@ PwdRecoveryController.prototype.bindEvents = function() {
 			var dbHandler = new DatabaseHandler();
 			var emailToFind = self.pwdRecContainer.find('[name = passwordRecovery]').val();
 			
+			//generate new password
+			
 			dbHandler.getUserByEmail(emailToFind, function(response){
 				if(response.email == emailToFind)
 				{
-					console.log(self.TAG + ' User object found by email');
-					$('#feedbackPositiveRecovery').fadeIn('slow');
-					$('#feedbackNegativeRecovery').fadeOut('slow');
+					//request new password
+					var newPassword = '';
+					dbHandler.requestNewPassword(response.username, function(rsp){
+						if(rsp != '-1')
+						{					
+							console.log(self.TAG + ' new password set (generated)');
+							newPassword = rsp;
+							//TODO Email Magic  
+							var mailData = {
+								recipient: response.firstname + ' ' + response.lastname,
+								recipient_mail: response.email,
+								username: response.username,
+								lastname: response.lastname,
+								salutation: response.title,
+								password: newPassword
+							};
+							dbHandler.sendMail('send-password', mailData, function(response){
+								if(!response.error)
+								{
+									$('#feedbackPositiveRecovery').fadeIn('slow');
+									$('#feedbackNegativeRecovery').fadeOut('slow');
+								}
+								else
+								{
+									console.log(self.TAG + ' sendMail failure');
+								}
+							});
+						}
+						else
+						{
+							console.log(self.TAG + ' response from requestNewPassword was -1');
+						}
+					});
 					//TODO plot email in feedback div / send email to user
 				}
 				else
@@ -67,8 +99,26 @@ PwdRecoveryController.prototype.bindEvents = function() {
 					if(response.username == userToFind)
 					{
 						console.log(self.TAG + ' user found by username, returning email...');
-						$('#feedbackPositiveEmailRecovery').fadeIn('slow');
-						$('#feedbackNegativeEmailRecovery').fadeOut('slow');
+					//TODO Email Magic  
+					var mailData = {
+						recipient: response.firstname + ' ' + response.lastname,
+						recipient_mail: response.email,
+						username: response.username,
+						lastname: response.lastname,
+						salutation: user.title
+					};
+					dbHandler.sendMail('send-account', mailData, function(response){
+						if(!response.error)
+						{
+							$('#feedbackPositiveEmailRecovery').fadeIn('slow');
+							$('#feedbackNegativeEmailRecovery').fadeOut('slow');
+						}
+						else
+						{
+							console.log(self.TAG + ' sendMail failure');
+						}
+					});
+					//TODO plot email in feedback div / send email to user
 					}
 					else
 					{
