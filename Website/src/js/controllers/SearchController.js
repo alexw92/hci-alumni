@@ -1,5 +1,6 @@
 var SearchController = (function () {
 	var TAG = 'SearchController',
+		dbHandler = new DatabaseHandler();
 		searchPanel = null,
 		searchBtn = null,
 		searchInput = null,
@@ -37,19 +38,23 @@ var SearchController = (function () {
 
 	var bindEvents = function () {
 		$(searchBtn).on('click', function () {
-			startSearch($(searchInput).val());
+			hideErrorMessage();
+			startSearch();
 		});
 
 		$(searchInput).on('enterKey', function () {
-			startSearch($(searchInput).val());
+			hideErrorMessage();
+			startSearch();
 		});
 
 		$(extendedSearchBtn).on('click', function (e) {
 			e.preventDefault();
+			hideErrorMessage();
 			toggleExtendedSearch();
 		});
 
 		$(searchInput).on('keyup', function (event) {
+			hideErrorMessage();
 			if(event.keyCode === 13) {
 				$(this).trigger('enterKey');
 				return;
@@ -57,16 +62,73 @@ var SearchController = (function () {
 		});
 	};
 
-	var startSearch = function (searchValue) {
-		var dbHandler = new DatabaseHandler();
-		dbHandler.getUsersByFullname(searchValue, function (resultSet) {
-			displaySearchResult(resultSet);
-			updateResultCount(resultSet.length);
-			updateBrowserLocation(searchValue);
-		});
+	var startSearch = function () {
+		var searchVal = $(searchInput).val();
+
+		if(searchVal === '') {
+			showErrorMessage();
+			return;
+		}
+
+		if(isExtendedSearchVisible()) {
+			var searchObj = getExtendedSearchInputValues();
+
+			searchObj.name = searchVal;
+			dbHandler.getUsersExtendedSearch(searchObj, handleSearchResult);
+		}
+		else {
+			searchVal = $(searchInput).val();
+			dbHandler.getUsersByFullname(searchVal, handleSearchResult);
+		}
+
+		if(searchVal !== null)
+			updateBrowserLocation(searchVal);
+	};
+
+	var showErrorMessage = function () {
+		$(searchPanel).find('#search-error-panel').show();
+	};
+
+	var hideErrorMessage = function () {
+		$(searchPanel).find('#search-error-panel').hide();
+	};
+
+	var isExtendedSearchVisible = function () {
+		return $(searchPanel).find('.search-extended')
+			.is(':visible');
+	};
+
+	var getExtendedSearchInputValues = function () {
+		var searchFields = $(searchPanel).find('.search-extended').find('input'),
+			values = {};
+
+		values.name = $(searchInput).val();
+		values.university = $(searchFields[0]).val() === '' ? null : $(searchFields[0]).val();
+		values.faculty =  $(searchFields[1]).val() === '' ? null : $(searchFields[1]).val();
+		values.study_start = $(searchFields[2]).val() === '' ? null : $(searchFields[2]).val();
+		values.study_end = $(searchFields[3]).val() === '' ? null : $(searchFields[3]).val();
+		values.interests = $(searchFields[4]).val() === '' ? null : $(searchFields[4]).val();
+		values.street = $(searchFields[5]).val() === '' ? null : $(searchFields[5]).val();
+		values.city = $(searchFields[6]).val() === '' ? null : $(searchFields[6]).val();
+		values.postalcode = $(searchFields[7]).val() === '' ? null : $(searchFields[7]).val();
+		values.company = $(searchFields[8]).val() === '' ? null : $(searchFields[8]).val();
+		values.sector = $(searchFields[9]).val() === '' ? null : $(searchFields[9]).val();
+		values.state = $(searchFields[10]).val() === '' ? null : $(searchFields[10]).val();
+
+		return values;
+	};
+
+	var handleSearchResult = function (resultSet) {
+		displaySearchResult(resultSet);
+		updateResultCount(resultSet.length);
 	};
 
 	var displaySearchResult = function (resultSet) {
+		if(resultSet.length === 0) {
+			displayNoResult();
+			return;
+		}
+
 		var resultDomArray = [];
 
 		renderPageination();
@@ -81,6 +143,12 @@ var SearchController = (function () {
 					appendSearchResult(resultDomArray);
 			});
 		});
+	};
+
+	var displayNoResult = function () {
+		$(searchPanel).find('.search-result-wrapper')
+			.html('<div class="alert alert-info" role="alert">Keine Treffer gefunden</div>');
+		$(searchPanel).find('#search-result').show();
 	};
 
 	var updateResultCount = function (resultLength) {
@@ -145,8 +213,6 @@ var SearchController = (function () {
 	};
 
 	var loadFullNameList = function () {
-		var dbHandler = new DatabaseHandler();
-
 		dbHandler.getFullnames(function (nameList) {
 			bindAutoComplete(nameList);
 		});

@@ -28,10 +28,10 @@ var UserPreviewBuilder = (function (userData) {
 	 	}
 
 	 	if(user.title === 'Frau') {
-	 		$(userPrevDom).find('.result-image').attr('src', 'img/avatars/user_2_f.png');
+	 		$(userPrevDom).find('.result-image').attr('src', 'img/avatars/user_' + user.image_id + '_f.png');
 	 	}
 	 	else if(user.title === 'Herr') {
-	 		$(userPrevDom).find('.result-image').attr('src', 'img/avatars/user_3_m.png');
+	 		$(userPrevDom).find('.result-image').attr('src', 'img/avatars/user_' + user.image_id + '_m.png');
 	 	}
 
 	 	if(user.company !== null) {

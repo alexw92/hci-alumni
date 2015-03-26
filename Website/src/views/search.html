@@ -9,6 +9,9 @@
 	</div>
 	<form>
 	<div class="row search" id="search-contact-panel">
+		<div id="search-error-panel" class="alert alert-danger" role="alert" style="display: none">
+			Bitte geben Sie mindestens einen Suchbegriff ein.
+		</div>
 		<div class="row search-header">
 			<div class="col-lg-8">
 				<div class="input-group">
@@ -27,39 +30,7 @@
 		<div class="search-extended">
 			<div class="row">
 				<div class="col-sm-4 form-group">
-					<label for="nameInput">Name</label>
-					<input type="text" id="nameInput" class="form-control" placeholder="z.B. 'Max Mustermann'">
-				</div>
-				<div class="col-sm-4 form-group">
-					<label for="organizationInput">Unternehmen</label>
-					<input type="text" id="organizationInput" class="form-control" placeholder="z.B. 'Mustermann GmbH'">
-				</div>
-				<div class="col-sm-2 form-group">
-					<label for="locationInput">Ort</label>
-					<input type="text" id="locationInput" class="form-control" placeholder="z.B. 'München'">
-				</div>
-				<div class="col-sm-2 form-group">
-					<label for="zipInput">PLZ</label>
-					<input type="text" id="zipInput" class="form-control" placeholder="z.B. '20459'">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 form-group">
-					<label for="interestsInput">Interessen</label>
-					<input type="text" id="interestsInput" class="form-control" placeholder="z.B. 'Fußball'">
-				</div>
-				<div class="col-sm-4 form-group">
-					<label for="departmentInput">Branche</label>
-					<input type="text" id="departmentInput" class="form-control" placeholder="z.B. 'Telekommunikation'">
-				</div>
-				<div class="col-sm-4 form-group">
-					<label for="stateInput">Bundesland</label>
-					<input type="text" id="stateInput" class="form-control" placeholder="Bundesland">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 form-group">
-					<label for="collegeInput">Hochschule</label>
+					<label for="universityInput">Hochschule</label>
 					<input type="text" id="collegeInput" class="form-control" placeholder="z.B. 'Universität Würzburg'">
 				</div>
 				<div class="col-sm-4 form-group">
@@ -73,6 +44,38 @@
 				<div class="col-sm-2 form-group">
 					<label for="studyEndInput">Studienende</label>
 					<input type="text" id="studyEndInput" class="form-control" placeholder="z.B. '2003'">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 form-group">
+					<label for="interestsInput">Interessen</label>
+					<input type="text" id="interestsInput" class="form-control" placeholder="z.B. 'Fußball'">
+				</div>
+				<div class="col-sm-4 form-group">
+					<label for="streetInput">Anschrift</label>
+					<input type="text" id="streetInput" class="form-control" placeholder="z.B. 'Annastr. 4'">
+				</div>
+				<div class="col-sm-2 form-group">
+					<label for="cityInput">Ort</label>
+					<input type="text" id="locationInput" class="form-control" placeholder="z.B. 'München'">
+				</div>
+				<div class="col-sm-2 form-group">
+					<label for="postalcodeInput">PLZ</label>
+					<input type="text" id="zipInput" class="form-control" placeholder="z.B. '20459'">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 form-group">
+					<label for="companyInput">Unternehmen</label>
+					<input type="text" id="companyInput" class="form-control" placeholder="z.B. 'Mustermann GmbH'">
+				</div>
+				<div class="col-sm-4 form-group">
+					<label for="sectorInput">Branche</label>
+					<input type="text" id="departmentInput" class="form-control" placeholder="z.B. 'Telekommunikation'">
+				</div>
+				<div class="col-sm-4 form-group">
+					<label for="stateInput">Bundesland</label>
+					<input type="text" id="stateInput" class="form-control" placeholder="Bundesland">
 				</div>
 			</div>
 		</div>
