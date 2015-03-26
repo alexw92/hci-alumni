@@ -1,6 +1,11 @@
 var RegistrationController = function () {
 	this.TAG = 'RegistrationController =>';
-
+	this.regForm = null;
+	this.accountForm = null;
+	this.regFormContainer = $('#registrationForm');
+	this.bankFormContainer = $('#membershipData');
+	this.hintColor = "#D9EDF7";
+	
 	this.exampleFunction();
 	this.initValidation();
 	this.bindEvents();
@@ -12,27 +17,144 @@ RegistrationController.prototype.exampleFunction = function() {
 
 RegistrationController.prototype.bindEvents = function() {
 	var self = this;
+	var membershipBool = false;
 	console.log(this.TAG + 'submit');
+
+	//membership selected or not?
+	$('input:radio').on('click', function(){ 
+		membershipBool = $(this).val();
+		console.log(membershipBool + ' steht in bool');
+		if($(this).val())
+		{
+			console.log('membership selected and button pressed' + $(this).val());
+			
+		}
+		else
+		{
+			console.log('$(this).val()');
+		}
+	});
+
+	//submit button action
 	$('#btnSubmitReg').on('click', function(event){
 		event.preventDefault();
 		console.log('SubmitBtn clicked');
-		$('#registrationForm').formValidation('validate');
+		self.regForm.validate();
+		if(membershipBool)
+		{
+			self.accountForm.validate();
+		}
+		console.log(self.regForm.isValid());
+		if( self.regForm.isValid())
+		{	
+			var user = self.parseUser(),
+				dbHandler = new DatabaseHandler();
+				
+			dbHandler.insertNewUser(user, function (response) {
+				if(response == 'success')
+				{
+					$('#feedbackPositive').fadeIn('slow');
+					$('#feedbackNegative').fadeOut('slow');
+					//TODO Email Magic  
+				}
+				else
+				{
+					$('#feedbackPositive').fadeOut('slow');
+					$('#feedbackNegative').fadeIn('slow');
+					console.log(response);
+				}
+			});
+			console.log('Valid');
+		}
+		else
+		{
+			console.log(self.TAG + ' NOT valid');
+		}
 	});
 	$('#noMemberRadio').on('change', function(event) {
-		console.log('membership selected');
+		console.log('No membership selected (radio)');
 		$('#membershipData').fadeOut('slow');
 		$('#membershipData').formValidation('destroy');
 	});
 	$('#memberRadio').on('change', function(event) {
-		console.log('membership selected');
+		console.log('membership selected (radio)');
 		$('#membershipData').fadeIn();
 		self.initMembershipValidation();
-		$('#membershipData').formValidation('validate');
+	});
+	//Username check (used or not used)
+	$('#username').keypress(function(){
+		var dbHandler = new DatabaseHandler();
+		setTimeout(function(){
+    		dbHandler.checkUsernameInUse(self.regFormContainer.find('[name = username]').val() , function(response) {
+				if(response)
+				{
+					self.regForm.updateStatus('username', 'INVALID', 'ean');
+				}
+				else 
+				{
+					self.regForm.updateStatus('username', 'VALID', 'ean');
+				}
+			});
+		}, 250);
+
+	});
+	//Email check (used or not used)
+	$('#email').keypress(function(){
+		var dbHandler = new DatabaseHandler();
+		setTimeout(function(){
+			dbHandler.checkMailInUse(self.regFormContainer.find('[name = email]').val() , function(response) {
+				if(response)
+				{
+					self.regForm.updateStatus('email', 'INVALID', 'color');
+				}
+				else 
+				{
+					self.regForm.updateStatus('email', 'VALID', 'color');
+				}
+			});
+		}, 250);
+		dbHandler.checkMailInUse(self.regFormContainer.find('[name = email]').val() , function(response) {
+			if(response)
+			{
+				self.regForm.updateStatus('email', 'INVALID', 'color');
+			}
+			else 
+			{
+				self.regForm.updateStatus('email', 'VALID', 'color');
+			}
+		})
+	});
+	//username hint background-color changing on mouseover
+	$('#username').on({mouseenter: function() {
+			$('#usernameHint').css("background-color",self.hintColor);
+		}, mouseleave: function(){
+			$('#usernameHint').css("background-color","white");
+		}
+	});
+	//password hint background-color changing on mouseover 
+	$('#password').on({mouseenter: function() {
+			$('#passwordHint').css("background-color",self.hintColor);
+		}, mouseleave: function(){
+			$('#passwordHint').css("background-color","white");
+		}
+	});
+	$('#passwordRpt').on({mouseenter: function() {
+			$('#passwordHint').css("background-color",self.hintColor);
+		}, mouseleave: function(){
+			$('#passwordHint').css("background-color","white");
+		}
+	});
+	//password hint background-color changing on mouseover 
+	$('#email').on({mouseenter: function() {
+			$('#emailHint').css("background-color",self.hintColor);
+		}, mouseleave: function(){
+			$('#emailHint').css("background-color","white");
+		}
 	});
 };
 
 RegistrationController.prototype.initMembershipValidation = function () {
-	$('#registrationForm').formValidation({
+	var bankFormContainer = $('#membershipData').formValidation({
         framework: 'bootstrap',
         icon: 
 		{
@@ -48,34 +170,53 @@ RegistrationController.prototype.initMembershipValidation = function () {
         },
         fields: 
 		{
-            firstName: 
+	        depositor: 
 			{
-
                 validators: 
 				{
                     notEmpty: 
 					{
-                        message: 'Bitte tragen Sie Ihren Vornamen ein'
+                        message: 'Bitte tragen Sie den Namen des Kontoinhabers ein'
                     }
                 }
             },
-            lastName: 
+            iban: 
 			{
                 validators: 
 				{
                     notEmpty: 
 					{
-                        message: 'Bitte tragen Sie Ihren Nachnamen ein'
-                    }
+                        message: 'Bitte tragen Sie Ihre IBAN ein'
+                    },
+					iban:
+					{
+						country: 'DE',
+						message: 'Bitte geben Sie eine gültige IBAN ein'
+					}
+                }
+            },
+            bic: 
+			{
+                validators: 
+				{
+                    notEmpty: 
+					{
+                        message: 'Bitte tragen Sie Ihren BIC ein'
+                    },
+					bic:
+					{
+						message: 'Bitte geben Sie einen gültigen BIC ein'
+					}
                 }
             }
 		}
 	});
+	this.accountForm = bankFormContainer.data('formValidation');
 };
 
 
 RegistrationController.prototype.initValidation = function () {
-	$('#registrationForm').formValidation({
+	var regFormContainer = $('#registrationForm').formValidation({
         framework: 'bootstrap',
         icon: 
 		{
@@ -192,14 +333,22 @@ RegistrationController.prototype.initValidation = function () {
                     regexp: 
 					{
                         regexp: /^[a-zA-Z0-9_\.]+$/,
-                        message: 'Ihr Benutzername muss aus Buchstaben und Zahlen bestehen und darf nur die Sonderzeichen "Punkt" oder "Unterstrich" enthalten'
+                        message: 'Ihr Benutzername muss aus Buchstaben und Zahlen bestehen und darf nur die Sonderzeichen "Punkt" und "Unterstrich" enthalten'
+                    },
+                    ean:
+                    {
+                    	message: 'Der Benutzername ist leider schon vergeben, versuchen Sie es bitte mit einem anderen'
                     }
                 }
             },
             email: 
 			{
                 validators: 
-				{
+				{    
+	                color:
+                    {
+                    	message: 'Diese Email-Adresse ist leider bereits vergeben, versuchen Sie es bitte mit einer anderen'
+                    },
                     notEmpty: 
 					{
                         message: 'Bitte tragen Sie Ihre Email-Adresse ein'
@@ -208,6 +357,7 @@ RegistrationController.prototype.initValidation = function () {
 					{
                         message: 'Dies ist keine gültige Email-Adresse'
                     }
+
                 }
             },
             password: 
@@ -222,7 +372,14 @@ RegistrationController.prototype.initValidation = function () {
 					{
                         field: 'username',
                         message: 'Das Passwort darf nicht Ihrem Benutzername entsprechen'
+                    },
+                    regexp: 
+					{
+                        regexp: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$/,  //seen on http://regexlib.com/ 
+                        //regexp: /(?=^.{6,30}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/,
+                        message: 'Ihr Passwort muss jeweils einen Groß- und Kleinbuchstaben, eine Zahl und ein Sonderzeichen enthalten. Außerdem muss es zwischen 6 und 30 Zeichen lang sein'
                     }
+
                 }
             },
             passwordRepeat: 
@@ -237,9 +394,75 @@ RegistrationController.prototype.initValidation = function () {
 					{
                         field: 'password',
                         message: 'Ihr Passwort stimmt nicht überein'
+                    },
+                    regexp: 
+					{
+                        regexp: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$/,  //seen on http://regexlib.com/ 
+                        //regexp: /(?=^.{6,30}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/,
+                        message: 'Ihr Passwort muss jeweils einen Groß- und Kleinbuchstaben, eine Zahl und ein Sonderzeichen enthalten. Außerdem muss es zwischen 6 und 30 Zeichen lang sein'
                     }
                 }
             }
         }
     });
+	
+	this.regForm = regFormContainer.data('formValidation');
 };
+
+RegistrationController.prototype.parseUser = function()
+{
+	var user = new User();
+	var formVariable = this.regFormContainer.find('[name = title]').val();
+	user.title = formVariable;
+
+	formVariable = this.regFormContainer.find('[name = firstName]').val();
+	user.firstname = formVariable;
+
+	formVariable = this.regFormContainer.find('[name = lastName]').val();
+	user.lastname = formVariable;
+
+	formVariable = this.regFormContainer.find('[name = street]').val();
+	user.address = formVariable;
+
+	formVariable = this.regFormContainer.find('[name = streetAdditional]').val();
+	user.addressaddition = formVariable;
+
+	formVariable = this.regFormContainer.find('[name = zipCode]').val();
+	user.postalcode = formVariable;
+
+	formVariable = this.regFormContainer.find('[name = city]').val();
+	user.city = formVariable;
+
+	formVariable = this.regFormContainer.find('[name = username]').val();
+	user.username = formVariable;
+
+	formVariable = this.regFormContainer.find('[name = email]').val();
+	user.email = formVariable;
+
+	formVariable= this.regFormContainer.find('[name = password]').val();
+	user.password = formVariable;
+
+	console.log(user);
+
+	
+	return user;
+	//TODO get all input fields
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

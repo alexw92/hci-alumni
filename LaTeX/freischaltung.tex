@@ -1,13 +1,13 @@
 %Armin
 \usecase{Freischaltung}
 \label{subsec:freischaltung}
-Der Nutzer erhält die Mail mit dem Freischaltcode und schließt den Registrierungsprozess ab.
+Der Nutzer erhält eine Mail mit dem Freischaltcode und schließt daraufhin den Registrierungsprozess ab.
 
-\usecasepart{Mail}
+\usecasepart{Empfangen und Lesen der Mail}
 
 \subsubsection*{Positive Beobachtungen}
 \label{subsubsec:freischaltung_mail_positiv}
-Mail ist sehr freundlich gehalten
+Die Mail ist allgemein sprachlich sehr freundlich gehalten.
 
 %Probleme in der Mail
 \problem{Anrede in der Mail fehlt}
@@ -54,12 +54,11 @@ Der Link führt zur gleichen Seite wie der Menüpunkt \glqq Freischalten\grqq ~i
 Das Problem wird einem normalen Nutzer nicht auffallen, da er einfach dem Link in der E\hbox{-}Mail folgt und damit auf der Freischaltungsseite landet (Kategorie~0).
 }
 {
-Es ist kein Problem, das dem Nutzer auffällt oder ihn in seiner Arbeit beeinträchtigt, dennoch ist es sinnvoll, die Links zur Freischaltung zu vereinheitlichen. Der Link zu \texttt{www.alumni.uni-wuerzburg.de} kann an dieser Stelle weggelassen werden, da es für den Nutzer einen Umweg bedeutet, und er sich erst auf der Seite zurechtfinden muss, um dann den Weg zum Alumni-Portal zu finden.
+Es ist kein Problem, das dem Nutzer auffällt oder ihn in seiner Arbeit beeinträchtigt, dennoch ist es sinnvoll, die Links zur Freischaltung zu vereinheitlichen. Der Link zu \texttt{www.alumni.uni-wuerzburg.de} kann an dieser Stelle weggelassen werden, da es für den Nutzer einen Umweg bedeutet, und er sich erst auf dieser Seite zurechtfinden muss, um dann den Weg zum Alumni-Portal zu finden.
 }
 \label{prob:frei:link}
 
-\usecasepart{Webseite Freischaltung}
-%Probleme auf der Webseite zur Freischaltung
+\usecasepart{Ausfüllen der Webseite zur Freischaltung}
 
 \subsubsection*{Positive Beobachtungen}
 \label{subsubsec:freischaltung_webseite_positiv}
@@ -70,7 +69,7 @@ Es werden Tipps zur Wahl von Nutzername und Passwort angezeigt. Diese Tipps kön
 In das oberste Feld der Seite soll der Nutzer nochmals seine E\hbox{-}Mail-Adresse eingeben.
 }
 {
-text  (Kategorie~3).
+Hierbei handelt es sich um ein auffälliges Problem (Kategorie~3), da der Nutzer seine E\hbox{-}Mail-Adresse bereits bei der Registrierung angegeben hat, und es normalerweise keinen Grund gibt, bereits bekannte Daten nochmals einzugeben. Außerdem liegt hier durch die erneute Eingabe noch eine zusätzliche vermeidbare Fehlerquelle.
 }
 {
 Dieses Feld ist unnötig, da der seine E\hbox{-}Mail-Adresse bereits bei der Registrierung eingegeben hat. Es kann also einfach weggelassen werden. Die eindeutige Identifizierung sollte über den Freischaltcode möglich sein.
@@ -79,10 +78,10 @@ Dieses Feld ist unnötig, da der seine E\hbox{-}Mail-Adresse bereits bei der Reg
 
 \problem{Button für mailto-Links}
 {
-Rechts neben dem Eingabefeld für die E\hbox{-}Mail-Adresse befindet sich ein kleiner Button. Erst bei genauem Hinschauen erkennt man, dass es sich um einen Briefumschlag mit ein @-Zeichen handelt. Hat man noch keine Mailadresse eingetragen, erhält man durch den Klick ein Alert mit dem Hinweistext \glqq Bitte geben sie eine gültige E\hbox{-}Mail-Adresse an\grqq . Ist bereits eine Mailadresse eingetragen, öffnet sich ein Popup, in dem man eine Anwendung für mailto-Links auswählen soll.
+Rechts neben dem Eingabefeld für die E\hbox{-}Mail-Adresse befindet sich ein kleiner Button. Erst bei genauem Hinschauen erkennt man, dass es sich um einen Briefumschlag mit einem @-Zeichen handelt. Hat man noch keine Mailadresse eingetragen, erhält man durch den Klick ein Pop-Up mit dem Hinweistext \glqq Bitte geben sie eine gültige E\hbox{-}Mail-Adresse an\grqq . Ist bereits eine Mailadresse eingetragen, öffnet sich ein Pop-Up, in dem man eine Anwendung für mailto-Links auswählen soll.
 }
 {
-Der Button bringt dem Nutzer keinen Mehrwert. Auch ohne ihn wird ersichtlich, dass man in das Feld seine E\hbox{-}Mail-Adresse eintragen soll. Ist bereits eine Mailadresse vom Nutzer eingetragen, hat der Button sogar eine negative Wirkung, da der Nutzer dazu aufgefordert wird, eine externe Anwendung für mailto-Links zu bestimmen. Diese Links dienen normalerweise dazu, für den Nutzer das Programm seiner Wahl zu öffnen, um damit Mails an andere zu verschicken. Dem Nutzer erschließt sich hier nicht der Sinn, das auch für seine eigene E\hbox{-}Mail-Adresse zu tun, und er wird dadurch in seinem Arbeitsfluss unterbrochen. Dieses Problem erhält daher die Kategorie~2, da es für den Nutzer eventuell störend ist, aber die Funktion nicht die Nutzung des Angebots komplett verhindert.
+Der Button bringt dem Nutzer keinen Mehrwert. Auch ohne ihn wird ersichtlich, dass man in das Feld seine E\hbox{-}Mail-Adresse eintragen soll. Ist bereits eine Mailadresse vom Nutzer eingetragen, hat der Button sogar eine negative Wirkung, da der Nutzer dazu aufgefordert wird, eine externe Anwendung für mailto-Links zu bestimmen. Diese Links dienen normalerweise dazu, für den Nutzer das Programm seiner Wahl zu öffnen, um damit Mails an andere Personen zu verschicken. Dem Nutzer erschließt sich hier nicht der Sinn, das auch für seine eigene E\hbox{-}Mail-Adresse zu tun, und er wird dadurch in seinem Arbeitsfluss unterbrochen. Dieses Problem erhält daher die Kategorie~2, da es für den Nutzer eventuell störend ist, aber die Funktion nicht die Nutzung des Angebots komplett verhindert.
 }
 {
 Der Button kann weggelassen werden, da er dem Nutzer weder Mehrwert noch zusätzliche Informationen liefert und ihn möglicherweise zusätzlich noch verwirrt und behindert.
@@ -106,10 +105,10 @@ Der Freischaltcode wird in die URL, die zur Freischaltung führt, eingebettet, d
 Nutzername und Passwort werden erst nach der Eingabe des Freischaltcodes gewählt. 
 }
 {
-Der Sinn dieser Vorgehensweise, seinen Nutzernamen und Passwort jetzt erst zu setzen, erschließt sich dem Nutzer möglicherweise nicht.  (Kategorie~2).
+Der Sinn dieser Vorgehensweise, seinen Nutzernamen und Passwort jetzt erst zu setzen, erschließt sich dem Nutzer möglicherweise nicht. Normalerweise werden diese Daten schon bei der Registrierung festgelegt, der Vorgang entspricht also gleich zwei Mal nicht den Erwartungen des Nutzers: Zuerst erwartet der Nutzer bei der Registrierung, dass hier Nutzername und Passwort gesetzt werden, was nicht passiert, anschließend muss er die Daten an einer unerwarteten Stelle setzen. Insgesamt erhält das Problem also die Kategorie~2.
 }
 {
-Nutzername und Passwort können genausogut schon bei der Registrierung gewählt werden.
+Nutzername und Passwort können genausogut schon bei der Registrierung festgesetzt werden.
 }
 \label{prob:frei:nutzerundpw}
 
@@ -130,10 +129,10 @@ Das Formularfeld erhält eine sofortige Validierung, die sowohl überprüft, ob 
 Gibt der Nutzer ein Passwort ein, das nicht den vorgegebenen Kriterien entspricht, erscheint in grüner Schrift die Fehlermeldung: \glqq Hinweis: Es konnte keine gültige Registrierung gefunden werden. Bitte überprüfen Sie Ihre Eingaben.\grqq
 }
 {
-Dies ist ein sehr schwerwiegendes Problem (Kategorie~4). Die Farbe grün ist im allgemeinen Verständnis mit Zustimmung, Bestätigung, und bei Webseiten mit korrekten Eingaben verknüpft. Kein Nutzer wird in einem grünen Text eine Warnung oder eine Fehlermeldung sehen, und die meisten Nutzer werden aufgrund der Farbgebung die Meldung nicht einmal lesen. Zusätzlich weist der Hinweistext nicht auf das Problem hin, sondern liefert nur eine allgemeingültige, schwammig formulierte Fehlermeldung.
+Dies ist ein sehr schwerwiegendes Problem (Kategorie~4). Die Farbe grün ist im allgemeinen Verständnis mit Zustimmung, Bestätigung, und bei Webseiten mit korrekten Eingaben verknüpft. Kein Nutzer wird in einem grünen Text sofort eine Warnung oder eine Fehlermeldung sehen, und die meisten Nutzer werden aufgrund der Farbgebung die Meldung nicht einmal lesen. Zusätzlich weist der Hinweistext nicht auf das Problem hin, sondern liefert nur eine allgemeingültige, schwammig formulierte Fehlermeldung.
 }
 {
-Als erstes muss hier die Farbgebung verändert werden. Es handelt sich um eine Fehlermeldung, diese sollte also eine rote Schriftfarbe erhalten. Des Weiteren sollte die Fehlermeldung auch auffälliger (größere Schrift) werden. Ebenso sollte der Hinweistext angepasst werden, da er nicht eindeutig auf den Fehler hinweist. Als letztes kann auch hier, analog zum Eingabefeld für den Nutzernamen, eine Validierung eingebaut werden, die direkt bei der Eingabe ein visuelles Feedback bietet, ob das Passwort den Vorgaben entspricht.
+Als erstes muss hier die Farbgebung verändert werden. Es handelt sich um eine Fehlermeldung, diese sollte also eine rote Schriftfarbe erhalten. Des Weiteren sollte die Fehlermeldung auch auffälliger (größere Schrift, Rahmen, etc.) werden. Ebenso sollte der Hinweistext angepasst werden, da er nicht eindeutig auf den Fehler hinweist. Als letztes kann auch hier, analog zum Eingabefeld für den Nutzernamen, eine Validierung eingebaut werden, die direkt bei der Eingabe ein visuelles Feedback bietet, ob das Passwort den Vorgaben entspricht.
 }
 \label{prob:frei:warntextgruen}
 
@@ -153,7 +152,7 @@ Eine Längenbeschränkung auf 17 Zeichen ist unnötig. In Zeiten von wachsendem 
 
 \subsubsection*{Positive Beobachtungen}
 \label{subsubsec:freischaltung_absenden_positiv}
-Beim Absenden der Daten erhält der Nutzer durch drehende Zahnräder visuelles Feedback, dass seine Daten gerade verarbeitet werden.
+Beim Absenden der Daten erhält der Nutzer durch drehende Zahnräder visuelles Feedback, dass seine Daten gerade verarbeitet werden. Dadurch wird dem wartenden Nutzer signalisiert, dass im Hintergrund Arbeit verrichtet wird und kein unerkannter Fehler besteht.
 
 \problem{Validierung erst beim Absenden der Daten}
 {
@@ -172,7 +171,7 @@ Wie schon bei vorherigen Problemen beschrieben, lässt sich dieses Problem dadur
 Man muss nach dem Klick auf Speichern lange warten (4-5 Sekunden), bis die Daten gespeichert wurden und man sich einloggen kann. Hier ist jedoch positiv zu vermerken, dass der Nutzer in dieser Zeit Feedback erhält (siehe \ref{subsubsec:freischaltung_absenden_positiv}).
 }
 {
-Da der Nutzer Feedback erhält und nur ein paar Sekunden warten muss, ist es kein Problem (Kategorie~0).
+Da der Nutzer visuelles Feedback erhält und nur ein paar Sekunden warten muss, ist es kein Problem, das den Nutzer beeinträchtigt (Kategorie~0).
 }
 {
 Hier ist es sicher möglich, Verbesserungen an der darunter liegenden Infrastruktur (Datenbank etc.) vorzunehmen, um die Verarbeitungszeit zu verkürzen.
@@ -180,4 +179,4 @@ Hier ist es sicher möglich, Verbesserungen an der darunter liegenden Infrastruk
 \label{prob:frei:speichern}
 
 \subsubsection*{Fazit: Freischaltung}
-bla bla bla
+Bei der Freischaltung wurden zwei schwerwiegende Probleme gefunden, die eine normale Nutzung der Seite verhindern, sowie eine Reihe von Problemen, die den Nutzer in seinem Arbeitsablauf stören. Zusammenfassend kann man sagen, dass durch die Änderungsvorschläge der bisherige Freischaltungsprozess nicht mehr nötig ist, da er in Teilen in die Registrierung ausgelagert wurde und der Rest durch vorgenommene Modifikationen nicht mehr in der urspünglichen Form nötig ist.
