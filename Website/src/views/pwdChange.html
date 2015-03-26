@@ -1,0 +1,55 @@
+<div class="row">
+	<!-- registration form-->
+	<div class="col-sm-8 blog-main"> 
+		<div class="alert alert-success" id="feedbackPositivePasswordCh" role="alert"> </div>
+		<div class="alert alert-danger" id="feedbackNegativePasswordCh" role="alert"> </div>
+			<div class="blog-post"> 
+				<h2 class="blog-post-title">Passwort ändern</h2>
+				<hr>				
+				<p>An dieser Stelle können Sie Ihr Passwort ändern. Sobald Sie auf "Passwort ändern" klicken, wird ihr neues Passwort gültig.</p><br>
+			</div> <!-- /.blog post -->
+		
+			<form id="pwdChangeForm" class="form-horizontal">
+				<div class="form-group">
+					<div class="col-xs-10">
+						<input type="password" id="oldPassword" class="form-control" name="oldPassword" placeholder="Altes Passwort" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-10">
+						<input type="password" id="newPassword" class="form-control" name="newPassword" placeholder="Neues Passwort" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-10">
+						<input type="password" id="newPasswordRepeat" class="form-control" name="newPasswordRepeat" placeholder="Neues Passwort wdhl." />
+					</div>
+				</div>
+		
+
+				<div class="form-group">
+					<div class="col-xs-8 ">
+						<button type="submit" id="BtnChangePassword" class="btn btn-primary" name="signup" value="Sign up">Passwort ändern</button>
+						<button type="abort" id="BtnabortPasswordChange" class="btn btn-primary" name="abort" value="Abort">Abbrechen</button>
+					</div>
+				</div>
+			</form>
+	</div> <!-- blog main -->
+	
+	<!-- PWD Recovery Description (right side)-->
+	<div class="col-sm-4 blog-sidebar">
+		<div class="sidebar-module sidebar-module-inset">
+			<h3>Hinweise zur Passwortänderung</h3>
+			<div class="sidebar-module" id="newPasswordHint">
+            <h4>Das neue Passwort muss...</h4>
+            <ul class="list">
+				<li><p>mind. einen Großbuchstaben enthalten.</p></li>
+				<li><p>mind. einen Kleinbuchstaben enthalten.</p></li>
+				<li><p>mind. eine Zahl enthalten.</p></li>
+				<li><p>zwischen 6 und 30 Zeichen lang sein.</p></li>
+            </ul>
+        </div>
+
+	</div><!-- /.blog-sidebar -->
+	
+</div> <!-- row -->
