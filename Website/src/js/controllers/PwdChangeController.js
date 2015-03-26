@@ -51,7 +51,7 @@ PwdChangeController.prototype.bindEvents = function() {
 						if(response == 'success')
 						{
 							console.log(self.TAG + ' password is changed');
-							$('#feedbackPositivePasswordCh').html('Ihr Passwort wurde erfolgreich geändert');
+							$('#feedbackPositivePasswordCh').html('Ihr Passwort wurde erfolgreich geändert!');
 							$('#feedbackPositivePasswordCh').fadeIn('slow');
 							$('#feedbackNegativePasswordCh').fadeOut('slow');
 							return true;
@@ -60,7 +60,7 @@ PwdChangeController.prototype.bindEvents = function() {
 						else
 						{
 							console.log(self.TAG + ' password could not be changed');
-							$('#feedbackNegativePasswordCh').html('Es tut uns leid, Ihr Passwort konnte nicht geändert werden. Bitte versuchen sie es zu einem anderen Zeitpunkt erneut.');
+							$('#feedbackNegativePasswordCh').html('Es tut uns Leid, Ihr Passwort konnte nicht geändert werden. Bitte versuchen sie es zu einem anderen Zeitpunkt erneut.');
 							$('#feedbackPositivePasswordCh').fadeOut('slow');
 							$('#feedbackNegativePasswordCh').fadeIn('slow');
 							//TODO plot failure of finding email in database to feedback div
