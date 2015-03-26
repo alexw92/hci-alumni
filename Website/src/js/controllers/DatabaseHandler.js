@@ -203,7 +203,10 @@ DatabaseHandler.prototype.sendMail = function(type, mailData, callback) {
 	
 	request.done(function (response) {
 		console.log(response);
-	});
+		if(callback !== 'undefined' && typeof(callback) === 'function') {
+			callback(response);
+		}
+	}); 
 	
 	request.fail(function (response) {
 		console.log(response);

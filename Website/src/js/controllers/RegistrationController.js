@@ -69,6 +69,7 @@ RegistrationController.prototype.bindEvents = function() {
 					dbHandler.sendMail('confirm-register', mailData, function(response){
 						if(!response.error)
 						{
+							$('#feedbackPositive').html('Ihre Registrierung war erfolgreich. In Kürze erhalten Sie eine Bestätigungsemail mit Freischaltcode!');
 							$('#feedbackPositive').fadeIn('slow');
 							$('#feedbackNegative').fadeOut('slow');
 						}
@@ -80,6 +81,7 @@ RegistrationController.prototype.bindEvents = function() {
 				}
 				else
 				{
+						$('#feedbackNegative').html('Es tut uns Leid, es ist ein Fehler in der Technik aufgetreten. Versuchen Sie es bitte zu einem anderen Zeitpunkt erneut.');
 						$('#feedbackPositive').fadeOut('slow');
 						$('#feedbackNegative').fadeIn('slow');
 				}
