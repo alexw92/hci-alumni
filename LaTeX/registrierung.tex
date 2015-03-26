@@ -16,7 +16,7 @@ beginnen.
 An vielen Eingabeformularen befindet sich über der oberen rechten Kante ein roter Stern ”*”. Allerdings findet sich nirgends auf der Seite eine Erklärung des Zeichens.
 Obwohl diese Kennzeichnung heute allgemein für Pflichtfelder benutzt wird, muss berücksichtigt werden, dass die Alumni-Gemeinschaft insbesondere aus älteren Personen besteht, die nicht wissen, wie der Stern zu interpretieren ist. Nach einem Klick auf ”Weiter” wird der Nutzer darüber informiert, dass er mit Stern gekennzeichnete Felder ausfüllen muss.
 }
-{Besonders deprimierend wird es schließlich für den Nutzer, wenn er ein Pflichtfeld nicht ausfüllt und erst die Eingabefelder suchen muss die er nicht ausgefüllt hat. Diese werden nicht wie es in modernen Websiten üblich ist hervorgehoben. Dieses Problem sorgt bei unerfahrenen Nutzern für Verwirrung und ist somit ein in Kategorie 3 einzustufen.
+{Besonders deprimierend wird es schließlich für den Nutzer, wenn er ein Pflichtfeld nicht ausfüllt und erst die Eingabefelder suchen muss, die er nicht ausgefüllt hat. Diese werden nicht, wie es in modernen Websiten üblich ist, hervorgehoben. Dieses Problem sorgt bei unerfahrenen Nutzern für Verwirrung und ist somit ein in Kategorie 3 einzustufen.
 }
 {Eine Möglichkeiten zur Verbesserung dieses Problems wäre eine einfache Erklärung des Sternchens anzuzeigen. Wir haben uns im Prototypen allerdings dazu entschlossen die Anzahl der Eingabemasken zu reduzieren und optionale Parameter direkt wegzulassen, sodass eine Kennzeichnen einzelner Formulare nicht mehr notwendig ist
 }
@@ -27,11 +27,12 @@ Leider gibt es auf der Registrierungsseite mehrere Unklarheiten, was in den Form
 des Nutzers sehr ähnlich sind, sind sie im folgendenen als ein Problem aufgeführt.
 
 \begin{enumerate}
-	\item {Registrierung(1/2): “Berufliche Einbindung” → Popup neben “Branche” missverständlich}
+	\item {Registrierung(1/2): “Berufliche Einbindung”: Popup neben “Branche” missverständlich}
 	\item {Registrierung(1/2): Funktion neben dem Email-Eingabefeld wird nicht erklärt}
 	\item {Registrierung(2/2): “Abschluss-Auswahl”: Ist der bereits erreiche Abschluss oder der aktuelle Abschluss, der in Arbeit ist, gemeint? }
 	\item {Registrierung(2/2): “Mitgliedschaft in anderen Vereinen” Missverständliche Eingabeformulare}	
-Auf der ersten Seite der Registrierung verwirrt das Pop, das sich neben dem “Branche” -Feld befindet. Intuitiv ist nicht sofort klar, dass hier ein eigener
+\\	
+Auf der ersten Seite der Registrierung verwirrt das Popup, das sich neben dem “Branche” -Feld befindet. Intuitiv ist nicht sofort klar, dass hier ein eigener
 Name für eine Branche eingegeben werden soll.\\
 Ebenfalls unerklärt bleibt ein kleines Icon auf beim Email-Eingabefeld, dessen Nutzen sich für Nutzer nicht erschliessen lässt.
 Auf Seite zwei der Registrierung befindet sich unter anderem ein Formular, das die Eingabe des “höchsten Abschlusses” fordert. Trotzdem ist diese Formulierung nicht eindeutig,
@@ -51,7 +52,7 @@ Es sollte bei Eingaben stehts der Grundsatz beachtet werden “Wenn du ein Formu
 
 
 \problem{Fehlende HTML-Links}
-{Auf der ersten Registrierungsseite befinden sich zwei Verweise zu Seiten(http://www.alumni.uni-wuerzburg.de/alumnicard/  und www.alumni.uni-wuerzburg.de/mentoring), die nicht wie allgemein üblich als Wert eines href-Attributs in Umgebung eines <a>-HTML-Tags verwendet werden, sondern ohne Link-Kennzeichnung für den Browser im Fliesstext stehen. Das führt dazu, dass der Nutzer den Link erst kopieren und in die URL-Leiste des Browsers kopieren muss, was unnötig und nervig ist.
+{Auf der ersten Registrierungsseite befinden sich zwei Verweise zu Seiten, die nicht, wie allgemein üblich, als Wert eines href-Attributs in Umgebung eines <a>-HTML-Tags verwendet werden, sondern ohne Link-Kennzeichnung für den Browser im Fließtext stehen. Das führt dazu, dass der Nutzer den Link erst kopieren und in die URL-Leiste des Browsers kopieren muss, was unnötig und nervig ist.
 }
 {Obwohl dieser Fehler im Quellcode vermeidbar und fehlende Links nervig für Nutzer sind, wird jeder verstehen, dass es sich hier um einen Link handelt der in einen Browser eingegeben werden kann. Für Verwirrung sorgt diesers Problem nicht. Es handelt sich um einen leichten Fehler der Kategorie 2.
 }
@@ -67,9 +68,9 @@ Es sollte bei Eingaben stehts der Grundsatz beachtet werden “Wenn du ein Formu
 } 
 
 \problem{Einzelne Buchstaben als Fach auswählbar}
-{Unglücklicherweise lassen sich im Dropdownmenü “Fach” auf Seite 2 der Registrierung einzelne Buchstaben, die nur als Überschriften dienen sollen, selektieren und somit als Fach auswählen. 
+{Unglücklicherweise lassen sich im Dropdown-Menü “Fach” auf Seite 2 der Registrierung einzelne Buchstaben, die nur als Überschriften dienen sollen, selektieren und somit als Fach auswählen. 
 }
-{Es handelt sich um einen kleinen Fehler in der Formatierung der DropDown-Liste, der sofort vom Nutzer erkannt wird. Es ist sehr unwahrscheinlich, dass jemand unabsichtlich einen Buchstaben als Fach wählt. Deshalb ist dieser Fehler nicht verwirrent und nur in Kategorie 2.
+{Es handelt sich um einen kleinen Fehler in der Formatierung der Dropdown-Liste, der sofort vom Nutzer erkannt wird. Es ist sehr unwahrscheinlich, dass jemand unabsichtlich einen Buchstaben als Fach wählt. Deshalb ist dieser Fehler nicht verwirrent und nur in Kategorie 2.
 }
 {Der Fehler lässt sich leicht beheben indem man zum Beispiel im <select>-Tag das label-Attribut innerhalb eines <optgroup>-Tags setzt, statt 'A', 'B' usw. als value-Attribut in einem <option>-Tag zu verwenden.
 } 
@@ -83,18 +84,16 @@ Eine Meldung darunter zeigt zwar an, dass man hier schätzen soll, allerdings is
 {Die Eingabe eines exakten Datums ist nicht nötig, allerdings kein Fehler. Wer gewissenhaft ein Formular ausfüllen fühlt sich allerdings unwohl, beim Runden eines
 Wertes. Daher ist diese überflüssige Eingabe in Kategorie 1 anzusiedeln.
 }
-{
+{Der Tag sollte aus dieser Auswahl komplett gestrichen werden. Da hier sowieso immer geschätzt wird, liefert er keinen Mehrwert.
 } 
 
 \problem{Überflüssige Date-Picker}
 {
-Die Date-Picker neben den Datumseingaben verführen zur schnellen und einfachen Eingabe des Datums. Allerdings
-merkt man schnell das diese Freude unbegründet ist, denn es nicht möglich direkt ein Jahr einzugeben sondern ist gezwungen Jahr für
-Jahr zurückzuscrollen was extrem nervig ist. (Bsp. Geburtsjahr)
+Die Date-Picker neben den Datumseingaben bei “Geburtstag” auf Seite 1 und “Beginn und Ende” auf Seite 2 der Registrierung verführen zur einfachen Eingabe des Datums ohne auf das Format achten zu müssen. Allerdings merkt man schnell, dass diese Freude unbegründet ist, denn es nicht möglich direkt ein Jahr einzugeben. Stattdessen ist der Benutzer gezwungen, Jahr für Jahr zurückzuscrollen was sehr nervig, da langwierig ist (Bsp. Geburtsjahr).
 }
-{  (Kategorie 2).
+{Dem Nutzer bleibt überlassen, ob die Datepicker nutzt. Es ist aber davon auszugehen, dass er rasch bemerkt, dass er mit gewöhnlicher Eingabe per Tastatur wesentlich schnell voran kommt. Die Datepicker sind aus diesem Grund leider nicht zu gebrauchen obwohl sie technisch funktionieren. Es handelt sich um einen leichten Fehler der Kategorie 2, da der Benutzer hier noch die Wahl hat das Textfeld selbst zu füllen.
 }
-{
+{Die Datepicker sollten entfernt werden, da sie in dieser Form definitiv nicht benutzt werden würden und dem Anwender keine Arbeit abnehmen.
 }
 
 
@@ -103,10 +102,10 @@ Jahr zurückzuscrollen was extrem nervig ist. (Bsp. Geburtsjahr)
 \usecasepart{Abschicken des Eingabeformulars}
 
 Nachdem der Benutzer die Eingabemasken mit allen notwendigen Parametern gefüllt hat, möchte er nun die Registrierung beenden und abschicken. Sobald
-er die erste Hälfte der Registrierung beenden will, klickt er auf den "Weiter"-Button und sieht -falls vorhanden- seine fehlerhaften Eingaben. Hat er nach korrektem
-Ausfüllen der ersten Formularseite auch die zweite ausgefüllt und mit einem erneuten Klick auf "Weiter" wieder alle Fehler berichtigt, ist die Registrierung abgeschlossen
+er die erste Hälfte der Registrierung beenden will, klickt er auf den “Weiter”-Button und sieht -falls vorhanden- seine fehlerhaften Eingaben. Hat er nach korrektem
+Ausfüllen der ersten Formularseite auch die zweite ausgefüllt und mit einem erneuten Klick auf “Weiter” wieder alle Fehler berichtigt, ist die Registrierung abgeschlossen
 und wird mit einer Erfolgsmeldung auf der Seite bestätigt.
-
+-------------------------------------------------------------------------------
 \problem{Fehlermeldung bei Validierung als Popup realisiert}
 {
 (alert()) → hässlich und unschön”(3)
