@@ -38,7 +38,9 @@ var EMail = (function (mailData) {
 								'<p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Viele Gr&#252;&#223;e, Ihr</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Alumni-Team<br />___________________________<br />' +
 								'Alumni Universit&#228;t W&#252;rzburg<br />Am Hubland<br />97074 W&#252;rzburg<br />Tel. 0931/1234567</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 24px"><em>P.S. Wir m&#246;chten unser Netzwerk weiter vergr&#246;&#223;ern - sagen Sie doch auch Ihren Kontakten Bescheid - vielen Dank!</em></p></div>';
 		else if(_type === MailType.SEND_PASSWORD)
-			htmlMessage += '<b>Passwort vergessen</b> ... blubb';
+			htmlMessage += '<div style="max-width:650px; padding: 15px;"><h3 style="Margin-top: 0;color: #555;font-weight: normal;font-size: 18px;line-height: 26px;Margin-bottom: 16px;font-family: Georgia,serif">Sehr geehrte/r ' + _reqParams.salutation + ' ' + _reqParams.lastname + '</h3><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">hiermit senden wir Ihnen ihre Logindaten mit neu generiertem Passwort zu. Bei Ihrem nächsten Login sollten Sie dieses Passwort aus Sicherheitsgründen ändern. </p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Folgendes sind Ihre LoginDaten:</br> Benutzername: ' + _reqParams.username + '</br> Passwort: ' + _reqParams.password + ' </br>Mit Klick auf folgendem <a href="http://alumni.de/PWaenderung">Link</a> können sie die Passwort-Änderung durchführen</p>' +
+							'<p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Viele Gr&#252;&#223;e, Ihr</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Alumni-Team<br />' +
+							'___________________________<br />Alumni Universit&#228;t W&#252;rzburg<br />Am Hubland<br />97074 W&#252;rzburg<br />Tel. 0931/1234567</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 24px"><em>P.S. Wir m&#246;chten unser Netzwerk weiter vergr&#246;&#223;ern - sagen Sie doch auch Ihren Kontakten Bescheid - vielen Dank!</em></p></div>';
 		else if(_type === MailType.SEND_ACCOUNT)
 			htmlMessage += '<b>Account vergessen</b> ... blubb';
 		else
@@ -56,9 +58,9 @@ var EMail = (function (mailData) {
 		if(_type === MailType.CONFIRM_REGISTER)
 			_mail.subject = 'Ihre Registrierung bei Alumni der Uni Würzburg';
 		else if(_type === MailType.SEND_PASSWORD)
-			_mail.subject = 'Alumni-Portal: Passwort vergessen';
+			_mail.subject = 'Alumni-Portal: Ihre neuen Logindaten';
 		else if(_type === MailType.SEND_ACCOUNT)
-			_mail.subject = 'Alumni-Portal: Deine Accountinformationen';
+			_mail.subject = 'Alumni-Portal: Ihre E-Mail Erkennung';
 		else
 			_mail.subject = 'Alumni-Portal: ...';
 	};
@@ -127,8 +129,8 @@ var MailType = {
 
 var MailRequiredParams = [
 	['recipient', 'recipient_mail', 'username', 'lastname', 'salutation', 'verify_code'], // Confirm-Register
-	['username', 'email'], // Send-Password
-	['username', 'email'] // Send-Acount
+	['recipient', 'recipient_mail', 'username', 'lastname', 'salutation', 'password'], // Send-Password
+	['recipient', 'recipient_mail', 'username', 'lastname', 'salutation'] // Send-Acount
 ];
 
 module.exports = EMail;

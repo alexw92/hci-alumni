@@ -183,7 +183,25 @@ DatabaseHandler.prototype.isUserUnlocked = function(username, callback){
 	});
 };
 
-
+DatabaseHandler.prototype.sendMail = function(type, mailData, callback) {
+	var request = $.ajax({
+		type: 'POST',
+		url: 'http://localhost:3001/sendmail/' + type,
+		data: mailData,
+		success: function (response) {
+			if(typeof(callback) === 'function' && callback !== 'undefined')
+				callback(response);
+		}
+	});
+	
+	request.done(function (response) {
+		console.log(response);
+	});
+	
+	request.fail(function (response) {
+		console.log(response);
+	});
+};
 
 
 

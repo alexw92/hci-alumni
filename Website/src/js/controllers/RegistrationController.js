@@ -51,17 +51,37 @@ RegistrationController.prototype.bindEvents = function() {
 				dbHandler = new DatabaseHandler();
 				
 			dbHandler.insertNewUser(user, function (response) {
-				if(response == 'success')
+				console.log('response text' + response);
+				if(response['msg'] == 'success')
 				{
-					$('#feedbackPositive').fadeIn('slow');
-					$('#feedbackNegative').fadeOut('slow');
+
 					//TODO Email Magic  
+					var mailData = {
+						recipient: user.firstname + ' ' + user.lastname,
+						recipient_mail: user.email,
+						username: user.username,
+						lastname: user.lastname,
+						salutation: user.title,
+						verify_code: response['hash']
+					};
+					
+					
+					dbHandler.sendMail('confirm-register', mailData, function(response){
+						if(!response.error)
+						{
+							$('#feedbackPositive').fadeIn('slow');
+							$('#feedbackNegative').fadeOut('slow');
+						}
+						else
+						{
+							console.log(self.TAG + ' sendMail failure');
+						}
+					});
 				}
 				else
 				{
-					$('#feedbackPositive').fadeOut('slow');
-					$('#feedbackNegative').fadeIn('slow');
-					console.log(response);
+						$('#feedbackPositive').fadeOut('slow');
+						$('#feedbackNegative').fadeIn('slow');
 				}
 			});
 			console.log('Valid');
@@ -125,29 +145,29 @@ RegistrationController.prototype.bindEvents = function() {
 		})
 	});
 	//username hint background-color changing on mouseover
-	$('#username').on({mouseenter: function() {
+	$('#username').on({focus: function() {
 			$('#usernameHint').css("background-color",self.hintColor);
-		}, mouseleave: function(){
+		}, focusout: function(){
 			$('#usernameHint').css("background-color","white");
 		}
 	});
 	//password hint background-color changing on mouseover 
-	$('#password').on({mouseenter: function() {
+	$('#password').on({focus: function() {
 			$('#passwordHint').css("background-color",self.hintColor);
-		}, mouseleave: function(){
+		}, focusout: function(){
 			$('#passwordHint').css("background-color","white");
 		}
 	});
-	$('#passwordRpt').on({mouseenter: function() {
+	$('#passwordRpt').on({focus: function() {
 			$('#passwordHint').css("background-color",self.hintColor);
-		}, mouseleave: function(){
+		}, focusout: function(){
 			$('#passwordHint').css("background-color","white");
 		}
 	});
 	//password hint background-color changing on mouseover 
-	$('#email').on({mouseenter: function() {
+	$('#email').on({focus: function() {
 			$('#emailHint').css("background-color",self.hintColor);
-		}, mouseleave: function(){
+		}, focusout: function(){
 			$('#emailHint').css("background-color","white");
 		}
 	});

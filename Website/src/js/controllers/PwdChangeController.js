@@ -29,8 +29,15 @@ PwdChangeController.prototype.bindEvents = function() {
 			//TODO get user.username
 			//var usernameForPwdChange = user.username();
 			//TODO for testpurposes username = BenediktP.
-			//var usernameForPwdChange = 'BenediktP.';
-			var user = Session.getUser();
+			if(Session.isSessionActive())
+			{
+				var user = Session.getUser();
+			}
+			else
+			{
+				
+			}
+
 			var usernameForPwdChange = user.username;
 			console.log(self.TAG + usernameForPwdChange);
 			var oldPassword = self.pwdChangeContainer.find('[name = oldPassword]').val();
@@ -77,15 +84,15 @@ PwdChangeController.prototype.bindEvents = function() {
 		}
 	});
 	//password hint background-color changing on mouseover 
-	$('#newPassword').on({mouseenter: function() {
+	$('#newPassword').on({focus: function() {
 			$('#newPasswordHint').css("background-color",self.hintColor);
-		}, mouseleave: function(){
+		}, focusout: function(){
 			$('#newPasswordHint').css("background-color","white");
 		}
 	});
-	$('#newPasswordRepeat').on({mouseenter: function() {
+	$('#newPasswordRepeat').on({focus: function() {
 			$('#newPasswordHint').css("background-color",self.hintColor);
-		}, mouseleave: function(){
+		}, focusout: function(){
 			$('#newPasswordHint').css("background-color","white");
 		}
 	});
