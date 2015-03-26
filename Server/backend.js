@@ -6,7 +6,8 @@ var bodyParser = require('body-parser');
 var db = null;
 var emailServer = require('./utils/MailServer.js'),
 	EMail = require('./utils/EMail.js');
-var chance = require('chance').Chance();	
+var chance = require('chance').Chance();
+var jsSHA = require('jssha');
 
 try {
 	var filebuffer = fs.readFileSync('userdb.sqlite');
@@ -94,6 +95,16 @@ app.post('/user/extended', function(req,res){
 app.get('/newest', function (req, res) {
 	var ans = db.exec("SELECT * FROM userdata ORDER BY userid DESC LIMIT 5;");
 	res.send(ans);
+});
+
+app.get('/regnewpw/:uname', function(req,res){
+	var newtemppw = chance.character({casing: 'upper'}) + chance.character({casing: 'lower'}) + chance.natural({min: 0, max: 9}) + chance.hash({length: 10});
+	var shaObj = new jsSHA(newtemppw, "TEXT");
+	var pwhash = shaObj.getHash("SHA-512", "HEX");
+	sqlstr = "UPDATE userdata SET password='" + pwhash + "' WHERE username='" + req.params.uname + "';";
+	db.run(sqlstr);
+	writeToFile();
+	res.send(newtemppw);
 });
 
 //insert new user

@@ -183,6 +183,18 @@ DatabaseHandler.prototype.isUserUnlocked = function(username, callback){
 	});
 };
 
+DatabaseHandler.prototype.requestNewPassword = function(username, callback){
+	$.get('http://localhost:3001/reqnewpw/' + username + '/', function(response){
+		if (typeof(callback) === 'function' && callback !== 'undefined'){
+			if (typeof response !== 'undefined' && response.length > 0) {
+				callback(response);
+			} else {
+				callback(-1);
+			}
+		}
+	});
+};
+
 
 
 
