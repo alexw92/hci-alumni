@@ -50,6 +50,22 @@ DatabaseHandler.prototype.getUsersByFullname = function(fullname, callback) {
 	});
 };
 
+//Returns an array of user objects for the given part of the full name
+DatabaseHandler.prototype.getUsersExtendedSearch = function(searchjson, callback) {
+	$.post('http://localhost:3001/user/extended/', searchjson, function(response) {
+		var uarray = [];
+		if (typeof response !== 'undefined' && response.length > 0) {
+			var resobj = response[0]['values'];
+			for (i=0;i<resobj.length;i++){
+				uarray[i] = new User(resobj[i]);
+			}
+		}
+		if (typeof(callback) === 'function' && callback !== 'undefined'){
+			callback(uarray);
+		}
+	});
+};
+
 //Returns an array of User objects
 DatabaseHandler.prototype.getNewestUsers = function(callback) {
 	$.get('http://localhost:3001/newest/', function(response) {
@@ -123,7 +139,7 @@ DatabaseHandler.prototype.getCourses = function(callback) {
 		if (typeof response !== 'undefined' && response.length > 0) {
 			var resobj = response[0]['values'];		
 			for (i=0;i<resobj.length;i++){
-				carray[i] = resobj[i][0];
+				carray[i] = resobj[i];
 			}
 		}
 		if (typeof(callback) === 'function' && callback !== 'undefined'){

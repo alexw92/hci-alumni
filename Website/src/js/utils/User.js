@@ -3,6 +3,7 @@ var User = function(resobj){
 	var title = null;
 	var firstname = null;
 	var lastname = null;
+	var completename = null;
 	var fullname = null;
 	var address = null;
 	var addressaddition = null;
@@ -22,7 +23,7 @@ var User = function(resobj){
 	var study_end = null;
 	var interests = null;
 	var image_id = null;
-	var is_unlcoked = null;
+	var is_unlocked = null;
 
 	if(resobj !== 'undefined' && typeof(resobj) === 'object') {
 		userid = resobj[0];
@@ -80,7 +81,7 @@ var User = function(resobj){
         return lastname;
     });
 	this.__defineGetter__("completename", function(){
-        return lastname;
+        return completename;
     });
 	this.__defineGetter__("address", function(){
         return address;

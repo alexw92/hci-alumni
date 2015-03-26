@@ -20,6 +20,7 @@ Bei einer offiziellen Seite erwartet der Nutzer die Einhaltung gewisser Konventi
 {
 Überarbeitung des Mailtextes unter Beachtung allgemeiner sprachlicher Konventionen.
 }
+\label{prob:frei:mailanrede}
 
 \problem{Mail ist nicht formatiert}
 {
@@ -31,6 +32,7 @@ Die Mängel bei der Formatierung führen nicht dazu, dass der Nutzer seinen Arbe
 {
 Hier ist eine Überarbeitung der Formatierung, insbesondere des HTML-Anteils, nötig. Des Weiteren sollte man das Bild entweder anders positionieren, oder eventuell auch ganz weglassen.
 }
+\label{prob:frei:mailformat}
 
 \problem{Erstmalige Erwähnung von stud\hbox{-}mail-Adressen}
 {
@@ -42,6 +44,7 @@ Dieses Problem könnte bei Nutzern, die noch Studenten sind, für Verwirrung und
 {
 Dieses Problem lässt sich dadurch beheben, dass bereits bei der Eingabe der E\hbox{-}Mail-Adresse zur Registrierung deutlich darauf hingewiesen wird, dass diese Adressen nicht verwendet werden sollen. Das Eingabefeld für die E\hbox{-}Mail-Adresse kann zusätzlich noch mit einer Validierung versehen werden, um sicherzustellen, dass keine stud\hbox{-}mail-Adressen verwendet werden.
 }
+\label{prob:frei:studmail}
 
 \problem{Link zur Freischaltung in der Mail}
 {
@@ -53,13 +56,14 @@ Das Problem wird einem normalen Nutzer nicht auffallen, da er einfach dem Link i
 {
 Es ist kein Problem, das dem Nutzer auffällt oder ihn in seiner Arbeit beeinträchtigt, dennoch ist es sinnvoll, die Links zur Freischaltung zu vereinheitlichen. Der Link zu \texttt{www.alumni.uni-wuerzburg.de} kann an dieser Stelle weggelassen werden, da es für den Nutzer einen Umweg bedeutet, und er sich erst auf der Seite zurechtfinden muss, um dann den Weg zum Alumni-Portal zu finden.
 }
+\label{prob:frei:link}
 
 \usecasepart{Webseite Freischaltung}
 %Probleme auf der Webseite zur Freischaltung
 
 \subsubsection*{Positive Beobachtungen}
 \label{subsubsec:freischaltung_webseite_positiv}
-Es werden Tipps zur Wahl von Nutzername und Passwort angezeigt.
+Es werden Tipps zur Wahl von Nutzername und Passwort angezeigt. Diese Tipps können allerdings noch vereinheitlicht werden, da manche Tipps rechts neben der Webseite stehen und manche Tipps sich zusätzlich noch zwischen den Formularfeldern wiederholen.
 
 \problem{Eingabe der E-Mail-Adresse}
 {
@@ -71,6 +75,7 @@ text  (Kategorie~3).
 {
 Dieses Feld ist unnötig, da der seine E\hbox{-}Mail-Adresse bereits bei der Registrierung eingegeben hat. Es kann also einfach weggelassen werden. Die eindeutige Identifizierung sollte über den Freischaltcode möglich sein.
 }
+\label{prob:frei:emaileingabe}
 
 \problem{Button für mailto-Links}
 {
@@ -82,61 +87,67 @@ Der Button bringt dem Nutzer keinen Mehrwert. Auch ohne ihn wird ersichtlich, da
 {
 Der Button kann weggelassen werden, da er dem Nutzer weder Mehrwert noch zusätzliche Informationen liefert und ihn möglicherweise zusätzlich noch verwirrt und behindert.
 }
+\label{prob:frei:buttonmailto}
 
 \problem{Händische Eingabe des Freischaltcodes}
 {
-text
+Der Freischaltcode aus der E\hbox{-}Mail muss händisch in ein dafür vorgesehenes Feld eingegeben werden.
 }
 {
-text  (Kategorie~2).
+Da der Freischaltcode eine zufällige Kombination aus Groß- und Kleinbuchstaben sowie Zahlen ist, besteht hier bei der Eingabe eine erhebliche Fehlerquelle, welche den Nutzer frustrieren kann. Zudem ist das Vorgehen mit der händischen Eingabe heutzutage nicht mehr üblich. Nichtsdestotrotz ist es für den Nutzer nur störend, hindert ihn aber nicht daran, sein Ziel zu erreichen. Daher erhält dieses Problem die Kategorie~2.
 }
 {
-text
+Der Freischaltcode wird in die URL, die zur Freischaltung führt, eingebettet, damit der Nutzer den Code nicht mehr manuell eingeben muss.
 }
+\label{prob:frei:codeeingabe}
 
 \problem{Wahl von Nutzername und Passwort bei der Freischaltung}
 {
-text
+Nutzername und Passwort werden erst nach der Eingabe des Freischaltcodes gewählt. 
 }
 {
-text  (Kategorie~2).
+Der Sinn dieser Vorgehensweise, seinen Nutzernamen und Passwort jetzt erst zu setzen, erschließt sich dem Nutzer möglicherweise nicht.  (Kategorie~2).
 }
 {
-text
+Nutzername und Passwort können genausogut schon bei der Registrierung gewählt werden.
 }
+\label{prob:frei:nutzerundpw}
 
 \problem{Verfügbarkeit des gewählten Nutzernamens}
 {
-text
+Bei der Wahl der Nutzernamens gibt es keine sichtbare Abfrage, ob der Nutzername noch frei ist.
 }
 {
-text  (Kategorie~2).
+Der Nutzername muss eindeutig sein, da er später zur Anmeldung auf der Webseite dient. Daher kann es den Nutzer verunsichern, wenn er nicht weiß, ob sein gewählter Name überhaupt gültig und noch nicht vergeben ist. Außerdem wird der Nutzer zu einem späteren Zeitpunkt in seinem Arbeitsfluss gestört, falls der Nutzername bereits vergeben ist und er sich dann nochmals mit der Wahl eines Nutzernames befassen muss. Somit ist das Problem störend, aber kein unüberwindbares Hindernis und erhält die Kategorie~2.
 }
 {
-text
+Das Formularfeld erhält eine sofortige Validierung, die sowohl überprüft, ob der Nutzername den Vorgaben entspricht, als auch eine Rückmeldung gibt, ob der Nutzername noch verfügbar ist.
 }
+\label{prob:frei:nutzerverfuegbar}
 
 \problem{Grüner Warntext bei der Wahl des Passworts}
 {
-text
+Gibt der Nutzer ein Passwort ein, das nicht den vorgegebenen Kriterien entspricht, erscheint in grüner Schrift die Fehlermeldung: \glqq Hinweis: Es konnte keine gültige Registrierung gefunden werden. Bitte überprüfen Sie Ihre Eingaben.\grqq
 }
 {
-text  (Kategorie~4).
+Dies ist ein sehr schwerwiegendes Problem (Kategorie~4). Die Farbe grün ist im allgemeinen Verständnis mit Zustimmung, Bestätigung, und bei Webseiten mit korrekten Eingaben verknüpft. Kein Nutzer wird in einem grünen Text eine Warnung oder eine Fehlermeldung sehen, und die meisten Nutzer werden aufgrund der Farbgebung die Meldung nicht einmal lesen. Zusätzlich weist der Hinweistext nicht auf das Problem hin, sondern liefert nur eine allgemeingültige, schwammig formulierte Fehlermeldung.
 }
 {
-text
+Als erstes muss hier die Farbgebung verändert werden. Es handelt sich um eine Fehlermeldung, diese sollte also eine rote Schriftfarbe erhalten. Des Weiteren sollte die Fehlermeldung auch auffälliger (größere Schrift) werden. Ebenso sollte der Hinweistext angepasst werden, da er nicht eindeutig auf den Fehler hinweist. Als letztes kann auch hier, analog zum Eingabefeld für den Nutzernamen, eine Validierung eingebaut werden, die direkt bei der Eingabe ein visuelles Feedback bietet, ob das Passwort den Vorgaben entspricht.
 }
+\label{prob:frei:warntextgruen}
 
 \problem{Längenbeschränkung des Passwortfelds}
 {
-text
+Das Formularfeld für die Eingabe des Passworts ist längenbeschränkt auf 17 Zeichen. Diese Beschränkung ist in den Hinweisen nicht erwähnt.
 }
 {
-text  (Kategorie~4).
+Hierbei handelt es sich klar um ein äußerst schwerwiegendes Problem (Kategorie~4). Der Nutzer findet keinen Hinweis zu dieser Beschränkung, und merkt auch beim Tippen nicht, dass er die Maximallänge erreicht hat. Der Nutzer wählt sich also ein Kennwort, das nicht dem entspricht, was in der Datenbank gespeichert wird. Das Passwortfeld beim Login hat diese Beschränkung nicht, der Nutzer tippt also sein Passwort ein, und erhält in seinen Augen trotz korrekter Eingabe die Fehlermeldung, dass sein Kennwort falsch ist. Auch wenn der Nutzer sich nun über \glqq Passwort vergessen\grqq ~ein neues Passwort setzt, bleibt dieses Problem bestehen. Das Problem führt also dazu, dass die Webseite für den Nutzer unbenutzbar wird, bis er durch Zufall ein Passwort wählt, das weniger als 17 Zeichen enthält.
 }
 {
-text
+Eine Längenbeschränkung auf 17 Zeichen ist unnötig. In Zeiten von wachsendem Sicherheitsbewusstsein und der Nutzung von Passwortverwaltungssoftware wie KeePass wählen viele Nutzer längere Passwörter. Sollte man an einer Längenbeschränkung festhalten, ist es sinnvoll, hier mindestens Passwörter mit einer Länge von 30 Zeichen zu erlauben. Außerdem muss die Maximallänge zwingend deutlich in den Hinweisen vermerkt werden, und die Einhaltung dessen auch direkt bei der Eingabe validiert werden.
 }
+\label{prob:frei:passwortlaenge}
 
 \usecasepart{Absenden der Daten}
 
@@ -146,14 +157,15 @@ Beim Absenden der Daten erhält der Nutzer durch drehende Zahnräder visuelles F
 
 \problem{Validierung erst beim Absenden der Daten}
 {
-text
+Die Validierung der eingegebenen Daten findet erst nach dem Klick auf den Button \glqq Speichern\grqq ~statt.
 }
 {
-text  (Kategorie~2).
+Durch diese Vorgehensweise wird der Nutzer in seinem Arbeitsfluss gestört, da er sich im Fehlerfall erneut mit der bereits getätigten und aus Nutzersicht abgeschlossenen Eingabe von Daten und der Wahl von Nutzernamen und/oder Passwort befassen muss (Kategorie~2).
 }
 {
-text
+Wie schon bei vorherigen Problemen beschrieben, lässt sich dieses Problem dadurch lösen, dass eine Validierung der Daten direkt bei der Eingabe erfolgt.
 }
+\label{prob:frei:validierung}
 
 \problem{Speichern der Daten dauert sehr lange}
 {
@@ -165,3 +177,7 @@ Da der Nutzer Feedback erhält und nur ein paar Sekunden warten muss, ist es kei
 {
 Hier ist es sicher möglich, Verbesserungen an der darunter liegenden Infrastruktur (Datenbank etc.) vorzunehmen, um die Verarbeitungszeit zu verkürzen.
 }
+\label{prob:frei:speichern}
+
+\subsubsection*{Fazit: Freischaltung}
+bla bla bla

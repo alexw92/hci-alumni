@@ -46,6 +46,46 @@ app.get('/user/:type/:data', function (req, res) {
 	res.send(ans);
 });
 
+app.post('/user/extended', function(req,res){
+	var optionstring = "";
+	if (req.body.name !== ""){
+		optionstring = optionstring + "AND completename like '%" + req.body.name + "%' ";
+	}
+	if (req.body.company !== ""){
+		optionstring = optionstring + "AND company like '%" + req.body.company + "%' ";
+	}
+	if (req.body.city !== ""){
+		optionstring = optionstring + "AND city like '%" + req.body.city + "%' ";
+	}
+	if (req.body.postalcode !== ""){
+		optionstring = optionstring + "AND postalcode like '%" + req.body.postalcode + "%' ";
+	}
+	if (req.body.interests !== ""){
+		optionstring = optionstring + "AND interests like '%" + req.body.interests + "%' ";
+	}
+	if (req.body.sector !== ""){
+		optionstring = optionstring + "AND sector like '%" + req.body.sector + "%' ";
+	}
+	if (req.body.state !== ""){
+		optionstring = optionstring + "AND state like '%" + req.body.state + "%' ";
+	}
+	if (req.body.university !== ""){
+		optionstring = optionstring + "AND university like '%" + req.body.university + "%' ";
+	}
+	if (req.body.faculty !== ""){
+		optionstring = optionstring + "AND faculty like '%" + req.body.faculty + "%' ";
+	}
+	if (req.body.study_start !== ""){
+		optionstring = optionstring + "AND study_start='" + req.body.study_start + "' ";
+	}
+	if (req.body.study_end !== ""){
+		optionstring = optionstring + "AND study_end='" + req.body.study_end + "' ";
+	}
+
+	var ans = db.exec("SELECT * FROM userdata WHERE firstname like '%%' " + optionstring + ";");
+	res.send(ans);
+});
+
 //getNewestUsers
 //returns json of the newest users
 app.get('/newest', function (req, res) {
