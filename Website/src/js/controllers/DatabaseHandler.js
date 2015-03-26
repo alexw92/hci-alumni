@@ -189,13 +189,26 @@ DatabaseHandler.prototype.requestNewPassword = function(username, callback){
 			if (typeof response !== 'undefined' && response.length > 0) {
 				callback(response);
 			} else {
-				callback(-1);
+				callback('-1');
 			}
 		}
 	});
 };
-
-
+DatabaseHandler.prototype.sendMail = function(type, mailData, callback) {
+	var request = $.ajax({
+		type: 'POST',
+		url: 'http://localhost:3001/sendmail/' + type,
+		data: mailData
+	});
+	
+	request.done(function (response) {
+		console.log(response);
+	});
+	
+	request.fail(function (response) {
+		console.log(response);
+	});
+};
 
 
 
