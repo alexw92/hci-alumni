@@ -42,7 +42,9 @@ var UserPreviewBuilder = (function (userData) {
 
 	 	if(user.university !== null){
 	 		$(userPrevDom).find('.search-result-university')
-	 			.html('studiert(e) an der ' + user.university + ' im Studiengang ' + user.course + '<br />')
+	 			.html('studiert(e) an der ' + user.university + '<br />' +
+	 					'&nbsp;&nbsp;&nbsp;- Fakultät: ' + user.faculty + '<br />' +
+	 					'&nbsp;&nbsp;&nbsp;- Studiengang ' + user.course + '<br />')
 	 			.show();
 	 	}
 	 };
