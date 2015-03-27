@@ -7,8 +7,9 @@ var app = {
 
 jQuery(function () {
 	app.router.run();
+
 	ContentHandler.loadView('loginform.html', '#login', function () {
 		app.loginCtrl.initialize();
 	});
-	
+
 });

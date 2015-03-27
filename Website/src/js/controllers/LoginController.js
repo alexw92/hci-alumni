@@ -71,6 +71,8 @@ var LoginController = (function () {
 
 	var logUserIn = function (user) {
 		Session.setUser(user);
+		Navigation.update();
+
 		ContentHandler.changeUrlHash('userpanel');
 		ContentHandler.loadView('userpanel_header.html', '#login', function (event) {
 			setLoginPanelInfo(user);
@@ -102,6 +104,7 @@ var LoginController = (function () {
 	var bindLogoutEvents = function () {
 		$('#login').find('button').on('click', function () {
 			Session.clear();
+			Navigation.update();
 
 			ContentHandler.changeUrlHash('');
 			ContentHandler.loadView('home.html', '.content');
