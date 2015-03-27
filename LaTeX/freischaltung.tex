@@ -4,12 +4,19 @@
 Der Nutzer erhält eine Mail mit dem Freischaltcode und schließt daraufhin den Registrierungsprozess ab.
 
 \usecasepart{Empfangen und Lesen der Mail}
+Nach einer Wartezeit von 2-3 Tagen nach der Registrierung erhält der Nutzer eine Mail, die einen Freischaltcode enthält (siehe Abbildung~\ref{fig:regmail}). Dieser Freischaltcode wird benötigt, um die Registrierung abzuschließen und den angelegten Nutzeraccount freizuschalten.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{figures/regmail.jpg}
+	\caption{Mail mit Freischaltcode}
+	\label{fig:regmail}
+\end{figure}
 
 \subsubsection*{Positive Beobachtungen}
 \label{subsubsec:freischaltung_mail_positiv}
 Die Mail ist allgemein sprachlich sehr freundlich gehalten.
 
-%Probleme in der Mail
 \problem{Anrede in der Mail fehlt}
 {
 Beim Erhalt der Mail fällt sofort auf, dass eine Anrede fehlt. Stattdessen steht als \glqq Ersatz\grqq für die Anrede nur der Nachname da.
@@ -59,6 +66,7 @@ Es ist kein Problem, das dem Nutzer auffällt oder ihn in seiner Arbeit beeintr�
 \label{prob:frei:link}
 
 \usecasepart{Ausfüllen der Webseite zur Freischaltung}
+Der Nutzer sieht nun eine Webseite mit mehreren Formularfeldern, die er ausfüllen muss, um seinen Account freizuschalten.
 
 \subsubsection*{Positive Beobachtungen}
 \label{subsubsec:freischaltung_webseite_positiv}
@@ -126,7 +134,7 @@ Das Formularfeld erhält eine sofortige Validierung, die sowohl überprüft, ob 
 
 \problem{Grüner Warntext bei der Wahl des Passworts}
 {
-Gibt der Nutzer ein Passwort ein, das nicht den vorgegebenen Kriterien entspricht, erscheint in grüner Schrift die Fehlermeldung: \glqq Hinweis: Es konnte keine gültige Registrierung gefunden werden. Bitte überprüfen Sie Ihre Eingaben.\grqq
+Gibt der Nutzer ein Passwort ein, das nicht den vorgegebenen Kriterien entspricht, erscheint in grüner Schrift die Fehlermeldung: \glqq Hinweis: Es konnte keine gültige Registrierung gefunden werden. Bitte überprüfen Sie Ihre Eingaben.\grqq ~(siehe Abbildung~\ref{fig:greenerror}).
 }
 {
 Dies ist ein sehr schwerwiegendes Problem (Kategorie~4). Die Farbe grün ist im allgemeinen Verständnis mit Zustimmung, Bestätigung, und bei Webseiten mit korrekten Eingaben verknüpft. Kein Nutzer wird in einem grünen Text sofort eine Warnung oder eine Fehlermeldung sehen, und die meisten Nutzer werden aufgrund der Farbgebung die Meldung nicht einmal lesen. Zusätzlich weist der Hinweistext nicht auf das Problem hin, sondern liefert nur eine allgemeingültige, schwammig formulierte Fehlermeldung.
@@ -135,6 +143,13 @@ Dies ist ein sehr schwerwiegendes Problem (Kategorie~4). Die Farbe grün ist im 
 Als erstes muss hier die Farbgebung verändert werden. Es handelt sich um eine Fehlermeldung, diese sollte also eine rote Schriftfarbe erhalten. Des Weiteren sollte die Fehlermeldung auch auffälliger (größere Schrift, Rahmen, etc.) werden. Ebenso sollte der Hinweistext angepasst werden, da er nicht eindeutig auf den Fehler hinweist. Als letztes kann auch hier, analog zum Eingabefeld für den Nutzernamen, eine Validierung eingebaut werden, die direkt bei der Eingabe ein visuelles Feedback bietet, ob das Passwort den Vorgaben entspricht.
 }
 \label{prob:frei:warntextgruen}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\textwidth]{figures/greenerror.png}
+	\caption{Ausschnitt des Formulars mit grüner Fehlermeldung}
+	\label{fig:greenerror}
+\end{figure}
 
 \problem{Längenbeschränkung des Passwortfelds}
 {
@@ -149,6 +164,7 @@ Eine Längenbeschränkung auf 17 Zeichen ist unnötig. In Zeiten von wachsendem 
 \label{prob:frei:passwortlaenge}
 
 \usecasepart{Absenden der Daten}
+Nachdem der Nutzer das Formular komplett ausgefüllt hat, betätigt er den Button \glqq Speichern \grqq , um seine Daten abzusenden und auf dem Server zu speichern.
 
 \subsubsection*{Positive Beobachtungen}
 \label{subsubsec:freischaltung_absenden_positiv}
@@ -179,4 +195,4 @@ Hier ist es sicher möglich, Verbesserungen an der darunter liegenden Infrastruk
 \label{prob:frei:speichern}
 
 \subsubsection*{Fazit: Freischaltung}
-Bei der Freischaltung wurden zwei schwerwiegende Probleme gefunden, die eine normale Nutzung der Seite verhindern, sowie eine Reihe von Problemen, die den Nutzer in seinem Arbeitsablauf stören. Zusammenfassend kann man sagen, dass durch die Änderungsvorschläge der bisherige Freischaltungsprozess nicht mehr nötig ist, da er in Teilen in die Registrierung ausgelagert wurde und der Rest durch vorgenommene Modifikationen nicht mehr in der urspünglichen Form nötig ist.
+Bei der Freischaltung wurden zwei schwerwiegende Probleme gefunden, die eine normale Nutzung der Seite verhindern, sowie eine Reihe von Problemen, die den Nutzer in seinem Arbeitsablauf stören. Zusammenfassend kann man sagen, dass durch die Änderungsvorschläge der bisherige Freischaltungsprozess nicht mehr nötig ist, da er in Teilen in die Registrierung vorverlegt wurde und der Rest durch vorgenommene Modifikationen nicht mehr in der urspünglichen Form nötig ist.
