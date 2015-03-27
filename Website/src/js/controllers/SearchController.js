@@ -1,7 +1,8 @@
 var SearchController = (function () {
 	var TAG = 'SearchController',
-		dbHandler = new DatabaseHandler();
+		dbHandler = new DatabaseHandler(),
 		searchPanel = null,
+		searchSpinner = null,
 		searchBtn = null,
 		searchInput = null,
 		extendedSearchBtn = null,
@@ -12,6 +13,7 @@ var SearchController = (function () {
 	 */
 	var setDomElements = function () {
 		searchPanel = $('#search-panel');
+		searchSpinner = $(searchPanel).find('#search-spinner');
 		searchBtn = $(searchPanel).find('#btn-submit-search');
 		searchInput = $(searchPanel).find('#input-search');
 		extendedSearchBtn = $(searchPanel).find('#btn-extended-search');
@@ -37,12 +39,14 @@ var SearchController = (function () {
 	};
 
 	var bindEvents = function () {
-		$(searchBtn).on('click', function () {
+		$(searchBtn).on('click', function (e) {
+			e.preventDefault();
 			hideErrorMessage();
 			startSearch();
 		});
 
-		$(searchInput).on('enterKey', function () {
+		$(searchInput).on('enterKey', function (e) {
+			e.preventDefault();
 			hideErrorMessage();
 			startSearch();
 		});
@@ -53,9 +57,9 @@ var SearchController = (function () {
 			toggleExtendedSearch();
 		});
 
-		$(searchInput).on('keyup', function (event) {
+		$(searchInput).on('keyup', function (e) {
 			hideErrorMessage();
-			if(event.keyCode === 13) {
+			if(e.keyCode === 13) {
 				$(this).trigger('enterKey');
 				return;
 			}
@@ -70,6 +74,8 @@ var SearchController = (function () {
 			return;
 		}
 
+		Spinner.show(searchSpinner);
+
 		if(isExtendedSearchVisible()) {
 			var searchObj = getExtendedSearchInputValues();
 
@@ -81,8 +87,13 @@ var SearchController = (function () {
 			dbHandler.getUsersByFullname(searchVal, handleSearchResult);
 		}
 
+		/**
+		 * HashChange effect page reload; not nice!
+		 * disable hash change on prototype
+		 *
 		if(searchVal !== null)
 			updateBrowserLocation(searchVal);
+		 */
 	};
 
 	var showErrorMessage = function () {
@@ -119,20 +130,21 @@ var SearchController = (function () {
 	};
 
 	var handleSearchResult = function (resultSet) {
-		displaySearchResult(resultSet);
-		updateResultCount(resultSet.length);
+		setTimeout(function () {
+			displaySearchResult(resultSet);
+			updateResultCount(resultSet.length);
+		}, 1500);
 	};
 
 	var displaySearchResult = function (resultSet) {
 		if(resultSet.length === 0) {
 			displayNoResult();
+			Spinner.hide(searchSpinner);
 			return;
 		}
 
 		var resultDomArray = [];
-
 		renderPageination();
-		$(searchPanel).find('#search-result').show();
 
 		$(resultSet).each(function (index, user) {
 			userBuilder = new UserPreviewBuilder(user.toJson());
@@ -172,6 +184,8 @@ var SearchController = (function () {
 	var appendSearchResult = function (domElements) {
 		$(searchPanel).find('.search-result-wrapper')
 			.html(domElements);
+		$(searchPanel).find('#search-result').show();
+		Spinner.hide(searchSpinner);
 	};
 
 	var toggleExtendedSearch = function () {

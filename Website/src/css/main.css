@@ -142,11 +142,47 @@ textarea {
     margin: 0 auto;
     text-align: center;
 }
+.btn-login {
+  width: 85px;
+}
+
 .error-msg
 {
     display: none;
     font-size: x-small;
     color: red;
+}
+
+.glyphicon-refresh-animate {
+   -webkit-animation: spin 2s infinite linear;
+   -moz-animation: spin 2s infinite linear;
+   -o-animation: spin 2s inifinite linear;
+   -ms-animation: spin 2s infinite linear;
+   animation: spin 2s infinite linear;
+}
+
+@-webkit-keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    to { -moz-transform: rotate(360deg); }
+}
+@-ms-keyframes spin {
+    to { -ms-transform: rotate(360deg); }
+}
+@-o-keyframes spin {
+    to { -o-transform: rotate(360deg); }
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading {
+  font-size: 3em;
+}
+
+.center-txt {
+  text-align: center;
 }
 
 /* Navigation Background Color*/

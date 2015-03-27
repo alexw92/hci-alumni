@@ -1,7 +1,9 @@
 var LoginController = (function () {
 	var TAG = 'LoginCtrl =>',
+		dbHandler = new DatabaseHandler(),
 		requestPath = '',
 		loginPnl = null,
+		loginBtn = null,
 		inputUser = null,
 		inputPassword = null,
 		errorSpan = null;
@@ -11,6 +13,7 @@ var LoginController = (function () {
 	 */
 	var setDomElements = function () {
 		loginPnl = $('#login');
+		loginBtn = $(loginPnl).find('button');
 		inputUser = $(loginPnl).find('#login-user');
 		inputPassword = $(loginPnl).find('#login-password');
 		errorSpan = $(loginPnl).find('#login-error-msg');
@@ -18,9 +21,10 @@ var LoginController = (function () {
 
 	var bindLoginEvents = function () {
 		$(loginPnl).find('#btn-submit-login').on('click', function () {
-			var credentials = getLoginInput(),
-				dbHandler = new DatabaseHandler();
+			var credentials = getLoginInput();
+
 			hideError();
+			Spinner.show(loginBtn);
 
 			dbHandler.checkValidLogin(credentials.username, credentials.password, function (isValid) {
 				if(isValid === true) {
@@ -28,7 +32,10 @@ var LoginController = (function () {
 				}
 				else {
 					clearPasswordField();
-					showError();
+					setTimeout(function () {
+						showError();
+						Spinner.hide(loginBtn);
+					}, 2000);
 				}
 			});
 		});
@@ -55,16 +62,20 @@ var LoginController = (function () {
 	};
 
 	var loadUserDataAndLogin = function (credentials) {
-		var dbHandler = new DatabaseHandler();
-
 		if(credentials.isEmail) {
 			dbHandler.getUserByEmail(credentials.username, function (user) {
-				logUserIn(user);
+				setTimeout(function () {
+					Spinner.hide(loginBtn);
+					logUserIn(user);
+				}, 2000);
 			});
 		}
 		else {
 			dbHandler.getUserByUsername(credentials.username, function (user) {
-				logUserIn(user);
+				setTimeout(function () {
+					Spinner.hide(loginBtn);
+					logUserIn(user);
+				}, 2000);
 			});
 		}
 	};
