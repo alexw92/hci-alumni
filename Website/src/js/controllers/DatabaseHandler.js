@@ -92,11 +92,13 @@ DatabaseHandler.prototype.insertNewUser = function(userobj,callback) {
 
 //Returns 'true' if e-mail address is already in use, 'false' otherwise
 DatabaseHandler.prototype.checkMailInUse = function(mailaddr, callback) {
-	$.get('http://localhost:3001/check/mail/' + mailaddr + '', function(response) {
-		if (typeof(callback) === 'function' && callback !== 'undefined'){
-			callback(JSON.parse(response));
-		}
-	});
+	if (mailaddr.length > 0){
+		$.get('http://localhost:3001/check/mail/' + mailaddr + '', function(response) {
+			if (typeof(callback) === 'function' && callback !== 'undefined'){
+				callback(JSON.parse(response));
+			}
+		});
+	}
 }
 
 //Returns 'true' if username is already in use, 'false' otherwise
@@ -184,7 +186,7 @@ DatabaseHandler.prototype.isUserUnlocked = function(username, callback){
 };
 
 DatabaseHandler.prototype.requestNewPassword = function(username, callback){
-	$.get('http://localhost:3001/reqnewpw/' + username + '/', function(response){
+	$.post('http://localhost:3001/reqnewpw/' + username + '/', function(response){
 		if (typeof(callback) === 'function' && callback !== 'undefined'){
 			if (typeof response !== 'undefined' && response.length > 0) {
 				callback(response);

@@ -1,22 +1,48 @@
-var PwdChangeController = function () {
+var PwdChangeController = function (uname, pwd) {
 	this.TAG = 'PwdChangeController =>';
     this.pwdChangeForm = null;
     this.pwdChangeContainer = $('#pwdChangeForm');
 	this.hintColor = "#D9EDF7";
+	
+	var usernameForPwdChange = null;
+	var oldPassword = null;
 
-	this.exampleFunction();
 	this.initValidationNewPassword();
+	this.parseURLData(uname, pwd);
 	this.bindEvents();
 };
 
-PwdChangeController.prototype.exampleFunction = function() {
+PwdChangeController.prototype.parseURLData = function(uname, pwd) {
 	console.log(this.TAG + ' constructor called');
+	console.log(uname + ' ' + pwd);
+	var self = this;
+	if(uname !== 'undefined' && pwd !== 'undefined' && typeof(uname) === 'string' && typeof(pwd) === 'string')
+	{
+		$('#oldPassword').attr('type', 'text');
+		usernameForPwdChange = uname;
+		oldPassword = pwd;
+		$('#oldPassword').val(oldPassword);
+		self.pwdChangeForm.updateStatus('oldPassword', 'VALID', 'notEmpty');
+		//$('#oldPassword').trigger(jQuery.Event('keypress',{which : 13}));
+	}
+	else
+	{
+		
+	}
 };
 
 
 PwdChangeController.prototype.bindEvents = function() {
 	var self = this;
 	console.log(this.TAG + 'submit');
+	//reset button
+	$('#BtnabortPasswordChange').on('click', function(){
+		event.preventDefault();
+		$(':input', '#pwdChangeForm')
+			.not(':button, :submit, :reset, :hidden')
+            .val('');
+		self.pwdChangeForm.resetForm();
+	});
 	$("#BtnChangePassword").on('click', function(event){
 		event.preventDefault();
 		console.log(self.TAG + ' Change password button clicked');
@@ -24,24 +50,21 @@ PwdChangeController.prototype.bindEvents = function() {
 		if(self.pwdChangeForm.isValid())
 		{
 			var user = new User();
-			//TODO get the user which is logged in / Get the username of this user
+			var newPassword = null;
 			var dbHandler = new DatabaseHandler();
 			//TODO get user.username
 			//var usernameForPwdChange = user.username();
-			//TODO for testpurposes username = BenediktP.
 			if(Session.isSessionActive())
 			{
-				var user = Session.getUser();
+				user = Session.getUser();
+				usernameForPwdChange = user.username;
+				oldPassword = self.pwdChangeContainer.find('[name = oldPassword]').val();
 			}
 			else
 			{
-				
+				console.log(usernameForPwdChange + ' ' + oldPassword);
 			}
-
-			var usernameForPwdChange = user.username;
-			console.log(self.TAG + usernameForPwdChange);
-			var oldPassword = self.pwdChangeContainer.find('[name = oldPassword]').val();
-			var newPassword = self.pwdChangeContainer.find('[name = newPassword]').val();
+			newPassword = self.pwdChangeContainer.find('[name = newPassword]').val();
 
 			//TODO check gerenrated password with userinput
 			dbHandler.checkValidLogin(usernameForPwdChange, oldPassword, function(response){

@@ -35,6 +35,15 @@ RegistrationController.prototype.bindEvents = function() {
 		}
 	});
 
+	//reset button
+	$('#btnAbortReg').on('click', function(){
+		event.preventDefault();
+		$(':input', '#registrationForm')
+			.not(':button, :submit, :reset, :hidden')
+            .val('');
+		self.regForm.resetForm();
+		$('#title').val('Anrede');
+	});
 	//submit button action
 	$('#btnSubmitReg').on('click', function(event){
 		event.preventDefault();

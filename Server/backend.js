@@ -97,7 +97,7 @@ app.get('/newest', function (req, res) {
 	res.send(ans);
 });
 
-app.get('/reqnewpw/:uname', function(req,res){
+app.post('/reqnewpw/:uname', function(req,res){
 	var newtemppw = chance.character({casing: 'upper'}) + chance.character({casing: 'lower'}) + chance.natural({min: 0, max: 9}) + chance.hash({length: 10});
 	var shaObj = new jsSHA(newtemppw, "TEXT");
 	var pwhash = shaObj.getHash("SHA-512", "HEX");

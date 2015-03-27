@@ -42,7 +42,9 @@ var EMail = (function (mailData) {
 							'<p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Viele Gr&#252;&#223;e, Ihr</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Alumni-Team<br />' +
 							'___________________________<br />Alumni Universit&#228;t W&#252;rzburg<br />Am Hubland<br />97074 W&#252;rzburg<br />Tel. 0931/1234567</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 24px"><em>P.S. Wir m&#246;chten unser Netzwerk weiter vergr&#246;&#223;ern - sagen Sie doch auch Ihren Kontakten Bescheid - vielen Dank!</em></p></div>';
 		else if(_type === MailType.SEND_ACCOUNT)
-			htmlMessage += '<b>Account vergessen</b> ... blubb';
+			htmlMessage += '<div style="max-width:650px; padding: 15px;"><h3 style="Margin-top: 0;color: #555;font-weight: normal;font-size: 18px;line-height: 26px;Margin-bottom: 16px;font-family: Georgia,serif">Sehr geehrte/r ' + _reqParams.salutation + ' ' + _reqParams.lastname + ',</h3><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">hiermit senden wir Ihnen Ihre angeforderte E-Mail, die mit dem Alumni-Benutzerkonto &quot;' + _reqParams.username + '&quot; verknüpft ist. </p>' +
+							'<p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Viele Gr&#252;&#223;e, Ihr</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Alumni-Team<br />' +
+							'___________________________<br />Alumni Universit&#228;t W&#252;rzburg<br />Am Hubland<br />97074 W&#252;rzburg<br />Tel. 0931/1234567</p><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 24px"><em>P.S. Wir m&#246;chten unser Netzwerk weiter vergr&#246;&#223;ern - sagen Sie doch auch Ihren Kontakten Bescheid - vielen Dank!</em></p></div></div>';
 		else
 			htmlMessage += '<b>Nichts</b> ...';
 
@@ -56,7 +58,7 @@ var EMail = (function (mailData) {
 
 	var setSubject = function () {
 		if(_type === MailType.CONFIRM_REGISTER)
-			_mail.subject = 'Ihre Registrierung bei Alumni der Uni Würzburg';
+			_mail.subject = 'Alumni-Portal: Ihre Registrierungsbestätigung';
 		else if(_type === MailType.SEND_PASSWORD)
 			_mail.subject = 'Alumni-Portal: Ihre neuen Logindaten';
 		else if(_type === MailType.SEND_ACCOUNT)

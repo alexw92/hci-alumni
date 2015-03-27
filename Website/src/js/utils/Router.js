@@ -75,6 +75,16 @@ Router.prototype.init = function() {
 				console.log('password change form loaded');
 			});
 		});
+		this.get('#/pwdChange/:uname/:pwd', function() {
+			var urlUsername = this.params.uname;
+			var urlPassword = this.params.pwd;
+			console.log('password change form loaded' + urlUsername + ' ' + urlPassword);
+			ContentHandler.loadView('pwdChange.html', '.content', function () {
+				console.log('password change form loaded 2 ' + urlUsername + ' ' + urlPassword);
+				var pwdChange = new PwdChangeController(urlUsername, urlPassword);
+				
+			});
+		});
 	});
 };
 

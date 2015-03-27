@@ -19,6 +19,7 @@ PwdRecoveryController.prototype.exampleFunction = function() {
 PwdRecoveryController.prototype.bindEvents = function() {
 	var self = this;
 	console.log(this.TAG + 'submit');
+	//change password button
 	$("#btnSubmitRecoveryPassword").on('click', function(event){
 		event.preventDefault();
 		console.log('password recovery btn clicked');
@@ -108,7 +109,7 @@ PwdRecoveryController.prototype.bindEvents = function() {
 							recipient_mail: response.email,
 							username: response.username,
 							lastname: response.lastname,
-							salutation: user.title
+							salutation: response.title
 						};
 						dbHandler.sendMail('send-account', mailData, function(response){
 							if(!response.error)
