@@ -66,10 +66,15 @@ Router.prototype.init = function() {
 		});
 
 		this.get('#/search', function () {
+			// workaround to prevent page refresh after change url hash
+			if($('.content').find('#search-panel').length !== 0)
+				return;
+
 			ContentHandler.loadView('search.html', '.content', function () {
 				var searchCtrl = new SearchController().initialize();
 			});
 		});
+
 		this.get('#/pwdChange', function() {
 			ContentHandler.loadView('pwdChange.html', '.content', function () {
 				var pwdChange = new PwdChangeController();

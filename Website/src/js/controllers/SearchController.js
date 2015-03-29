@@ -1,10 +1,13 @@
 var SearchController = (function () {
 	var TAG = 'SearchController',
 		dbHandler = new DatabaseHandler(),
+		paginator = null,
+		resultsPerPage = 5,
 		searchPanel = null,
 		searchSpinner = null,
 		searchBtn = null,
 		searchInput = null,
+		searchResult = null,
 		extendedSearchBtn = null,
 		names = null;
 
@@ -19,36 +22,31 @@ var SearchController = (function () {
 		extendedSearchBtn = $(searchPanel).find('#btn-extended-search');
 	};
 
-	var getSearchQuery = function (urlHash) {
-		var splitIndex = urlHash.indexOf('?'),
-			queryString = urlHash.substr(splitIndex +1, urlHash.length);
+	var getParamFromUrlHash = function (paramName) {
+		var urlHash = window.location.hash,
+			regEx = new RegExp("#.*[?&]" + paramName + "=([^&]+)(&|$)");
+			match = urlHash.match(regEx);
 
-		if(queryString.startsWith('query')) {
-			var beginSearchValue = queryString.indexOf('=') + 1,
-				endSearchValue = queryString.indexOf('&');
-
-			if(beginSearchValue === -1)
-				return '';
-			else if(endSearchValue === -1)
-				return decodeURIComponent(queryString.substring(beginSearchValue, queryString.length));
-			else
-				return decodeURIComponent(queryString.substring(beginSearchValue, endSearchValue));
-		}
-		else
-			return '';
+		return (match ? match[1] : "");
 	};
 
 	var bindEvents = function () {
 		$(searchBtn).on('click', function (e) {
 			e.preventDefault();
 			hideErrorMessage();
-			startSearch();
+
+			var searchVal = $(searchInput).val();
+			updateBrowserLocation(searchVal, 1, 'init');
+			startSearch(searchVal);
 		});
 
 		$(searchInput).on('enterKey', function (e) {
 			e.preventDefault();
 			hideErrorMessage();
-			startSearch();
+
+			var searchVal = $(searchInput).val();
+			updateBrowserLocation(searchVal, 1, 'init');
+			startSearch(searchVal);
 		});
 
 		$(extendedSearchBtn).on('click', function (e) {
@@ -64,21 +62,24 @@ var SearchController = (function () {
 				return;
 			}
 		});
+
+		$(window).on('hashchange', function(e, data) {
+			if(getParamFromUrlHash('status') === '')
+				displaySearchResult();
+		});
 	};
 
-	var startSearch = function () {
-		var searchVal = $(searchInput).val();
-
+	var startSearch = function (searchVal) {
 		if(searchVal === '') {
 			showErrorMessage();
 			return;
 		}
 
 		Spinner.show(searchSpinner);
+		hideResultWrapper();
 
 		if(isExtendedSearchVisible()) {
 			var searchObj = getExtendedSearchInputValues();
-
 			searchObj.name = searchVal;
 			dbHandler.getUsersExtendedSearch(searchObj, handleSearchResult);
 		}
@@ -86,14 +87,6 @@ var SearchController = (function () {
 			searchVal = $(searchInput).val();
 			dbHandler.getUsersByFullname(searchVal, handleSearchResult);
 		}
-
-		/**
-		 * HashChange effect page reload; not nice!
-		 * disable hash change on prototype
-		 *
-		if(searchVal !== null)
-			updateBrowserLocation(searchVal);
-		 */
 	};
 
 	var showErrorMessage = function () {
@@ -102,6 +95,13 @@ var SearchController = (function () {
 
 	var hideErrorMessage = function () {
 		$(searchPanel).find('#search-error-panel').hide();
+	};
+
+	var hideResultWrapper = function () {
+		var resultContainer = $(searchPanel).find('#search-result');
+
+		if($(resultContainer).is(':visible'))
+			$(resultContainer).fadeOut();
 	};
 
 	var isExtendedSearchVisible = function () {
@@ -130,31 +130,58 @@ var SearchController = (function () {
 	};
 
 	var handleSearchResult = function (resultSet) {
+		searchResult = extendResultForDemoPurpose(resultSet);
+
 		setTimeout(function () {
-			displaySearchResult(resultSet);
-			updateResultCount(resultSet.length);
+			renderPagination(searchResult.length, resultsPerPage);
+			displaySearchResult();
 		}, 1500);
 	};
 
-	var displaySearchResult = function (resultSet) {
-		if(resultSet.length === 0) {
+	var extendResultForDemoPurpose = function (array) {
+		var extendedArray = [];
+
+		for(var i = 0; i < 3; i++) {
+			var arrayCopy = array.slice();
+			extendedArray = $.merge(extendedArray, arrayCopy);
+		}
+		return extendedArray;
+	};
+
+	var displaySearchResult = function () {
+		if(searchResult.length === 0) {
 			displayNoResult();
 			Spinner.hide(searchSpinner);
 			return;
 		}
 
-		var resultDomArray = [];
-		renderPageination();
+		var resultDomArray = [],
+			listToDisplay = filterResults(searchResult, paginator.getActivePage(), resultsPerPage);
 
-		$(resultSet).each(function (index, user) {
+		$(listToDisplay).each(function (index, user) {
 			userBuilder = new UserPreviewBuilder(user.toJson());
 			userBuilder.build(function (result) {
 				resultDomArray.push(result);
 
-				if(resultSet.length === index +1)
+				if(listToDisplay.length === index +1)
 					appendSearchResult(resultDomArray);
 			});
 		});
+
+		updateResultCount(searchResult.length);
+	};
+
+	var filterResults = function (results, activePage, resultsPerPage) {
+		var startIndex = 0,
+			endIndex = 0;
+
+		startIndex = activePage === 1 ? 0 : ((activePage - 1) * resultsPerPage) - 1;
+		endIndex = startIndex + resultsPerPage;
+
+		if(endIndex >= searchResult.length)
+			endIndex = searchResult.length - 1;
+
+		return results.slice(startIndex, endIndex);
 	};
 
 	var displayNoResult = function () {
@@ -164,21 +191,44 @@ var SearchController = (function () {
 	};
 
 	var updateResultCount = function (resultLength) {
+		var beginHitCount,
+			endHitCount;
+
+		if(paginator.getActivePage() === 1) {
+			beginHitCount = 1;
+			endHitCount = resultsPerPage;
+		}
+		else {
+			beginHitCount = (paginator.getActivePage() - 1) * resultsPerPage + 1;
+			endHitCount = paginator.getActivePage() * resultsPerPage;
+		}
+
+		if(endHitCount > resultLength)
+			endHitCount = resultLength;
+
+		$(searchPanel).find('#search-result-start').text(beginHitCount);
+		$(searchPanel).find('#search-result-end').text(endHitCount);
 		$(searchPanel).find('#search-result-length').text(resultLength);
 	};
 
-	var updateBrowserLocation = function (searchValue) {
-		var urlHash = window.location.hash;
+	var updateBrowserLocation = function (searchValue, page, status) {
+		var hash = '#/search?query=' + searchValue + '&page=' + page;
 
-		if(urlHash.indexOf('?') !== -1)
-			urlHash = urlHash.substring(0, urlHash.indexOf('?'));
+		if(status !== 'undefined')
+			hash += '&status=' + status;
 
-		urlHash += '?query=' + encodeURIComponent(searchValue);
-		window.location.hash = urlHash;
+		window.history.pushState('', '', hash);
 	};
 
-	var renderPageination = function () {
-		// TODO: pageination :)
+	var renderPagination = function (resultCount, itemsPerPage) {
+		paginator = new Paginator(
+			$('#search-paginator-wrapper'),
+			resultCount,
+			itemsPerPage,
+			Number.parseInt(getParamFromUrlHash('page')));
+
+		paginator.init();
+		paginator.show();
 	};
 
 	var appendSearchResult = function (domElements) {
@@ -261,7 +311,7 @@ var SearchController = (function () {
 	 */
 	var public = {
 		initialize: function () {
-			var searchString = getSearchQuery(window.location.hash);
+			var searchString = getParamFromUrlHash('query');
 
 			setDomElements();
 			bindEvents();

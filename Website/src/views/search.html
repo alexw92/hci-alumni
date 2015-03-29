@@ -90,8 +90,16 @@
 		<span class="glyphicon glyphicon-refresh loading"></span>
 	</div>
 	<div class="row search" id="search-result" style="display: none">
-		<h3>Ergebnisse &nbsp;&nbsp;&nbsp;<small>Es wurden <span id="search-result-length">{x}</span> Alumni gefunden</small></h3>
+		<h3>Ergebnisse &nbsp;&nbsp;&nbsp;
+			<small>
+				Treffer <span id="search-result-start">{x}</span>
+				bis <span id="search-result-end">{y}</span>
+				von insgesamt <span id="search-result-length">{x}</span>
+				gefundenen Alumni
+			</small>
+		</h3>
 		<hr />
 		<div class="search-result-wrapper"></div>
+		<div id="search-paginator-wrapper" class="hidden" style="text-align: center"></div>
 	</div>
 </div>
