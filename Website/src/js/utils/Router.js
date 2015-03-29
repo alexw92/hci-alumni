@@ -34,6 +34,7 @@ Router.prototype.init = function() {
 
 		this.get('#/userpanel', function () {
 			if(Session.isSessionActive()) {
+				var userpanel = new UserpanelController();
 				ContentHandler.loadView('userpanel.html', '.content');
 			}
 		});
