@@ -42,8 +42,7 @@ Das horizontal angelegte Menü unterhalb der Headergrafik ist schlicht und über
 %... 
 
 \problem{Linkes Seitenmenü unübersichtlich und missverständlich gestaltet}
-{
-	Im linken Bereich auf der Unterseite \emph{Alumni suchen} befindet sich ein zusätzliches Menü, über welches der Nutzer die Eingabemaske für die Suche wechseln kann. Die Visualisierung der vertikal angelegten Menüelemente (Farbe und Formatierung) ist unüblich gewählt. Es ist nicht eindeutig erkennbar, welcher Menüpunkt als aktiv gesetzt ist. Dem Anwender fehlt somit das Verständnis, welche Suchmaske ihm aktuell angezeigt wird. Bekannte Mouse-Over Effekte bei Hyperlink-Elementen finden in der Menüleiste keine Verwendung. Die dort eingesetzte Farbe Schwarz in einem Navigationselement ist ebenfalls von Nachteil. Für gewöhnlich gehen Nutzer bei dieser Formatierung von normalen Textelementen aus und erwarten nicht einen Link zum Klicken.
+{Im linken Bereich auf der Unterseite \emph{Alumni suchen} befindet sich ein zusätzliches Menü, über welches der Nutzer die Eingabemaske für die Suche wechseln kann. Die Visualisierung der vertikal angelegten Menüelemente (Farbe und Formatierung) ist unüblich gewählt. Es ist nicht eindeutig erkennbar, welcher Menüpunkt als aktiv gesetzt ist. Dem Anwender fehlt somit das Verständnis, welche Suchmaske ihm aktuell angezeigt wird. Bekannte Mouse-Over Effekte bei Hyperlink-Elementen finden in der Menüleiste keine Verwendung. Die dort eingesetzte Farbe Schwarz in einem Navigationselement ist ebenfalls von Nachteil. Für gewöhnlich gehen Nutzer bei dieser Formatierung von normalen Textelementen aus und erwarten nicht einen Link zum Klicken.
 }
 {
 	Die ungewöhnliche Wahl der Formatierung für Hyperlinks und die fehlende Hervorhebung des aktiv gewählten Menüelements sorgt beim Endanwender für Verwirrung. Dies wiederum führt zur falschen Verwendung der im Menü angebotenen Aktionen. Aufgrund dieser Umstände lässt sich das Problem in die Kategorie \emph{leichtes Problem} einstufen. Die Funktionalität der Webseite ist hierdurch nicht eingeschränkt (Kategorie 2).
@@ -52,7 +51,7 @@ Das horizontal angelegte Menü unterhalb der Headergrafik ist schlicht und über
 	Das seitliche Menü im unmittelbaren Blickfeld des Anwender platzieren. Hierfür bietet sich die Positionierung als zusätzliche horizontale Navigation im Inhaltsbereich der Suchseite an. Dadurch wird die Aufmerksamkeit des Nutzers angezogen und die Existenz der unterschiedlichen Eingabemasken hervorgehoben. Zudem empfiehlt sich die Formatierung von Hyperlink-Elementen an die Gewohnheiten erfahrener Nutzer anzupassen: unterstreichen, eine eigene Farbe für Links und einen angemessenen Mouse-Over Effekt dieser Elemente.
 }
 
-% Aufgabenteil
+% Aufgabenteilgit p
 % ------------
 \usecasepart{Alumni über einen Suchbegriff finden}
 %\subsubsection*{Positive Beobachtungen}
@@ -79,11 +78,8 @@ Das horizontal angelegte Menü unterhalb der Headergrafik ist schlicht und über
 {
 	Da die Webseite dem Benutzer eine erweiterte Suchfunktionalität anbietet, ist es denkbar die grundlegende Sucheingabe auf den Vor- und Nachnamen der zu suchenden Person zu beschränken. Ein erklärender Hinweis für den Benutzer hinsichtlich gültiger Eingabewerte ist notwendig. Eine Suche mit spezifischen Angaben zur Person sollte künftig über die erweiterten Suchoptionen getätigt werden.
 }
-
-\problem{Überflüssige Anzeige der Trefferanzahl während Eingabe des Suchbegriffs}
-{
-	Tippt der Nutzer einen Suchbegriff ein, so wird umgehend eine Abfrage an die Datenbank gesendet, welche die Anzahl an Treffern zu dieser Eingabe zurückliefert. Erkenntlich ist dies an der Lade-Animation rechts neben dem Eingabefeld, wo nach erfolgreicher Abfrage das Resultat angezeigt wird. Diese Funktionalität bietet dem Anwender zum genannten Zeitpunkt der Eingabe keinerlei wertvollen Informationsgehalt. Zumal der Suchvorgang explizit über den Button \emph{Suchen} gestartet werden muss bevor eine Trefferliste angezeigt wird. Das eingeblendete Ladesymbol kann den Endanwender zusätzlich verwirren, der die Eingabe unter Umständen noch nicht beendet hat. Das System vermittelt jedoch den Eindruck, als würde die Suchabfrage bereits durchgeführt werden.
-}
+\problem{Überflüssige Anzeige der die das Trefferanzahl während Eingabe des Suchbegriffs}
+{Tippt der Nutzer einen Suchbegriff ein, so wird umgehend eine Abfrage an die Datenbank gesendet, welche die Anzahl an Treffern zu dieser Eingabe zurückliefert. Erkenntlich ist dies an der Lade-Animation rechts neben dem Eingabefeld, wo nach erfolgreicher Abfrage das Resultat angezeigt wird. Diese Funktionalität bietet dem Anwender zum genannten Zeitpunkt der Eingabe keinerlei wertvollen Informationsgehalt. Zumal der Suchvorgang explizit über den Button \emph{Suchen} gestartet werden muss bevor eine Trefferliste angezeigt wird. Das eingeblendete Ladesymbol kann den Endanwender zusätzlich verwirren, der die Eingabe unter Umständen noch nicht beendet hat. Das System vermittelt jedoch den Eindruck, als würde die Suchabfrage bereits durchgeführt werden.}
 {
 	Das unmittelbar während der Eingabe erscheinende Ladesymbol und die noch nicht abgeschickte Suche können den Nutzer aus dem Konzept bringen. Zudem ist die Position, sowie die Art des Feedbacks zum Zeitpunkt der Eingabe für den Nutzer in dieser Art und Weise wertlos. Hierbei handelt es sich bereits um ein \emph{auffälliges Problem} (Kategorie 3).
 }
@@ -159,14 +155,11 @@ Durch die große Anzahl verschiedener Studiengänge wird die daraus resultierend
 	An dieser Stelle bietet sich ein mehrspaltiges Layout für die Liste aller Studiengänge an. Hiermit wird der Inhaltsbereich besser ausgenutzt und es entsteht beim Anwender nicht der Eindruck einer unendlichen Auflistung. Die Studiengänge lassen sich somit viel schneller auffassen ohne auf der Webseite weit nach unten scrollen zu müssen.
 }
 \problem{Ungültige Studiengänge erscheinen in der Liste}
-{
-	In der Studiengangliste sind zum Teil fehlerhafte und mit Rechtschreibfehlern behaftete Studiengänge aufgelistet. Diese entstehen unter anderem bei der Registrierung durch einen neuen Benutzer am Alumni-Portal. Das Anmeldeformular gestattet bei der Registrierung die Eingabe von individuellen Studiengängen, wodurch fehlerhafte Eingaben entstehen können. Diese Problematik ist allerdings Bestandteil eines anderen Use-Case \emph{Registrierung} der in diesem Walkthrough ausführlich behandelt wird.
+{In der Studiengangliste sind zum Teil fehlerhafte und mit Rechtschreibfehlern behaftete Studiengänge aufgelistet. Diese entstehen unter anderem bei der Registrierung durch einen neuen Benutzer am Alumni-Portal. Das Anmeldeformular gestattet bei der Registrierung die Eingabe von individuellen Studiengängen, wodurch fehlerhafte Eingaben entstehen können. Diese Problematik ist allerdings Bestandteil eines anderen Use-Case \emph{Registrierung} der in diesem Walkthrough ausführlich behandelt wird.
 }
-{
-	Aufgrund des falsch zugeordneten Studiengangs im Profil eines Alumni ist es durchaus möglich, dass der Benutzer das gewünschte Mitglied nicht finden kann. Somit ist das Ziel dieses Use-Case theoretisch nicht erreichbar. Es handelt sich um ein \emph{auffälliges Problem} (Kategorie 3).
+{Aufgrund des falsch zugeordneten Studiengangs im Profil eines Alumni ist es durchaus möglich, dass der Benutzer das gewünschte Mitglied nicht finden kann. Somit ist das Ziel dieses Use-Case theoretisch nicht erreichbar. Es handelt sich um ein \emph{auffälliges Problem} (Kategorie 3).
 }
-{
-	Derartige Fehleingaben bei der Registrierung lassen sich durch eine Validierung der Eingabedaten des entsprechenden Formulars verhindern. Dieser Lösungsvorschlag ist Bestandteil des Use-Case [XYZ - Johannes! Verlinke es!]
+{Derartige Fehleingaben bei der Registrierung lassen sich durch eine Validierung der Eingabedaten des entsprechenden Formulars verhindern. Dieser Lösungsvorschlag ist Bestandteil des Use-Case [XYZ - Johannes! Verlinke es!]
 }
 
 % Aufgabenteil
