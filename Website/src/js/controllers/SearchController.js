@@ -271,6 +271,10 @@ var SearchController = (function () {
 			if(tabID === 'course') {
 				$(searchPanel).find('#search-contact-panel').hide();
 				$(searchPanel).find('#search-course-panel').show();
+
+				var searchCourseCtrl = new SearchCourseController();
+				searchCourseCtrl.init();
+				destroyPaginator();
 			}
 			else if(tabID === 'contact') {
 				$(searchPanel).find('#search-contact-panel').show();
@@ -301,52 +305,8 @@ var SearchController = (function () {
 		});
 	};
 
-	var loadFullCourseList = function () {
-		dbHandler.getCourses(function (resultSet) {
-			courses = resultSet.sort();
-			displayCourseList();
-			initLetterNavigation();
-		});
-	};
-
-	var displayCourseList = function (letter) {
-		if(typeof(letter) === 'undefined')
-			renderCourseList(courses);
-			return;
-	};
-
-	var initLetterNavigation = function () {
-		var letterArray = $(coursePanel).find('#course-letter-nav').find('a');
-
-		letterArray.on('click', function (e) {
-			e.preventDefault();
-
-			$(letterArray).parent().removeClass('label-letter label-primary');
-			$(letterArray).removeClass('letter-active');
-
-			$(this).parent().addClass('label-letter label-primary');
-			$(this).addClass('letter-active');
-
-			filterCourseList($(courseListPanel.find('ul:first')), $(this).text());
-		});
-	};
-
-	var renderCourseList = function (courses) {
-		var courseListDom = $(courseListPanel).find('ul:first');
-
-		$.each(courses, function (index, course) {
-			$(courseListDom).append('<li class="list-group-item" name="' + course + '"><span class="badge">3</span>' + course + '</li>');
-		});
-	};
-
-	var filterCourseList = function (list, filter) {
-		$(list).find('li').show();
-
-		if(filter === 'Alle')
-			return;
-
-		$(list).find('li[name^=' + filter + ']').show();
-		$(list).find('li').not('li[name^=' + filter +']').hide();
+	var displayCourseList = function () {
+		renderCourseList(courses);
 	};
 
 	var searchMatcher = function (strs) {
@@ -384,7 +344,7 @@ var SearchController = (function () {
 			bindEvents();
 			initSearchNavigation();
 			loadFullNameList();
-			loadFullCourseList();
+			//loadFullCourseList();
 
 			if(searchString !== '') {
 				$(searchPanel).find('#input-search').val(searchString);
