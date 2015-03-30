@@ -7,8 +7,9 @@
 			<li role="presentation"><a href="#" id="course">nach Studien- und Jahrgang</a></li>
 		</ul>
 	</div>
+
 	<form>
-	<div class="row search" id="search-contact-panel">
+	<div id="search-contact-panel" class="row search">
 		<div id="search-error-panel" class="alert alert-danger" role="alert" style="display: none">
 			Bitte geben Sie mindestens einen Suchbegriff ein.
 		</div>
@@ -82,10 +83,11 @@
 	</div>
 	</form>
 
-	<div class="row search center-txt hidden" id="search-spinner">
+	<div id="search-spinner" class="row search center-txt hidden">
 		<span class="glyphicon glyphicon-refresh loading"></span>
 	</div>
-	<div class="row search" id="search-result" style="display: none">
+
+	<div id="search-result" class="row search" style="display: none">
 		<h3>Ergebnisse &nbsp;&nbsp;&nbsp;
 			<small>
 				Treffer <span id="search-result-start">{x}</span>
@@ -97,9 +99,10 @@
 		<hr />
 		<div class="search-result-wrapper"></div>
 	</div>
+
 	<div id="search-paginator-wrapper" class="hidden" style="text-align: center"></div>
 
-	<div class="row search" id="search-course-panel" style="display: none">
+	<div id="search-course-panel" class="row search" style="display: none">
 		<div class="panel panel-primary panel-body" id="course-letter-nav">
 			<span id="course_all" class="label-letter label-primary"><a href="#" class="letter-active">Alle</a></span>&nbsp;
 			<span id="course_a"><a href="#">A</a></span>&nbsp;
@@ -130,8 +133,11 @@
 			<span id="course_z"><a href="#">Z</a></span>
 		</div>
 
-		<div id="course-list">
+		<div id="course-list" class="row">
 			<ul class="list-group"></ul>
+		</div>
+		<div id="course-list-empty" class="hidden" class="row">
+			<div class="alert alert-info" role="alert">Keine Treffer zu dieser Auswahl gefunden</div>
 		</div>
 	</div>
 </div>
