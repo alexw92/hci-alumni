@@ -116,7 +116,7 @@ textarea {
     position: absolute;
     right: 20px;
     bottom: 0;
-    max-width: 300px;
+    max-width: 310px;
 }
 .panel-body
 {
@@ -129,7 +129,7 @@ textarea {
 .login-left-side
 {
     float: left;
-    width: 175px;
+    width: 190px;
 }
 .login-right-side
 {
@@ -263,14 +263,25 @@ hr
 }
 
 .result-image {
-  width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-bottom: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
 }
+
+.result-image-userpanel {
+	width: 50%;
+	margin-left: 0%;
+	margin-right: 10%;
+	margin-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 0px;
+	padding-top: 10px;
+}
+
 
 .search-header {
   margin-bottom: 30px;

@@ -98,7 +98,7 @@ app.get('/newest', function (req, res) {
 });
 
 app.post('/reqnewpw/:uname', function(req,res){
-	var newtemppw = chance.character({casing: 'upper'}) + chance.character({casing: 'lower'}) + chance.natural({min: 0, max: 9}) + chance.hash({length: 10});
+	var newtemppw = chance.character({pool: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'}) + chance.character({pool: 'abcdefghijklmnopqrstuvwxyz'}) + chance.natural({min: 0, max: 9}) + chance.hash({length: 10});
 	var shaObj = new jsSHA(newtemppw, "TEXT");
 	var pwhash = shaObj.getHash("SHA-512", "HEX");
 	sqlstr = "UPDATE userdata SET password='" + pwhash + "' WHERE username='" + req.params.uname + "';";

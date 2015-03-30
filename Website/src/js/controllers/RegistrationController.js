@@ -5,7 +5,7 @@ var RegistrationController = function () {
 	this.regFormContainer = $('#registrationForm');
 	this.bankFormContainer = $('#membershipData');
 	this.hintColor = "#D9EDF7";
-	
+
 	this.exampleFunction();
 	this.initValidation();
 	this.bindEvents();
@@ -21,13 +21,13 @@ RegistrationController.prototype.bindEvents = function() {
 	console.log(this.TAG + 'submit');
 
 	//membership selected or not?
-	$('input:radio').on('click', function(){ 
+	$('input:radio').on('click', function(){
 		membershipBool = $(this).val();
 		console.log(membershipBool + ' steht in bool');
 		if($(this).val())
 		{
 			console.log('membership selected and button pressed' + $(this).val());
-			
+
 		}
 		else
 		{
@@ -55,16 +55,16 @@ RegistrationController.prototype.bindEvents = function() {
 		}
 		console.log(self.regForm.isValid());
 		if( self.regForm.isValid())
-		{	
+		{
 			var user = self.parseUser(),
 				dbHandler = new DatabaseHandler();
-				
+
 			dbHandler.insertNewUser(user, function (response) {
 				console.log('response text' + response);
 				if(response['msg'] == 'success')
 				{
 
-					//TODO Email Magic  
+					//TODO Email Magic
 					var mailData = {
 						recipient: user.firstname + ' ' + user.lastname,
 						recipient_mail: user.email,
@@ -73,11 +73,11 @@ RegistrationController.prototype.bindEvents = function() {
 						salutation: user.title,
 						verify_code: response['hash']
 					};
-					
-					
+
 					dbHandler.sendMail('confirm-register', mailData, function(response){
 						if(!response.error)
 						{
+							$('html body').animate({scrollTop: 0}, 'slow');
 							$('#feedbackPositive').html('Ihre Registrierung war erfolgreich. In Kürze erhalten Sie eine Bestätigungsemail mit Freischaltcode!');
 							$('#feedbackPositive').fadeIn('slow');
 							$('#feedbackNegative').fadeOut('slow');
@@ -90,9 +90,10 @@ RegistrationController.prototype.bindEvents = function() {
 				}
 				else
 				{
-						$('#feedbackNegative').html('Es tut uns Leid, es ist ein Fehler in der Technik aufgetreten. Versuchen Sie es bitte zu einem anderen Zeitpunkt erneut.');
-						$('#feedbackPositive').fadeOut('slow');
-						$('#feedbackNegative').fadeIn('slow');
+					$('html body').animate({scrollTop: 0}, 'slow');
+					$('#feedbackNegative').html('Es tut uns Leid, es ist ein Fehler in der Technik aufgetreten. Versuchen Sie es bitte zu einem anderen Zeitpunkt erneut.');
+					$('#feedbackPositive').fadeOut('slow');
+					$('#feedbackNegative').fadeIn('slow');
 				}
 			});
 			console.log('Valid');
@@ -121,7 +122,7 @@ RegistrationController.prototype.bindEvents = function() {
 				{
 					self.regForm.updateStatus('username', 'INVALID', 'ean');
 				}
-				else 
+				else
 				{
 					self.regForm.updateStatus('username', 'VALID', 'ean');
 				}
@@ -138,7 +139,7 @@ RegistrationController.prototype.bindEvents = function() {
 				{
 					self.regForm.updateStatus('email', 'INVALID', 'color');
 				}
-				else 
+				else
 				{
 					self.regForm.updateStatus('email', 'VALID', 'color');
 				}
@@ -149,7 +150,7 @@ RegistrationController.prototype.bindEvents = function() {
 			{
 				self.regForm.updateStatus('email', 'INVALID', 'color');
 			}
-			else 
+			else
 			{
 				self.regForm.updateStatus('email', 'VALID', 'color');
 			}
@@ -162,7 +163,7 @@ RegistrationController.prototype.bindEvents = function() {
 			$('#usernameHint').css("background-color","white");
 		}
 	});
-	//password hint background-color changing on mouseover 
+	//password hint background-color changing on mouseover
 	$('#password').on({focus: function() {
 			$('#passwordHint').css("background-color",self.hintColor);
 		}, focusout: function(){
@@ -175,7 +176,7 @@ RegistrationController.prototype.bindEvents = function() {
 			$('#passwordHint').css("background-color","white");
 		}
 	});
-	//password hint background-color changing on mouseover 
+	//password hint background-color changing on mouseover
 	$('#email').on({focus: function() {
 			$('#emailHint').css("background-color",self.hintColor);
 		}, focusout: function(){
@@ -187,35 +188,35 @@ RegistrationController.prototype.bindEvents = function() {
 RegistrationController.prototype.initMembershipValidation = function () {
 	var bankFormContainer = $('#membershipData').formValidation({
         framework: 'bootstrap',
-        icon: 
+        icon:
 		{
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
-        err: 
+        err:
 		{
             // You can set it to popover
             // The message then will be shown in Bootstrap popover
             container: 'tooltip'
         },
-        fields: 
+        fields:
 		{
-	        depositor: 
+	        depositor:
 			{
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie den Namen des Kontoinhabers ein'
                     }
                 }
             },
-            iban: 
+            iban:
 			{
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie Ihre IBAN ein'
                     },
@@ -226,11 +227,11 @@ RegistrationController.prototype.initMembershipValidation = function () {
 					}
                 }
             },
-            bic: 
+            bic:
 			{
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie Ihren BIC ein'
                     },
@@ -249,19 +250,19 @@ RegistrationController.prototype.initMembershipValidation = function () {
 RegistrationController.prototype.initValidation = function () {
 	var regFormContainer = $('#registrationForm').formValidation({
         framework: 'bootstrap',
-        icon: 
+        icon:
 		{
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
-        err: 
+        err:
 		{
             // You can set it to popover
             // The message then will be shown in Bootstrap popover
             container: 'tooltip'
         },
-        fields: 
+        fields:
 		{
 			title:
 			{
@@ -271,7 +272,7 @@ RegistrationController.prototype.initValidation = function () {
 					{
 						message: 'Bitte geben Sie eine Anrede an'
 					},
-					callback: 
+					callback:
 					{
 						message: 'Bitte wählen Sie eine Anrede aus',
 						callback: function(value, validator, $field)
@@ -285,83 +286,83 @@ RegistrationController.prototype.initValidation = function () {
 					}
 				}
 			},
-            firstName: 
+            firstName:
 			{
 
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie Ihren Vornamen ein'
                     }
                 }
             },
-            lastName: 
+            lastName:
 			{
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie Ihren Nachnamen ein'
                     }
                 }
             },
-			street: 
+			street:
 			{
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie Ihre Straße und Hausnummer ein'
                     }
                 }
             },
-			streetAdditional: 
+			streetAdditional:
 			{
-                validators: 
+                validators:
 				{
                 }
             },
-			zipCode: 
+			zipCode:
 			{
-                validators: 
+                validators:
 				{
-					zipCode: 
+					zipCode:
 					{
 						country: 'DE',
 						message: 'Bitte tragen Sie eine gültige deutsche Postleitzahl ein'
 					},
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie Ihre PLZ ein'
                     },
                 }
             },
-			city: 
+			city:
 			{
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie Ihren Wohnort ein'
                     }
                 }
-            },			
-            username: 
+            },
+            username:
 			{
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie einen Benutzernamen ein'
                     },
-                    stringLength: 
+                    stringLength:
 					{
                         min: 7,
                         max: 30,
                         message: 'Ihr Benutzername muss mindestens 7 maximal aber 30 Zeichen lang sein'
                     },
-                    regexp: 
+                    regexp:
 					{
                         regexp: /^[a-zA-Z0-9_\.]+$/,
                         message: 'Ihr Benutzername muss aus Buchstaben und Zahlen bestehen und darf nur die Sonderzeichen "Punkt" und "Unterstrich" enthalten'
@@ -372,63 +373,63 @@ RegistrationController.prototype.initValidation = function () {
                     }
                 }
             },
-            email: 
+            email:
 			{
-                validators: 
-				{    
+                validators:
+				{
 	                color:
                     {
                     	message: 'Diese Email-Adresse ist leider bereits vergeben, versuchen Sie es bitte mit einer anderen'
                     },
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie Ihre Email-Adresse ein'
                     },
-                    emailAddress: 
+                    emailAddress:
 					{
                         message: 'Dies ist keine gültige Email-Adresse'
                     }
 
                 }
             },
-            password: 
+            password:
 			{
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte tragen Sie ein Passwort ein'
                     },
-                    different: 
+                    different:
 					{
                         field: 'username',
                         message: 'Das Passwort darf nicht Ihrem Benutzername entsprechen'
                     },
-                    regexp: 
+                    regexp:
 					{
-                        regexp: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$/,  //seen on http://regexlib.com/ 
+                        regexp: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$/,  //seen on http://regexlib.com/
                         //regexp: /(?=^.{6,30}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/,
                         message: 'Ihr Passwort muss jeweils einen Groß- und Kleinbuchstaben, eine Zahl und ein Sonderzeichen enthalten. Außerdem muss es zwischen 6 und 30 Zeichen lang sein'
                     }
 
                 }
             },
-            passwordRepeat: 
+            passwordRepeat:
 			{
-                validators: 
+                validators:
 				{
-                    notEmpty: 
+                    notEmpty:
 					{
                         message: 'Bitte wiederholen Sie ihr Passwort'
                     },
-                    identical: 
+                    identical:
 					{
                         field: 'password',
                         message: 'Ihr Passwort stimmt nicht überein'
                     },
-                    regexp: 
+                    regexp:
 					{
-                        regexp: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$/,  //seen on http://regexlib.com/ 
+                        regexp: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$/,  //seen on http://regexlib.com/
                         //regexp: /(?=^.{6,30}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/,
                         message: 'Ihr Passwort muss jeweils einen Groß- und Kleinbuchstaben, eine Zahl und ein Sonderzeichen enthalten. Außerdem muss es zwischen 6 und 30 Zeichen lang sein'
                     }
@@ -436,7 +437,7 @@ RegistrationController.prototype.initValidation = function () {
             }
         }
     });
-	
+
 	this.regForm = regFormContainer.data('formValidation');
 };
 
@@ -475,7 +476,7 @@ RegistrationController.prototype.parseUser = function()
 
 	console.log(user);
 
-	
+
 	return user;
 	//TODO get all input fields
 }

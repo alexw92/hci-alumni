@@ -21,11 +21,17 @@ var LoginController = (function () {
 
 	var bindLoginEvents = function () {
 		$(loginPnl).find('#btn-submit-login').on('click', function () {
+			hideError();
+
 			var credentials = getLoginInput();
 
-			hideError();
-			Spinner.show(loginBtn);
+			if(isCredentialsEmpty(credentials)) {
+				showError('Benutzername und Passwort eingeben');
+				return;
+			}
 
+			deactivateButton($(loginBtn).attr('id'));
+			Spinner.show(loginBtn);
 			dbHandler.checkValidLogin(credentials.username, credentials.password, function (isValid) {
 				if(isValid === true) {
 					loadUserDataAndLogin(credentials);
@@ -33,8 +39,9 @@ var LoginController = (function () {
 				else {
 					clearPasswordField();
 					setTimeout(function () {
-						showError();
+						showError('Nutzername und Passwort stimmen nicht überein');
 						Spinner.hide(loginBtn);
+						activateButton($(loginBtn).attr('id'));
 					}, 2000);
 				}
 			});
@@ -43,6 +50,12 @@ var LoginController = (function () {
 		$(inputUser.selector + ", " + inputPassword.selector).on('focus', function () {
 			hideError();
 		});
+	};
+
+	var isCredentialsEmpty = function (credentials) {
+		if(credentials.username === '' || credentials.password === '')
+			return true;
+		return false;
 	};
 
 	var getLoginInput = function () {
@@ -67,6 +80,7 @@ var LoginController = (function () {
 				setTimeout(function () {
 					Spinner.hide(loginBtn);
 					logUserIn(user);
+					activateButton($(loginBtn).attr('id'));
 				}, 2000);
 			});
 		}
@@ -75,6 +89,7 @@ var LoginController = (function () {
 				setTimeout(function () {
 					Spinner.hide(loginBtn);
 					logUserIn(user);
+					activateButton($(loginBtn).attr('id'));
 				}, 2000);
 			});
 		}
@@ -104,24 +119,39 @@ var LoginController = (function () {
 		$(inputPassword).val('');
 	};
 
-	var showError = function () {
-		$(errorSpan).show();
+	var showError = function (message) {
+		$(errorSpan).text(message).show();
 	};
 
 	var hideError = function () {
 		$(errorSpan).hide();
 	};
 
+	var activateButton = function (btnID) {
+		$(loginPnl).find('#' + btnID).removeClass('disabled');
+	};
+
+	var deactivateButton = function (btnID) {
+		$(loginPnl).find('#' + btnID).addClass('disabled');
+	};
+
 	var bindLogoutEvents = function () {
 		$('#login').find('button').on('click', function () {
-			Session.clear();
-			Navigation.update();
+			deactivateButton($(this).attr('id'));
+			Spinner.show($(this));
 
-			ContentHandler.changeUrlHash('');
-			ContentHandler.loadView('home.html', '.content');
-			ContentHandler.loadView('loginform.html', '#login', function() {
-				publicMethods.initialize();
-			});
+			setTimeout(function () {
+				Session.clear();
+				Navigation.update();
+				activateButton($(this).attr('id'));
+				Spinner.hide($(this));
+
+				ContentHandler.changeUrlHash('');
+				ContentHandler.loadView('home.html', '.content');
+				ContentHandler.loadView('loginform.html', '#login', function() {
+					publicMethods.initialize();
+				});
+			}, 1000);
 		});
 	};
 
