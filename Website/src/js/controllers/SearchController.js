@@ -67,11 +67,6 @@ var SearchController = (function () {
 				return;
 			}
 		});
-
-		$(window).on('hashchange', function(e, data) {
-			if(getParamFromUrlHash('status') === '')
-				displaySearchResult();
-		});
 	};
 
 	var startSearch = function (searchVal) {
@@ -234,6 +229,15 @@ var SearchController = (function () {
 
 		paginator.init();
 		paginator.show();
+
+		setPaginatorEvents();
+	};
+
+	var setPaginatorEvents = function () {
+		$(paginator.getNavContainer()).find('li').on('click', function (e) {
+			e.preventDefault();
+			displaySearchResult();
+		});
 	};
 
 	var appendSearchResult = function (domElements) {
