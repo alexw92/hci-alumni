@@ -20,13 +20,14 @@ UserpanelController.prototype.loadUserInfo = function() {
 	//load user image
 	if(user.title === 'Frau') 
 	{	
-		console.log("ich bin hier");	
-	 	$('#userImage').attr('src', 'img/avatars/user_' + user.image_id + '_f.png');
-		console.log("ich bin hier2");	
+		console.log("ich bin hier");
+		var imageURL = 'img/avatars/user_' + user.image_id + '_f.png';
+	 	$('#userPanelImage').attr('src', imageURL);
+		console.log('img/avatars/user_' + user.image_id + '_f.png');	
 	}
 	else if(user.title === 'Herr')
 	{
-	 	$('#userImage').find('.result-image').attr('src', 'img/avatars/user_' + user.image_id + '_m.png');
+	 	$('#userPanelImage').attr('src', 'img/avatars/user_' + user.image_id + '_m.png');
 	}
 	
 };
