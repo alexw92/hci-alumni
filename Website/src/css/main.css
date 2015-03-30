@@ -37,12 +37,11 @@ html {
 /*
  * A better looking default horizontal rule
  */
-
 hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #004994;
     margin: 1em 0;
     padding: 0;
 }
@@ -117,6 +116,7 @@ textarea {
     right: 20px;
     bottom: 0;
     max-width: 310px;
+    border-radius: 6px;
 }
 .panel-body
 {
@@ -246,10 +246,7 @@ textarea {
 }
 
 
-hr
-{
-    border-top: 2px solid #004994;
-}
+
 #myCarousel
 {
 	data-pause: hover;
