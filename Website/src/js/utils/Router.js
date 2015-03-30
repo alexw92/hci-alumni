@@ -34,8 +34,9 @@ Router.prototype.init = function() {
 
 		this.get('#/userpanel', function () {
 			if(Session.isSessionActive()) {
-				var userpanel = new UserpanelController();
-				ContentHandler.loadView('userpanel.html', '.content');
+				ContentHandler.loadView('userpanel.html', '.content', function () {
+					var userpanel = new UserpanelController();
+				});
 			}
 		});
 
@@ -84,6 +85,12 @@ Router.prototype.init = function() {
 				console.log('password change form loaded 2 ' + urlUsername + ' ' + urlPassword);
 				var pwdChange = new PwdChangeController(urlUsername, urlPassword);
 				
+			});
+		});
+		
+		this.get('#/impressum', function () {
+			ContentHandler.loadView('impressum.html', '.content', function () {
+				console.log('impressum loaded');
 			});
 		});
 	});

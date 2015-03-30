@@ -3,7 +3,8 @@ var Navigation = (function () {
 		_hideableNavIds = [
 			'nav-mentoring',
 			'nav-publication',
-			'nav-search'
+			'nav-search',
+			'nav-userpanel'
 		];
 
 	/**
