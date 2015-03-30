@@ -83,7 +83,7 @@ DatabaseHandler.prototype.getNewestUsers = function(callback) {
 //Insert new user into the Database
 //Returns 'success' if the user was created successfully, 'failure' otherwise
 DatabaseHandler.prototype.insertNewUser = function(userobj,callback) {
-	$.post('http://localhost:3001/new/', userobj.toJsonNewUser(), function(response) { 
+	$.post('http://localhost:3001/new/', userobj.toJsonNewUser(), function(response) {
 		if (typeof(callback) === 'function' && callback !== 'undefined'){
 			callback(response);
 		}
@@ -126,8 +126,8 @@ DatabaseHandler.prototype.updateUserinfo = function(type, username, newval, call
 	if (type == "password"){
 		var shaObj = new jsSHA(newval, "TEXT");
 		newval = shaObj.getHash("SHA-512", "HEX");
-	} 
-	$.get('http://localhost:3001/update/' + type + '/' + username + '/' + newval + '', function(response) { 
+	}
+	$.get('http://localhost:3001/update/' + type + '/' + username + '/' + newval + '', function(response) {
 		if (typeof(callback) === 'function' && callback !== 'undefined'){
 			callback(response);
 		}
@@ -139,7 +139,7 @@ DatabaseHandler.prototype.getCourses = function(callback) {
 	$.get('http://localhost:3001/courses/', function(response) {
 		var carray = [];
 		if (typeof response !== 'undefined' && response.length > 0) {
-			var resobj = response[0]['values'];		
+			var resobj = response[0]['values'];
 			for (i=0;i<resobj.length;i++){
 				carray[i] = resobj[i];
 			}
@@ -160,7 +160,7 @@ DatabaseHandler.prototype.getFullnames = function(callback) {
 				narray[i] = resobj[i][0];
 			}
 		}
-		
+
 		if (typeof(callback) === 'function' && callback !== 'undefined'){
 			callback(narray);
 		}
@@ -197,21 +197,26 @@ DatabaseHandler.prototype.requestNewPassword = function(username, callback){
 	});
 };
 DatabaseHandler.prototype.sendMail = function(type, mailData, callback) {
-	var request = $.ajax({
-		type: 'POST',
-		url: 'http://localhost:3001/sendmail/' + type,
-		data: mailData
-	});
-	
+	var self = this,
+		request = $.ajax({
+			type: 'POST',
+			url: 'http://localhost:3001/sendmail/' + type,
+			data: mailData
+		});
+
 	request.done(function (response) {
-		console.log(response);
 		if(callback !== 'undefined' && typeof(callback) === 'function') {
 			callback(response);
 		}
-	}); 
-	
+	});
+
 	request.fail(function (response) {
-		console.log(response);
+		var extendedResponse = {};
+		extendedResponse.error = true;
+		extendedResponse.details = response;
+
+		if(typeof(callback) === 'function' && callback !== 'undefined')
+			callback(extendedResponse);
 	});
 };
 

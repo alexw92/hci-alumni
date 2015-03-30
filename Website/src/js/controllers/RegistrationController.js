@@ -77,6 +77,7 @@ RegistrationController.prototype.bindEvents = function() {
 					dbHandler.sendMail('confirm-register', mailData, function(response){
 						if(!response.error)
 						{
+							$('html').animate({scrollTop: 0}, 'slow'); // firefox workaround
 							$('html body').animate({scrollTop: 0}, 'slow');
 							$('#feedbackPositive').html('Ihre Registrierung war erfolgreich. In Kürze erhalten Sie eine Bestätigungsemail mit Freischaltcode!');
 							$('#feedbackPositive').fadeIn('slow');
@@ -84,12 +85,17 @@ RegistrationController.prototype.bindEvents = function() {
 						}
 						else
 						{
-							console.log(self.TAG + ' sendMail failure');
+							$('html').animate({scrollTop: 0}, 'slow'); // firefox workaround
+							$('html body').animate({scrollTop: 0}, 'slow');
+							$('#feedbackNegative').html('Leider ist ein Fehler beim Versenden der E-Mail zur Bestätigung Ihrer Registrierung aufgetreten. Bitte wenden Sie sich an <b>alumni@uni-wuerzburg.de</b>.');
+							$('#feedbackPositive').fadeOut('slow');
+							$('#feedbackNegative').fadeIn('slow');
 						}
 					});
 				}
 				else
 				{
+					$('html').animate({scrollTop: 0}, 'slow'); // firefox workaround
 					$('html body').animate({scrollTop: 0}, 'slow');
 					$('#feedbackNegative').html('Es tut uns Leid, es ist ein Fehler in der Technik aufgetreten. Versuchen Sie es bitte zu einem anderen Zeitpunkt erneut.');
 					$('#feedbackPositive').fadeOut('slow');
