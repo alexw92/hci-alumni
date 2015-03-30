@@ -1,7 +1,7 @@
 # HCI - Alumni Portal Prototype Webseite
 
 Prototypische Umsetzung des Alumni Portal der Universität Würzburg. Der Prototyp legt den Fokus auf die folgenden Use Cases:
-1. Ein Besucher landet auf dem Alumni Portal und schaut sich zu Beginn um, welche Funktionalität und welchen Mehrwehrt ihm die Webseite bringt. (Use Case 1)
+> 1. Ein Besucher landet auf dem Alumni Portal und schaut sich zu Beginn um, welche Funktionalität und welchen Mehrwehrt ihm die Webseite bringt. (Use Case 1)
 2. Aufgrund des Mehrwerts entscheidet er sich für eine Anmeldung auf dem Portal (Use Case 2)
 3. Die Registrierung auf der Website beinhaltet eine notwendige Freischaltung des Accounts mittels E-Mail (Use Case 3)
 4. Der Nutzer vergisst über die Zeit hinweg sein Passwort und möchte dieses via "Passwort zurücksetzen" zurück erlangen (Use Case 4)
@@ -28,9 +28,9 @@ Die Entwicklungs- und Build-Umgebung ist nun vollständig eingerichtet. Starte i
 * `identity-generator`: JavaScript-Modul zum Generieren von zufälligen Testnutzern als Basispopulation der Datenbank.
 * `Node.js`: 
 * Erweiterungen/Module für Node.js:
-	- `body-parser`:
+	- `body-parser`: 
 	- `chance`: Zufallsgenerator für Zahlen und Strings
 	- `emailjs`: Javascript-Framework zum Versenden von Mails
 	- `express`:
-	- `jssha`:
+	- `jssha`: Modul für SHA-Hashes in JavaScript
 	- `sql.js`: SQLite Datenbank auf Basis von JavaScript
