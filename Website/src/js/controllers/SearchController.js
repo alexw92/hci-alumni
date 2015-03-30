@@ -42,6 +42,7 @@ var SearchController = (function () {
 
 			var searchVal = $(searchInput).val();
 			updateBrowserLocation(searchVal, 1, 'init');
+			destroyPaginator();
 			startSearch(searchVal);
 		});
 
@@ -51,6 +52,7 @@ var SearchController = (function () {
 
 			var searchVal = $(searchInput).val();
 			updateBrowserLocation(searchVal, 1, 'init');
+			destroyPaginator();
 			startSearch(searchVal);
 		});
 
@@ -151,7 +153,6 @@ var SearchController = (function () {
 	var displaySearchResult = function () {
 		if(searchResult.length === 0) {
 			displayNoResult();
-			Spinner.hide(searchSpinner);
 			return;
 		}
 
@@ -185,9 +186,12 @@ var SearchController = (function () {
 	};
 
 	var displayNoResult = function () {
+		Spinner.hide(searchSpinner);
+
 		$(searchPanel).find('.search-result-wrapper')
 			.html('<div class="alert alert-info" role="alert">Keine Treffer gefunden</div>');
 		$(searchPanel).find('#search-result').show();
+		$(searchPanel).find('#label-search-result').hide();
 	};
 
 	var updateResultCount = function (resultLength) {
@@ -209,6 +213,7 @@ var SearchController = (function () {
 		$(searchPanel).find('#search-result-start').text(beginHitCount);
 		$(searchPanel).find('#search-result-end').text(endHitCount);
 		$(searchPanel).find('#search-result-length').text(resultLength);
+		$(searchPanel).find('#label-search-result').show();
 	};
 
 	var updateBrowserLocation = function (searchValue, page, status) {
@@ -218,6 +223,11 @@ var SearchController = (function () {
 			hash += '&status=' + status;
 
 		window.history.pushState('', '', hash);
+	};
+
+	var destroyPaginator = function () {
+		if(paginator !== null)
+			paginator.destroy();
 	};
 
 	var renderPagination = function (resultCount, itemsPerPage) {
