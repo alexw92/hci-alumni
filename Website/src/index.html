@@ -3,12 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
+	<title>Alumni-Potal Uni Würzburg</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<!-- Place favicon.ico in the root directory -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/formValidation.css">
@@ -49,13 +48,13 @@
 							<li id="nav-gallery"><a href="#/galery">Bildergalerie</a></li>
 	    					<li id="nav-search" class="hidden"><a href="#/search">Alumni suchen</a></li>
 							<li id="nav-events"><a href="#/events">Veranstaltungen</a></li>
-							<li><a href="#/pwdChange">PwdChange</a></li>
+							<li id="nav-userpanel" class="hidden"><a href="#/userpanel">Mein Profil</a></li>
 	    					<li id="nav-links" class="dropdown">
 	    						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Links <span class="caret"></span></a>
 	    						<ul class="dropdown-menu navBackgroundColor" role="menu">
 	    							<li><a href="#">Alumni Homepage</a></li>
-	    							<li><a href="#">Weltkarte</a></li>
 	    							<li><a href="#">Stellenanzeigen</a></li>
+	    							<li><a href="#">Weltkarte</a></li>
 									<!-- <li class="divider"></li>
 									<li class="dropdown-header">Nav header</li>
 									<li><a href="#">Separated link</a></li>
@@ -107,7 +106,7 @@
 			<table>
 				<tr>
 					<td>
-						<p><a href="#"> Impressum &nbsp;&nbsp;</a></p>
+						<p><a href="#/impressum"> Impressum &nbsp;&nbsp;</a></p>
 					</td>
 					<td>
 						<p>&copy; Company 2014 </p>
@@ -131,6 +130,7 @@
 	<script src="js/utils/User.js"></script>
 	<script src="js/utils/UserPreviewBuilder.js"></script>
 	<script src="js/utils/Navigation.js"></script>
+	<script src="js/utils/Paginator.js"></script>
 	<script src="js/vendor/sha.js"></script>
 	<script src="js/controllers/DatabaseHandler.js"></script>
 	<script src="js/controllers/LoginController.js"></script>

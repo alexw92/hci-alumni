@@ -6,11 +6,6 @@ var app = {
 };
 
 jQuery(function () {
-	$(window).on('hashchange', function (e) {
-		e.preventDefault();
-		e.stopPropagation();
-		console.log('blubb hash changed');
-	});
 	app.router.run();
 
 	ContentHandler.loadView('loginform.html', '#login', function () {

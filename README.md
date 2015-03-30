@@ -25,6 +25,12 @@ Die Entwicklungs- und Build-Umgebung ist nun vollständig eingerichtet. Starte i
 * `Grunt`: dient als Build System und bringt zudem einen lokalen Webserver inklusive Livereload mit sich
 * `HTML5Boilerplate`: HTML5 Front-End Framework, welches die grundlegende Ordnerstruktur und derzeitige 'Best Practices' der Webentwicklung vereinheitlicht
 * `Bootstrap`: Empfehlenswertes HTML, CSS und JavaScript Framework für Responsive Webdesign und Mobile First
-* `sql.js`: SQLite Datenbank auf Basis von JavaScript
-* `identity-generator`: JavaScript-Modul zum Generieren von zufälligen Testnutzern als Basispopulation der Datenbank. [identity-generator](https://github.com/janpetzold/identity-generator)
-* `emailjs`: Javascript-Framework zum Versenden von Mails
+* `identity-generator`: JavaScript-Modul zum Generieren von zufälligen Testnutzern als Basispopulation der Datenbank.
+* `Node.js`: 
+* Erweiterungen/Module für Node.js:
+	- `body-parser`: 
+	- `chance`: Zufallsgenerator für Zahlen und Strings
+	- `emailjs`: Javascript-Framework zum Versenden von Mails
+	- `express`:
+	- `jssha`: Modul für SHA-Hashes in JavaScript
+	- `sql.js`: SQLite Datenbank auf Basis von JavaScript

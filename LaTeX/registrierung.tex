@@ -1,25 +1,63 @@
 %Alex
-%Alex
+\newpage
 \usecase{Registrierung}
 \usecasepart{Ausfüllen des Eingabeformulars}
-Nachdem sich der Nutzer einen Überblick über die Seite geschaffen hat und nun über viele Funktionen, die die Seite
-bietet teils gut, teils weniger gut informiert wurde, hat er sich nun für eine kostenlosen Registrierung entschieden, um das Alumni-Portal in größerem Umfang zu nutzen.
+Der User möchte sich registrieren und muss eine Reihe verschiedener Auswahl- und Textfelder mit Daten füllen.
 
-\subsubsection*{Positive Beobachtungen}
-Von der Hauptseite des Portals befindet sich der Menüpunkt \glqq Registrieren \grqq ~gut sichtbar zusammen mit einer Reihe anderer Aktionen,
-wie bereits in obigem Use-Case beschrieben. Das Auffinden dieses Menüpunkts stellt keine Probleme da und User kann nach einem Klick darauf direkt mit der Registrierung
+\subsubsection*{Positive Beobachtungen} 
+Von der Hauptseite des Portals befindet sich der Menüpunkt \emph{ Registrieren} ~gut sichtbar zusammen mit einer Reihe anderer Aktionen, wie bereits in obigem Use-Case beschrieben. Das Auffinden dieses Menüpunkts stellt keine Probleme da und User kann nach einem Klick darauf direkt mit der Registrierung
 beginnen.
 
 
-\problem{Fehlende Erklärung des roten Sterns \glqq * \grqq}
-{ An vielen Eingabeformularen befindet sich über der oberen rechten Kante ein roter Stern ”*”. Allerdings findet sich nirgends auf der Seite eine Erklärung des Zeichens.
-Obwohl diese Kennzeichnung heute allgemein für Pflichtfelder benutzt wird, muss berücksichtigt werden, dass die Alumni-Gemeinschaft insbesondere aus älteren Personen besteht, die nicht wissen, wie der Stern zu interpretieren ist. Nach einem Klick auf \glqq Weiter \grqq -Button wird der Nutzer darüber informiert, dass er mit Stern gekennzeichnete Felder ausfüllen muss.
+
+
+\problem{Eingabe von Beginn und Ende des Studiums auf den Tag genau}
+{ Es ist extrem unwahrscheinlich dass ein Alumni auf den Tag genau noch weiß, wann er angefangen oder aufgehört hat zu studieren. 
+Eine Meldung darunter zeigt zwar an, dass man hier schätzen soll, allerdings ist es dann fraglich wieso der Tag dann überhaupt zur Auswahl steht.
 }
-{ Besonders deprimierend wird es schließlich für den Nutzer, wenn er ein Pflichtfeld nicht ausfüllt und erst die Eingabefelder suchen muss, die er nicht ausgefüllt hat. Diese werden nicht, wie es in modernen Websiten üblich ist, hervorgehoben. Dieses Problem sorgt bei unerfahrenen Nutzern für Verwirrung und ist somit ein in Kategorie 3 einzustufen.
+{ Die Eingabe eines exakten Datums ist nicht nötig, allerdings kein Fehler. Wer gewissenhaft ein Formular ausfüllen fühlt sich allerdings unwohl, beim Runden eines Wertes. Daher ist diese überflüssige Eingabe ein leichter Fehler und in Kategorie 1 anzusiedeln.
 }
-{ Eine Möglichkeiten zur Verbesserung dieses Problems wäre eine einfache Erklärung des Sternchens anzuzeigen. Wir haben uns im Prototypen allerdings dazu entschlossen die Anzahl der Eingabemasken zu reduzieren und optionale Parameter direkt wegzulassen, sodass eine Kennzeichnen einzelner Formulare nicht mehr notwendig ist
+{ Der Tag sollte aus dieser Auswahl komplett gestrichen werden. Da hier sowieso immer geschätzt wird, liefert er keinen Mehrwert.
+} 
+\label{prob:reg:wtfday}
+
+\problem{Fehlende Hyperlinks}
+{ Auf der ersten Registrierungsseite befinden sich zwei Verweise zu Seiten, die nicht, wie allgemein üblich, als Wert eines \texttt{href}-Attributs in Umgebung eines \texttt{\textless a\textgreater} -\texttt{html}-Tags verwendet werden, sondern ohne Hyperlink-Kennzeichnung für den Browser im Fließtext stehen. Das führt dazu, dass der Nutzer den Link erst kopieren und in die URL-Leiste des Browsers kopieren muss, was unnötig und nervig ist.
+}
+{ Obwohl dieser Fehler im Quellcode vermeidbar und fehlende Links nervig für Nutzer sind, wird jeder verstehen, dass es sich hier um einen Link handelt der in einen Browser eingegeben werden kann. Für Verwirrung sorgt diesers Problem nicht. Es handelt sich um einen mittelschweren Fehler der Kategorie 2.
+}
+{ Dieses Problem ist sehr leicht mit einem \texttt{html}-Link zu lösen.
+} 
+\label{prob:reg:hyperhyper}
+
+\problem{Überflüssige Date-Picker}
+{ Die Date-Picker neben den Datumseingaben bei \glqq Geburtstag\grqq ~auf Seite 1 und \glqq Beginn und Ende\grqq ~auf Seite 2 der Registrierung verführen zur einfachen Eingabe des Datums ohne auf das Format achten zu müssen. Allerdings merkt man schnell, dass diese Freude unbegründet ist, denn es nicht möglich direkt ein Jahr einzugeben. Stattdessen ist der Benutzer gezwungen, Jahr für Jahr zurückzuscrollen was sehr nervig, da langwierig ist (Bsp. Geburtsjahr).
+}
+{ Dem User bleibt überlassen, ob er die Date-Picker nutzt. Es ist aber davon auszugehen, dass er rasch bemerkt, dass er mit gewöhnlicher Eingabe per Tastatur wesentlich schneller voran kommt. Die Date-Picker sind aus diesem Grund leider nicht zu gebrauchen obwohl sie technisch funktionieren. Es handelt sich um einen mittelschweren Fehler der Kategorie 2, da der Benutzer hier noch die Wahl hat das Textfeld selbst zu füllen.
+}
+{ Die Date-Picker sollten entfernt werden, da sie in dieser Form definitiv nicht benutzt werden würden und dem Anwender keine Arbeit abnehmen.
+}
+\label{prob:reg:uselesspickerz}
+
+\problem{Einzelne Buchstaben als Fach auswählbar}
+{ Unglücklicherweise lassen sich im Drop-Down-Menü \glqq Fach\grqq ~auf Seite 2 der Registrierung einzelne Buchstaben, die nur als Überschriften dienen sollen, selektieren und somit als Fach auswählen. 
+}
+{ Es handelt sich um einen kleinen Fehler in der Formatierung der Dropdown-Liste, der sofort vom Nutzer erkannt wird. Es ist sehr unwahrscheinlich, dass jemand unabsichtlich einen Buchstaben als Fach wählt. Deshalb ist dieser Fehler nur mittelschwer und in Kategorie 2.
+}
+{ Der Fehler lässt sich leicht beheben indem man zum Beispiel im \texttt{ \textless select\textgreater} -Tag das label-Attribut innerhalb eines \texttt{ \textless optgroup\textgreater  } -Tags setzt, statt 'A', 'B' usw. als value-Attribut in einem \texttt{ \textless option\textgreater} -Tag zu verwenden.
+} 
+\label{prob:reg:buchstabe}
+
+\problem{Fehlende Erklärung des roten Sterns \glqq *\grqq}
+{ An vielen Eingabeformularen befindet sich über der oberen rechten Kante ein roter Stern \glqq *\grqq. Allerdings findet sich nirgends auf der Seite eine Erklärung des Zeichens.
+Obwohl diese Kennzeichnung heute allgemein für Pflichtfelder benutzt wird, muss berücksichtigt werden, dass die Alumni-Gemeinschaft insbesondere aus älteren Personen besteht, die nicht wissen, wie der Stern zu interpretieren ist. Nach einem Klick auf \emph{Weiter} wird der Nutzer darüber informiert, dass er alle mit Stern gekennzeichnete Felder ausfüllen muss.
+}
+{ Besonders deprimierend wird es schließlich für den Nutzer, wenn er ein Pflichtfeld nicht ausfüllt und erst die Eingabefelder suchen muss, die er nicht ausgefüllt hat. Diese werden nicht, wie es in modernen Webseiten üblich ist, hervorgehoben. Dieses schwere Problem sorgt bei unerfahrenen Nutzern für Verwirrung und ist somit in Kategorie 3 einzustufen.
+}
+{ Eine Möglichkeit zur Verbesserung dieses Problems wäre eine einfache Erklärung des Sternchens anzuzeigen. Wir haben uns im Prototypen allerdings dazu entschlossen die Anzahl der Eingabemasken zu reduzieren und optionale Parameter direkt wegzulassen, sodass eine Kennzeichnen einzelner Formulare nicht mehr notwendig ist.
 }
 
+\label{prob:reg:roterStern}
 \problem{Unklare oder missverständliche Eingabefelder}
 { Leider gibt es auf der Registrierungsseite mehrere Unklarheiten, was in den Formularfeldern eingegeben werden soll. Da sich diese Probleme hinsichtlich der Reaktion
 des Nutzers sehr ähnlich sind, sind sie im Folgenden als ein Problem aufgeführt.
@@ -29,81 +67,41 @@ des Nutzers sehr ähnlich sind, sind sie im Folgenden als ein Problem aufgeführ
 	\item {Registrierung(2/2): \glqq Abschluss-Auswahl”: Ist der bereits erreiche Abschluss oder der aktuelle Abschluss, der in Arbeit ist, gemeint? }
 	\item {Registrierung(2/2): \glqq Mitgliedschaft in anderen Vereinen\grqq ~Missverständliche Eingabeformulare}	
 \end{enumerate}	
-Auf der ersten Seite der Registrierung verwirrt das Pop-Up, das sich neben dem \glqq Branche\grqq ~-Feld befindet. Intuitiv ist nicht sofort klar, dass hier ein eigener
-Name für eine Branche eingegeben werden soll.\\
-Ebenfalls unerklärt bleibt ein kleines Icon auf beim Email-Eingabefeld, dessen Nutzen sich für Nutzer nicht erschliessen lässt.
+Auf der ersten Seite der Registrierung verwirrt das Pop-Up, das sich neben dem \glqq Branche\grqq -Feld befindet. Intuitiv ist nicht sofort klar, dass hier ein eigener
+Name für eine Branche eingegeben werden kann.\\
+Ebenfalls unerklärt bleibt ein kleines Icon auf beim Email-Eingabefeld, dessen Nutzen sich für Anwender nicht erschließen lässt.
 Auf Seite zwei der Registrierung befindet sich unter anderem ein Formular, das die Eingabe des \glqq höchsten Abschlusses\grqq ~fordert. Trotzdem ist diese Formulierung nicht eindeutig,
 denn es kann der höchste erreichte Abschluss oder der Abschluss der aktuell in Arbeit ist eingegeben werden.\\
 Zuletzt fällt ein Textfeld und eine Scrollbalken für die Mitgliedschaft in anderen Vereinen ins Auge. Das Textfeld nimmt sehr viel Platz weg und was hier eingegeben werden soll, ist ebenfalls fraglich, denn unter dem Textfeld bietet ein Scrollbalken eine Auswahl an konkreten Vereinen. Diese Darstellung kann ohne weitere Erklärung für redundante Eingaben seitens der Nutzer führen.
 }
-{ Die genannten Probleme lassen sich als missverständliche Eingabefelder zusammenfassen und frustrieren in ihrer Summe Anwender, die selbsterklärende Eingabemasken gewohnt sind. Die aktuelle Darstellung obiger Eingaben verwirrt Nutzer und ist folglich ein Kategorie 3 Problem.
+{ Die genannten Probleme lassen sich als missverständliche Eingabefelder zusammenfassen und frustrieren in ihrer Summe Anwender, die selbsterklärende Eingabemasken gewohnt sind. Die aktuelle Darstellung obiger Eingaben verwirrt Benutzer und ist folglich ein schweres Problem (Kategorie 3).
 }{
-Es sollte bei Eingaben stehts der Grundsatz beachtet werden “Wenn du ein Formular erklären kannst, erkläre es. Wenn nicht - Lass es weg!”. Bereits ein kurzer Satz wäre hier schon hilfreich und nimmt den Nutzer Unsicherheit. Um redundante Eingaben zu vermeiden sollten doppelte Eingabefelder vermieden werden. Man könnte entweder die Dropdown-Liste mit Vorschlägen so erweitern, dass sich jede Kategorie finden lässt (für den unwichtigen Rest kann man ein “Andere”-Listenelement einfügen) und die andere Eingabemöglichkeit entfernen oder nur eigene Eingaben ohne Dropdown zulassen. Da erstere Lösung allerdings das Filtern bei der suche und Einordnen in eine Datenbank erleichtert, ist diese zu bevorzugen.}
-  
+Es sollte bei Eingaben stets der Grundsatz beachtet werden \glqq Wenn du ein Formular erklären kannst, erkläre es. Wenn nicht - Lass es weg!\grqq. Bereits ein kurzer Satz wäre hier schon hilfreich und nimmt dem Nutzer Unsicherheit. Um redundante Eingaben zu vermeiden sollten doppelte Eingabefelder vermieden werden. Man könnte entweder die Dropdown-Liste mit Vorschlägen so erweitern, dass sich jede Kategorie finden lässt (für den unwichtigen Rest kann man ein \glqq Andere\grqq-Listenelement einfügen) und die andere Eingabemöglichkeit entfernen oder nur eigene Eingaben ohne Dropdown zulassen. Da erstere Lösung allerdings das Filtern bei der Suche und Einordnen in eine Datenbank erleichtert, ist diese zu bevorzugen.}
+\label{prob:reg:unclearinput}
 
-
-
-\problem{Fehlende Hyperlinks}
-{ Auf der ersten Registrierungsseite befinden sich zwei Verweise zu Seiten, die nicht, wie allgemein üblich, als Wert eines \texttt{href}-Attributs in Umgebung eines \texttt{\textless a\textgreater} -\texttt{html}-Tags verwendet werden, sondern ohne Hyperlink-Kennzeichnung für den Browser im Fließtext stehen. Das führt dazu, dass der Nutzer den Link erst kopieren und in die URL-Leiste des Browsers kopieren muss, was unnötig und nervig ist.
-}
-{ Obwohl dieser Fehler im Quellcode vermeidbar und fehlende Links nervig für Nutzer sind, wird jeder verstehen, dass es sich hier um einen Link handelt der in einen Browser eingegeben werden kann. Für Verwirrung sorgt diesers Problem nicht. Es handelt sich um einen leichten Fehler der Kategorie 2.
-}
-{ Dieses Problem ist sehr leicht mit einem \texttt{html}-Link zu lösen.
-} 
 
 \problem{Verweis auf fehlende Spalte mit Tipps}
 { Im Bereich \glqq Zusätzliche Mitgliedschaft\grqq ~ wird darauf hingewiesen, dass ein gewisser Link sich ebenfalls in der \glqq rechten Spalte bei den Tipps\grqq ~ befinden würde. Allerdings existieren auf der Seite weder eine rechte Spalte noch Tipps. Die Seite wurde offensichtlich nicht komplett aktualisiert und die Tatsache, dass dem Nutzer auf dieser Seite erste Hoffnung auf Tipps zur Registrierung gemacht werden, dieses Versprechen aber nicht eingehalten wird, ist frustrierend für den Nutzer.
 }
-{ Ein Verweis auf etwas, das nicht mehr aktuell ist, ist verwirrend und damit klar ein Kategorie 3 Problem.
+{ Ein Verweis auf etwas, das nicht mehr aktuell ist, ist sehr verwirrend und damit klar ein Kategorie 3 Problem.
 }
-{ Diese Referenz sollte im aktuellen Zustand der Seite einfach gestrichen werden. Der Link auf den verwiesen wird könnte hier direkt eingefügt werden. Im Prototyp wurde eine rechte Spalte eingeführt, auf der sich Tipps zur Registrierung befinden.
+{ Diese Referenz sollte im aktuellen Zustand der Seite einfach gestrichen werden. Der Link auf den verwiesen wird könnte hier direkt eingefügt werden. Im Prototyp wurde eine rechte Spalte eingeführt, die nützliche Tipps zur Registrierung enthält.
 } 
-
-\problem{Einzelne Buchstaben als Fach auswählbar}
-{ Unglücklicherweise lassen sich im Drop-Down-Menü \glqq Fach\grqq ~auf Seite 2 der Registrierung einzelne Buchstaben, die nur als Überschriften dienen sollen, selektieren und somit als Fach auswählen. 
-}
-{ Es handelt sich um einen kleinen Fehler in der Formatierung der Dropdown-Liste, der sofort vom Nutzer erkannt wird. Es ist sehr unwahrscheinlich, dass jemand unabsichtlich einen Buchstaben als Fach wählt. Deshalb ist dieser Fehler nicht verwirrend und nur in Kategorie 2.
-}
-{ Der Fehler lässt sich leicht beheben indem man zum Beispiel im \texttt{ \textless select\textgreater} -Tag das label-Attribut innerhalb eines \texttt{ \textless optgroup\textgreater  } -Tags setzt, statt 'A', 'B' usw. als value-Attribut in einem \texttt{ \textless option\textgreater} -Tag zu verwenden.
-} 
-
-
-
-\problem{Eingabe von Beginn und Ende des Studiums auf den Tag genau}
-{ Es ist extrem unwahrscheinlich dass ein Alumni auf den Tag genau noch weiß, wann er angefangen oder aufgehört hat zu studieren. 
-Eine Meldung darunter zeigt zwar an, dass man hier schätzen soll, allerdings ist es dann fraglich wieso der Tag dann überhaupt zur Auswahl steht.
-}
-{ Die Eingabe eines exakten Datums ist nicht nötig, allerdings kein Fehler. Wer gewissenhaft ein Formular ausfüllen fühlt sich allerdings unwohl, beim Runden eines
-Wertes. Daher ist diese überflüssige Eingabe in Kategorie 1 anzusiedeln.
-}
-{ Der Tag sollte aus dieser Auswahl komplett gestrichen werden. Da hier sowieso immer geschätzt wird, liefert er keinen Mehrwert.
-} 
-
-\problem{Überflüssige Date-Picker}
-{ Die Date-Picker neben den Datumseingaben bei \glqq Geburtstag\grqq ~auf Seite 1 und \glqq Beginn und Ende\grqq ~auf Seite 2 der Registrierung verführen zur einfachen Eingabe des Datums ohne auf das Format achten zu müssen. Allerdings merkt man schnell, dass diese Freude unbegründet ist, denn es nicht möglich direkt ein Jahr einzugeben. Stattdessen ist der Benutzer gezwungen, Jahr für Jahr zurückzuscrollen was sehr nervig, da langwierig ist (Bsp. Geburtsjahr).
-}
-{ Dem Nutzer bleibt überlassen, ob die Date-Picker nutzt. Es ist aber davon auszugehen, dass er rasch bemerkt, dass er mit gewöhnlicher Eingabe per Tastatur wesentlich schnell voran kommt. Die Date-Picker sind aus diesem Grund leider nicht zu gebrauchen obwohl sie technisch funktionieren. Es handelt sich um einen leichten Fehler der Kategorie 2, da der Benutzer hier noch die Wahl hat das Textfeld selbst zu füllen.
-}
-{ Die Date-Picker sollten entfernt werden, da sie in dieser Form definitiv nicht benutzt werden würden und dem Anwender keine Arbeit abnehmen.
-}
-
-
-
+\label{prob:reg:missingtipps}
 
 \usecasepart{Abschicken des Eingabeformulars}
 
-Nachdem der Benutzer die Eingabemasken mit allen notwendigen Parametern gefül\textless hat, möchte er nun die Registrierung beenden und abschicken. Sobald
-er die erste Hälfte der Registrierung beenden will, klickt er auf den \glqq Weiter”-Button und sieht -falls vorhanden- seine fehlerhaften Eingaben. Hat er nach korrektem
-Ausfüllen der ersten Formularseite auch die zweite ausgefül\textless und mit einem erneuten Klick auf \glqq Weiter\grqq ~wieder alle Fehler berichtigt, ist die Registrierung abgeschlossen
-und wird mit einer Erfolgsmeldung auf der Seite bestätigt.
+Nachdem der Benutzer die Eingabemasken mit allen notwendigen Parametern gefüllt hat, möchte er nun die Registrierung beenden und abschicken. Sobald
+er die erste Hälfte der Registrierung beenden will, klickt er auf den \emph{Weiter}-Button und sieht --falls vorhanden-- seine fehlerhaften Eingaben. Hat er nach korrektem
+Ausfüllen der ersten Formularseite auch die zweite ausgefüllt und mit einem erneuten Klick auf \emph{Weiter} ~wieder alle Fehler berichtigt, ist die Registrierung abgeschlossen und wird mit einer Erfolgsmeldung auf der Seite bestätigt.
 
 
 \problem{Fehlermeldung bei Validierung als Pop-Up realisiert}
-{ Leider sind alle Fehlermeldungen, die auftreten falls der Nutzer einen ungültigen Wert eingegeben oder ein Pflichtfeld ausgelassen hat, mit einem Aufruf von \glqq \texttt{alert()}\grqq ~realisiert. Dieser Befehl erzeugt ein kleines Pop-Up, wie in Abb.\ref{fig:regpopup} zu sehen, das Fokus erhält, sodass der Benutzer aus seinem aktuellen Seitenumfeld gerissen wird. Hier wird aber nur eine einzelne fehlerhafte Eingabe angezeigt. Wurden mehrere falsche Eingaben getätigt, muss der Nutzer diese einzeln korrigieren und wird nach jeder Korrektur und Klick auf den \glqq Weiter\grqq ~mit einem Pop-Up belästigt.
+{ Leider sind alle Fehlermeldungen, die auftreten falls der Nutzer einen ungültigen Wert eingegeben oder ein Pflichtfeld ausgelassen hat, mit einem Aufruf von \glqq \texttt{alert()}\grqq ~ in Javascript realisiert. Dieser Befehl erzeugt ein kleines Pop-Up, wie in Abb.\ref{fig:regpopup} zu sehen, das Fokus erhält, sodass der Benutzer aus seinem aktuellen Seitenumfeld gerissen wird. Hier wird aber nur eine einzelne fehlerhafte Eingabe angezeigt. Wurden mehrere falsche Eingaben getätigt, muss der Nutzer diese einzeln korrigieren und wird nach jeder Korrektur und Klick auf \emph{Weiter} ~mit einem Pop-Up belästigt.
 }
-{ Pop-Ups die direkt Fokus erhalten, sind extrem störend für jeden Benutzer, da er gezwungen wird das Pop-Up erst zu schließen, bevor er mit der Browserbedienung fortfahren kann. \texttt{alert()} ist keine geeignete Methode um eine Inputvalidierung durchzuführen. Das aktuelle Design dieses Features ist irreführend und störend und somit in Kategorie 3 einzuordnen.
+{ Pop-Ups die direkt Fokus erhalten, sind extrem störend für jeden Benutzer, da er gezwungen wird das Pop-Up erst zu schließen, bevor er mit der Browserbedienung fortfahren kann. \texttt{alert()} ist keine geeignete Methode um eine Inputvalidierung durchzuführen. Das aktuelle Design dieses Features ist irreführend und und somit in Kategorie 3 (schwerers Problem) einzuordnen.
 }
-{ Moderne Webseiten führen diese Validierungen nicht erst beim Absenden des Formulars, sondern direkt während der Eingabe aus. Eine interaktive Fehleranzeige stört nicht und der Benutzer kann den Fehler sofort berichtigen ohne in seinem weiteren Vorgehen unterbrochen zu werden. Der Prototyp enthä\textless eine solche interaktive Validierung, die sogar die Datenbank über eine bereits vergebene Mailadresse informiert.}
+{ Moderne Webseiten führen diese Validierungen nicht erst beim Absenden des Formulars, sondern direkt während der Eingabe aus. Eine interaktive Fehleranzeige stört nicht und der Benutzer kann den Fehler sofort berichtigen ohne in seinem weiteren Vorgehen unterbrochen zu werden. Der Prototyp enthält eine solche interaktive Validierung, die sogar die Datenbank über eine bereits vergebene Mailadresse informiert.}
 \begin{figure}
 	\centering
 		\includegraphics{figures/regpopup.png}
@@ -111,19 +109,22 @@ und wird mit einer Erfolgsmeldung auf der Seite bestätigt.
 	\label{fig:regpopup}
 \end{figure}
 
+\label{prob:reg:popup}
 \problem{Bereits vergebene Mail resultiert in Neuladen der Seite}
-{ Ein störendes Problem auf der Registrierungsseite ist die Reaktion darauf, dass ein User eine bereits verwendete E-Mail-Adresse benutzen will. Zwar wird dies von der Webseite bemerkt und mit einem Pop-Up darauf hingewiesen, allerdings läd sich die Seite dabei neu und etwa die Hälfte aller Eingabemasken werden durch diesen Vorgang geleert. Die Daten dieser Eingabefelder, die der Nutzer bereits eingetragen hat, müssen dadurch erneut eingegeben werden.
+{ Ein weiteres, störendes Problem auf der Registrierungsseite ist die Reaktion darauf, dass ein User eine bereits verwendete E-Mail-Adresse benutzen will. Zwar wird dies von der Webseite bemerkt und mit einem Pop-Up darauf hingewiesen, allerdings läd sich die Seite dabei neu und etwa die Hälfte aller Eingabemasken werden durch diesen Vorgang geleert. Die Daten dieser Eingabefelder, die der Nutzer bereits eingetragen hat, müssen dadurch erneut eingegeben werden.
 }
-{ Ein Nutzer der alle vorgeschlagene Eingabefelder ausfül\textless und dann die Hälfte der Informationen nochmals eingeben muss, ist frustriert und wird, falls dies mehrmals passiert, auf eine Registrierung verzichten. Dieses Problem ist deshalb in Kategorie 3.
+{ Ein Anwender der erst alle vorgeschlagene Eingabefelder ausfüllt und dann die Hälfte der Informationen nochmals eingeben muss, ist frustriert und wird, falls dies mehrmals passiert, auf eine Registrierung verzichten. Dieses Problem ist schwerwiegend und deshalb in Kategorie 3 einzuordnen.
 }
-{ Eine Überprüfung auf eine bereits vorhandene E-Mail-Adresse sollte optimalerweise direkt bei der Eingabe erkannt und gemeldet werden. Der Prototyp enthä\textless dieses Feature und meldet den Fehler ohne Pop-Up aber mit farbiger Fehlermarkierung.
+{ Die Überprüfung auf eine bereits vorhandene E-Mail-Adresse sollte optimalerweise direkt bei der Eingabe erkannt und gemeldet werden. Der Prototyp enthält dieses Feature und meldet den Fehler ohne Pop-Up, aber mit farbiger Fehlermarkierung.
 }  
+\label{prob:reg:vergivenmail}
 
-\problem{Fehlende/Falsche reguläre Ausdrücke bei Formularvalidierung}
-{ Das gravierendste Problem auf der Registrierungsseite ist allerdings, dass bei mehreren Eingabefeldern keine korrekten regulären Ausdrücke zur Validierung verwendet wurden. Es ist etwa möglich eine reine Buchstabensequenz als Postleitzahl einzugeben, oder was noch schlimmer ist eine ungültige E-Mail-Adresse, wie zum Beispiel \glqq \texttt{@} \grqq ~.
+
+\problem{Fehlende/falsche reguläre Ausdrücke bei Formularvalidierung}
+{ Das gravierendste Problem auf der Registrierungsseite ist allerdings, dass bei mehreren Eingabefeldern keine korrekten regulären Ausdrücke zur Validierung verwendet wurden. Es ist etwa möglich eine reine Buchstabensequenz als Postleitzahl einzugeben, oder was noch schlimmer ist eine ungültige E-Mail-Adresse, wie zum Beispiel \glqq \texttt{@}\grqq ~.
 }
-{ Eine fehlerhafte E-Mail-Adresse führt dazu, dass der Nutzer womöglich endlos auf eine Freischaltung wartet und den Fehler nie bemerkt. Er kann die Seite durch den Fehler also gar nicht benutzen. Dies ist eindeutig ein Kategorie 4 Problem.}
+{ Eine fehlerhafte E-Mail-Adresse führt dazu, dass der Nutzer womöglich endlos auf eine Freischaltung wartet und den Fehler nie bemerkt. Er kann die Seite durch den Fehler also gar nicht benutzen. Dies ist ein fatales Problem und damit eindeutig ein Kategorie 4 Problem.}
 { Das Problem kann einfach gelöst werden, indem korrekte reguläre Ausdrücke zur Validierung benutzt werden.
 } 
-
+\label{prob:reg:regex}
 
