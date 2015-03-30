@@ -58,7 +58,7 @@ var Paginator = (function (domContainer, resultListLength, resultsPerPage, activ
 		_activePage = page;
 		highlightActivePage(page);
 		updateUrlHash(page);
-		$('html body').animate({ scrollTop: 355}, 'fast');
+		$('html').animate({ scrollTop: 355}, 'slow');
 
 		handlePrevButtonStatus();
 		handleNextButtonStatus();
@@ -89,9 +89,9 @@ var Paginator = (function (domContainer, resultListLength, resultsPerPage, activ
 			pageNumberElements = allNavElements.slice(1, allNavElements.length - 1);
 
 		$(pageNumberElements).on('click', function (e) {
-			e.preventDefault();
 			var clickedPageNumber = Number.parseInt(e.target.text);
 
+			e.preventDefault();
 			setActivePage(clickedPageNumber);
 		});
 
@@ -105,6 +105,7 @@ var Paginator = (function (domContainer, resultListLength, resultsPerPage, activ
 		});
 
 		$(_paginator).find('li:last').on('click', function (e) {
+			console.log('%s => next clicked', _TAG);
 			e.preventDefault();
 
 			if(_activePage === _pageCount)
@@ -138,6 +139,9 @@ var Paginator = (function (domContainer, resultListLength, resultsPerPage, activ
 		},
 		getActivePage: function () {
 			return _activePage;
+		},
+		getNavContainer: function () {
+			return _paginator;
 		}
 	};
 });
