@@ -202,10 +202,15 @@ app.get('/names',function(req,res) {
 //Unlock user by unlock-code
 app.get('/unlock/:hash', function(req,res){
 	try {
-		sqlstr = "UPDATE userdata set is_unlocked = 1 WHERE is_unlocked='" + req.params.hash + "';";
-		db.run(sqlstr);
-		writeToFile();
-		res.send('success');
+		var ans = db.exec("SELECT is_unlocked FROM userdata WHERE is_unlocked='" + req.params.hash + "';");
+		if (typeof ans !== 'undefined' && ans.length > 0) {
+			sqlstr = "UPDATE userdata set is_unlocked = 1 WHERE is_unlocked='" + req.params.hash + "';";
+			db.run(sqlstr);
+			writeToFile();
+			res.send('success');
+		} else {
+			res.send('failure');
+		}
 	} catch (err) {
 		res.send('failure');
 	}
@@ -293,7 +298,7 @@ function insertDatabasePopulation(){
 			 "'Julius-Maximilians-Universität Würzburg','Mathemathik und Informatik','Informatik','1983','1988','Schwimmen','5','1')," + 
 			 "('Frau','Evelinde','Frank','Evelinde Frank','Rudolf-Trache-Straße 6','20191','Luckau','efrank@mail.de','EFrank'," + 
 			 "'7c704581496bb55d41a1b680a89ace91b5fbe846e3b201f743f747d73c2a19588e2d544f6fe8503a2a38089fa2e9dbb06a221fd05dd3c1c125a51bcaf0f235de','28.05.1952','Gymnasium Würzburg','Öffentlicher Dienst','Sachsen-Anhalt'," + 
-			 "'Julius-Maximilians-Universität Würzburg','Philologie','Deutsch/Englisch Lehramt','1973','1979','Kino','6','1')," + 
+			 "'Julius-Maximilians-Universität Würzburg','Philologie','Deutsch/Englisch Lehramt','1973','1979','Kino','6','abcdef')," + 
 			 "('Frau','Rosalie','Buhr','Rosalie Buhr','Auf der Brandshofer Schleuse 14','36046','Rastenberg','rbuhr@mail.de','RBuhr'," + 
 			 "'07decd49687ca2ae9a28f17cc141094fda68d980ce9e2fe97228ce343b0c2cfe05038e38674409bea684dc00fd7efddd83c4065c8f071227b7c330d54d73a5cf','16.04.1976','Hotel- und Gaststättenverband Rheinland-Pfalz','Hotelgewerbe','Thüringen'," + 
 			 "'Julius-Maximilians-Universität Würzburg','Philosophische Fakultät','Philosophie','1994','1997','Oper','7','1')," + 

@@ -11,5 +11,5 @@ jQuery(function () {
 	ContentHandler.loadView('loginform.html', '#login', function () {
 		app.loginCtrl.initialize();
 	});
-
+	
 });
