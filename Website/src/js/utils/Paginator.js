@@ -59,6 +59,7 @@ var Paginator = (function (domContainer, resultListLength, resultsPerPage, activ
 		highlightActivePage(page);
 		updateUrlHash(page);
 		$('html').animate({ scrollTop: 355}, 'slow');
+		$('html body').animate({ scrollTop: 355 }, 'slow');
 
 		handlePrevButtonStatus();
 		handleNextButtonStatus();
@@ -105,7 +106,6 @@ var Paginator = (function (domContainer, resultListLength, resultsPerPage, activ
 		});
 
 		$(_paginator).find('li:last').on('click', function (e) {
-			console.log('%s => next clicked', _TAG);
 			e.preventDefault();
 
 			if(_activePage === _pageCount)
@@ -142,6 +142,17 @@ var Paginator = (function (domContainer, resultListLength, resultsPerPage, activ
 		},
 		getNavContainer: function () {
 			return _paginator;
+		},
+		destroy: function () {
+			if($(_paginatorContainer).is(':parent'))
+				$(_paginatorContainer).empty();
+
+			_paginatorContainer = null;
+			_paginator = null;
+			_resultCount = null;
+			_pageCount = null;
+			_resultsPerPage = null;
+			_activePage = null;
 		}
 	};
 });
