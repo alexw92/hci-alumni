@@ -28,8 +28,12 @@ Router.prototype.init = function() {
 		});
 
 		this.get('#/verify/:verifyCode', function () {
-			var code = this.params.verifyCode;
-			console.log('%s => init verify account controller with code: %s', self.TAG, code);
+			var verifyCode = this.params.verifyCode;
+
+			ContentHandler.loadView('verify_user.html', '.content', function () {
+				var verifyCtrl = new VerifyUserController();
+				verifyCtrl.verify(verifyCode);
+			});
 		});
 
 		this.get('#/userpanel', function () {
@@ -86,7 +90,7 @@ Router.prototype.init = function() {
 				var pwdChange = new PwdChangeController(urlUsername, urlPassword);
 			});
 		});
-		
+
 		this.get('#/impressum', function () {
 			ContentHandler.loadView('impressum.html', '.content', function () {
 				console.log('impressum loaded');
