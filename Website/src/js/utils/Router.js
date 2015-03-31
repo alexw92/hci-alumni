@@ -10,6 +10,8 @@ Router.prototype.init = function() {
 		this.get('/', function () {
 			ContentHandler.loadView('home.html', '.content', function () {
 				console.log('%s => main site loaded', self.TAG);
+				var homeCtrl = new HomeController();
+				homeCtrl.init();
 			});
 		});
 
