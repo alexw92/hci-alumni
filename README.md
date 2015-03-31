@@ -20,7 +20,10 @@ Prototypische Umsetzung des Alumni Portal der Universität Würzburg. Der Protot
 
 Die Entwicklungs- und Build-Umgebung ist nun vollständig eingerichtet. Starte im Ordner `Website` mit `grunt serve` einen lokalen Webserver, der den aktuellen Prototypen des Alumni-Portals ausliefert. Nutze das zweite Konsolenfenster, um im Verzeichnis `Server` mit dem Befehl `node backend.js` das Backend mit Datenbank zu starten. Die Webseite ist nun unter [localhost:3000](http://localhost:3000) erreichbar.
 
-Die Webseite wurde entwickelt und getestet mit der aktuellen Version von Google Chrome.
+## Hinweise zur Nutzung
+
+* Die Webseite wurde entwickelt und getestet mit der aktuellen Version von Google Chrome.
+* Die Links in den verschickten Mails enthalten nur localhost-Adressen, da sowohl Webseite als auch Backend lokal auf dem Rechner laufen. Die Mails müssen also auf dem gleichen Rechner abgerufen werden, um die volle Funktionalität der Webseite zu nutzen.
 
 ## Verwendete Frameworks / Technologien
 
