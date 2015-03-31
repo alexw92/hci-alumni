@@ -8,6 +8,10 @@ var SearchCourseController = (function () {
 	/**
 	 private methods
 	 */
+	 var clearFirst = function () {
+	 	$(_coursePanel).find('ul:first').empty();
+	 };
+
 	 var loadDomElements = function () {
 	 	_coursePanel = $('#search-panel').find('#search-course-panel');
 	 	_courseLetterNav = $(_coursePanel).find('#course-letter-nav');
@@ -15,7 +19,8 @@ var SearchCourseController = (function () {
 
 	 var loadFullCourseList = function (callback) {
 		_dbHandler.getCourses(function (resultSet) {
-			_courseList = resultSet.sort();
+			var courseListDirty = resultSet.sort();
+			_courseList = courseListDirty.slice(1, courseListDirty.length);
 
 			if(typeof(callback) === 'function' && callback !== 'undefined')
 				callback('course-list-received');
@@ -57,6 +62,11 @@ var SearchCourseController = (function () {
 
 		$(list).find('li[name^=' + filter + ']').show();
 		$(list).find('li').not('li[name^=' + filter +']').hide();
+
+		if(!$('.list-group-item').is(':visible'))
+			$('#course-list-empty').removeClass('hidden');
+		else
+			$('#course-list-empty').addClass('hidden');
 	};
 
 	/**
@@ -65,8 +75,8 @@ var SearchCourseController = (function () {
 	 return {
 	 	init: function () {
 	 		loadDomElements();
+	 		clearFirst();
 	 		loadFullCourseList(function (eventName) {
-	 			console.log('%s => callback: %s', _TAG, eventName);
 	 			renderCourseList();
 	 		});
 
