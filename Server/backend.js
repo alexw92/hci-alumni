@@ -9,6 +9,7 @@ var emailServer = require('./utils/MailServer.js'),
 var chance = require('chance').Chance();
 var jsSHA = require('jssha');
 
+
 try {
 	var filebuffer = fs.readFileSync('userdb.sqlite');
 	db = new SQL.Database(filebuffer);
@@ -274,6 +275,15 @@ function writeToFile(){
 }
 
 
+var server = app.listen(3001, function () {
+
+	var host = server.address().address;
+	var port = server.address().port;
+
+	console.log('Backend listening at port %s', port);
+});
+
+
 function insertDatabasePopulation(){
 	sqlstr = "INSERT INTO userdata(title, firstname, lastname, completename, address, postalcode, city, email, username, " + 
 			 "password, birthday, company, sector, state, " + 
@@ -298,7 +308,7 @@ function insertDatabasePopulation(){
 			 "'Julius-Maximilians-Universität Würzburg','Philosophische Fakultät','Amerikanische Geschichte','1985','1990','Bogenschießen','5','1')," + 
 			 "('Frau','Hannerose','Hackl','Hannerose Hackl','Carolaplatz 9','69069','Behlendorf','hhackl@mail.de','HHackl'," + 
 			 "'cfb57f2b9358147002710c5db272f927820c15b2a1f7bb5c7f6b9edcadfab0723affecb4c2aa3f8971c09a5a8dbb8ac963004a050faa43746489c09e6d75357d','07.03.1947','','','Baden-Württemberg'," + 
-			 "'Julius-Maximilians-Universität Würzburg','Physik','Phsyik','1975','1978','Lesen','6','1')," + 
+			 "'Julius-Maximilians-Universität Würzburg','Physik','Physik','1975','1978','Lesen','6','1')," + 
 			 "('Frau','Else','Welte','Else Welte','Dringsheide 7','20415','Sallneck','ewelte@mail.de','EWelte'," + 
 			 "'d7d21bef0167dc499a35da3b81c4e8cb623ad553a9fcb748a9bb40df13380f2fdf41fbdbfa8cd840190654d6c7078ec647f565a46105e4a5d732a4b57589b7e5','27.02.1974','','','Niedersachsen'," + 
 			 "'Julius-Maximilians-Universität Würzburg','Mathemathik und Informatik','Medieninformatik','1992','1998','Musik hören','7','1')," + 
@@ -385,19 +395,3 @@ function insertDatabasePopulation(){
 			 "'Julius-Maximilians-Universität Würzburg','Chemie','Lebensmittelchemie','1999','2003','Italienisches Essen','4','1');";
 	db.run(sqlstr);
 }
-
-
-var server = app.listen(3001, function () {
-
-	var host = server.address().address;
-	var port = server.address().port;
-
-	console.log('Backend listening at http://%s:%s', host, port);
-
-});
-
-
-
-// "('','','','','','','','',''," + 
-			 // "'','','','',''," + 
-			 // "'Julius-Maximilians-Universität Würzburg','','','','','','','')," + 
