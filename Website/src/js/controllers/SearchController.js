@@ -182,7 +182,7 @@ var SearchController = (function () {
 		if(endIndex >= searchResult.length)
 			endIndex = searchResult.length - 1;
 
-		return results.slice(startIndex, endIndex);
+		return results.slice(startIndex, endIndex +1);
 	};
 
 	var displayNoResult = function () {

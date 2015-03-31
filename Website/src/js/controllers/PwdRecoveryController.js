@@ -48,6 +48,20 @@ PwdRecoveryController.prototype.coverEmailIdentity = function(userMail){
 PwdRecoveryController.prototype.bindEvents = function() {
 	var self = this;
 	//change password button
+	
+	$('#pwdRecoveryForm').keydown(function(e) {
+		if(e.keyCode == 13) 
+		{
+			$('#btnSubmitRecoveryPassword').trigger('click');
+		}
+	});
+	$('#mailRecoveryForm').keydown(function(e) {
+		if(e.keyCode == 13) 
+		{
+			$('#btnSubmitRecoveryEmail').trigger('click');
+		}
+	});
+	
 	$("#btnSubmitRecoveryPassword").on('click', function(event){
 		event.preventDefault();
 		self.pwdRecoveryForm.validate();
