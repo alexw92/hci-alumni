@@ -136,7 +136,7 @@ Ausfüllen der ersten Formularseite auch die zweite ausgefüllt und mit einem er
 \problem{Bereits vergebene Mail resultiert in Neuladen der Seite}
 { Ein weiteres, störendes Problem auf der Registrierungsseite ist deren Reaktion darauf, dass ein User eine bereits verwendete E-Mail-Adresse benutzen will. Zwar wird dies von der Webseite bemerkt und es wird (mit einem Pop-Up) darauf hingewiesen, allerdings lädt sich die Seite dabei neu und etwa die Hälfte aller Eingabemasken werden durch diesen Vorgang geleert. Die Daten dieser Eingabefelder, die der Nutzer bereits eingetragen hat, müssen dadurch erneut eingegeben werden.
 }
-{ Ein Anwender der erst alle vorgeschlagene Eingabefelder ausfüllt und dann die Hälfte der Informationen nochmals eingeben muss, ist frustriert und wird, falls dies mehrmals passiert, definitiv auf eine Registrierung verzichten. Dieses Problem ist schwerwiegend und deshalb in Kategorie 3 einzuordnen.
+{ Ein Anwender der erst alle vorgeschlagene Eingabefelder ausfüllt und dann die Hälfte der Informationen nochmals eingeben muss, ist frustriert und wird, falls dies mehrmals passiert, definitiv auf eine Registrierung verzichten. Dieses Problem ist schwerwiegend und deshalb Kategorie 3 zuzuordnen.
 }
 { Die Überprüfung auf eine bereits vorhandene E-Mail-Adresse sollte optimalerweise direkt bei der Eingabe erkannt und gemeldet werden. Ein schlankes Backend erledigt diesen Lookup-Vorgang on-the-fly ohne viel Ressourcen zu verbrauchen. Der Prototyp enthält ein solches Feature und meldet den Fehler ohne Pop-Up, dafür aber mit farbiger Fehlermarkierung.
 }  
@@ -146,7 +146,7 @@ Ausfüllen der ersten Formularseite auch die zweite ausgefüllt und mit einem er
 \problem{Fehlende/falsche reguläre Ausdrücke bei Formularvalidierung}
 { Das gravierendste Problem auf der Registrierungsseite ist allerdings, dass bei mehreren Eingabefeldern keine korrekten regulären Ausdrücke zur Validierung verwendet wurden. Es ist etwa möglich eine reine Buchstabensequenz als Postleitzahl einzugeben, oder was noch schlimmer ist eine ungültige E-Mail-Adresse, wie zum Beispiel ein einfaches \glqq \texttt{@}\grqq.
 }
-{ Eine fehlerhafte E-Mail-Adresse führt dazu, dass der Nutzer womöglich endlos auf eine Freischaltung wartet und den Fehler nie bemerkt. Er kann die Seite durch den begangenen Fehler also gar nicht mehr benutzen. Dies ist ein fatales Problem und damit eindeutig ein Kategorie 4 Problem.}
+{ Eine fehlerhafte E-Mail-Adresse führt dazu, dass der Nutzer womöglich endlos auf eine Freischaltung wartet und den Fehler nie bemerkt. Er kann die Seite durch diesen Umstand also gar nicht mehr benutzen. Die falschen regulären Ausdrücke sind ein fataler Fehler und damit eindeutig als Kategorie 4 Problem einzustufen.}
 { Das Problem kann einfach gelöst werden, indem korrekte reguläre Ausdrücke zur Validierung benutzt werden.
 } 
 \label{prob:reg:regex}
