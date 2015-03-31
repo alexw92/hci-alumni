@@ -36,17 +36,25 @@ RegistrationController.prototype.bindEvents = function() {
 	});
 
 	//reset button
-	$('#btnAbortReg').on('click', function(){
-		event.preventDefault();
+	$('#btnAbortReg').on('click', function(event){
+		event.preventDefault(event);
 		$(':input', '#registrationForm')
-			.not(':button, :submit, :reset, :hidden')
+			.not(':button, :submit, :reset, :hidden, :radio')
             .val('');
 		self.regForm.resetForm();
 		$('#title').val('Anrede');
+		$(':input', '#membershipData')
+			.not(':button, :submit, :reset, :hidden, :radio')
+            .val('');
+		if(self.accountForm != null)
+		{
+			self.accountForm.resetForm();
+		}
+
 	});
 	//submit button action
 	$('#btnSubmitReg').on('click', function(event){
-		event.preventDefault();
+		event.preventDefault(event);
 		console.log('SubmitBtn clicked');
 		self.regForm.validate();
 		if(membershipBool)
@@ -58,6 +66,8 @@ RegistrationController.prototype.bindEvents = function() {
 		{
 			var user = self.parseUser(),
 				dbHandler = new DatabaseHandler();
+				
+			Spinner.show($('#btnSubmitReg'));
 
 			dbHandler.insertNewUser(user, function (response) {
 				console.log('response text' + response);
@@ -77,29 +87,38 @@ RegistrationController.prototype.bindEvents = function() {
 					dbHandler.sendMail('confirm-register', mailData, function(response){
 						if(!response.error)
 						{
-							$('html').animate({scrollTop: 0}, 'slow'); // firefox workaround
-							$('html body').animate({scrollTop: 0}, 'slow');
-							$('#feedbackPositive').html('Ihre Registrierung war erfolgreich. In Kürze erhalten Sie eine Bestätigungsemail mit Freischaltcode!');
-							$('#feedbackPositive').fadeIn('slow');
-							$('#feedbackNegative').fadeOut('slow');
+							setTimeout(function () {
+								Spinner.hide($('#btnSubmitReg'));
+								$('html').animate({scrollTop: 0}, 'slow'); // firefox workaround
+								$('html body').animate({scrollTop: 0}, 'slow');
+								$('#feedbackPositive').html('Ihre Registrierung war erfolgreich. In Kürze erhalten Sie eine Bestätigungsemail mit Freischaltcode!');
+								$('#feedbackPositive').fadeIn('slow');
+								$('#feedbackNegative').fadeOut('slow');
+							}, 1500);
 						}
 						else
 						{
-							$('html').animate({scrollTop: 0}, 'slow'); // firefox workaround
-							$('html body').animate({scrollTop: 0}, 'slow');
-							$('#feedbackNegative').html('Leider ist ein Fehler beim Versenden der E-Mail zur Bestätigung Ihrer Registrierung aufgetreten. Bitte wenden Sie sich an <b>alumni@uni-wuerzburg.de</b>.');
-							$('#feedbackPositive').fadeOut('slow');
-							$('#feedbackNegative').fadeIn('slow');
+							setTimeout(function () {
+								Spinner.hide($('#btnSubmitReg'));
+								$('html').animate({scrollTop: 0}, 'slow'); // firefox workaround
+								$('html body').animate({scrollTop: 0}, 'slow');
+								$('#feedbackNegative').html('Leider ist ein Fehler beim Versenden der E-Mail zur Bestätigung Ihrer Registrierung aufgetreten. Bitte wenden Sie sich an <b>alumni@uni-wuerzburg.de</b>.');
+								$('#feedbackPositive').fadeOut('slow');
+								$('#feedbackNegative').fadeIn('slow');
+							}, 1500);
 						}
 					});
 				}
 				else
 				{
-					$('html').animate({scrollTop: 0}, 'slow'); // firefox workaround
-					$('html body').animate({scrollTop: 0}, 'slow');
-					$('#feedbackNegative').html('Es tut uns Leid, es ist ein Fehler in der Technik aufgetreten. Versuchen Sie es bitte zu einem anderen Zeitpunkt erneut.');
-					$('#feedbackPositive').fadeOut('slow');
-					$('#feedbackNegative').fadeIn('slow');
+					setTimeout(function () {
+						Spinner.hide($('#btnSubmitReg'));
+						$('html').animate({scrollTop: 0}, 'slow'); // firefox workaround
+						$('html body').animate({scrollTop: 0}, 'slow');
+						$('#feedbackNegative').html('Es tut uns Leid, es ist ein Fehler in der Technik aufgetreten. Versuchen Sie es bitte zu einem anderen Zeitpunkt erneut.');
+						$('#feedbackPositive').fadeOut('slow');
+						$('#feedbackNegative').fadeIn('slow');
+					},1500);
 				}
 			});
 			console.log('Valid');
@@ -180,7 +199,7 @@ RegistrationController.prototype.bindEvents = function() {
 			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
 			{
 				$('#pwdCapslock').removeClass('hidden');
-				$('#pwdCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+				$('#pwdCapslock').html('<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
 			}
 		},keydown: function(e){
 			var kc = e.keyCode ? e.keyCode : e.which;
@@ -199,7 +218,7 @@ RegistrationController.prototype.bindEvents = function() {
 			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
 			{
 				$('#pwdRepCapslock').removeClass('hidden');
-				$('#pwdRepCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+				$('#pwdRepCapslock').html('<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
 			}
 		},keydown: function(e){
 			var kc = e.keyCode ? e.keyCode : e.which;

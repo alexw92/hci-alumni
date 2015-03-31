@@ -152,6 +152,12 @@ textarea {
     font-size: x-small;
     color: red;
 }
+.warning-msg
+{
+    display: none;
+    font-size: x-small;
+    color: orange;
+}
 
 .glyphicon-refresh-animate {
    -webkit-animation: spin 2s infinite linear;

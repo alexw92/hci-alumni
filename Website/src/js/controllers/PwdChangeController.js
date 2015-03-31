@@ -52,8 +52,9 @@ PwdChangeController.prototype.bindEvents = function() {
 			var user = new User();
 			var newPassword = null;
 			var dbHandler = new DatabaseHandler();
-			//TODO get user.username
-			//var usernameForPwdChange = user.username();
+
+			Spinner.show($('#BtnChangePassword'));
+			
 			if(Session.isSessionActive())
 			{
 				user = Session.getUser();
@@ -73,31 +74,39 @@ PwdChangeController.prototype.bindEvents = function() {
 					dbHandler.updateUserinfo('password', usernameForPwdChange, newPassword, function(response){
 						if(response == 'success')
 						{
-							console.log(self.TAG + ' password is changed');
-							$('#feedbackPositivePasswordCh').html('Ihr Passwort wurde erfolgreich geändert!');
-							$('#feedbackPositivePasswordCh').fadeIn('slow');
-							$('#feedbackNegativePasswordCh').fadeOut('slow');
-							return true;
-							//TODO 
+							setTimeout(function () {
+								Spinner.hide($('#BtnChangePassword'));
+								console.log(self.TAG + ' password is changed');
+								$('#feedbackPositivePasswordCh').html('Ihr Passwort wurde erfolgreich geändert!');
+								$('#feedbackPositivePasswordCh').fadeIn('slow');
+								$('#feedbackNegativePasswordCh').fadeOut('slow');
+								return true;
+							}, 1500);
 						}
 						else
 						{
-							console.log(self.TAG + ' password could not be changed');
-							$('#feedbackNegativePasswordCh').html('Es tut uns Leid, Ihr Passwort konnte nicht geändert werden. Bitte versuchen sie es zu einem anderen Zeitpunkt erneut.');
-							$('#feedbackPositivePasswordCh').fadeOut('slow');
-							$('#feedbackNegativePasswordCh').fadeIn('slow');
-							//TODO plot failure of finding email in database to feedback div
-							return false;
+							setTimeout(function () {
+								Spinner.hide($('#BtnChangePassword'));
+								console.log(self.TAG + ' password could not be changed');
+								$('#feedbackNegativePasswordCh').html('Es tut uns Leid, Ihr Passwort konnte nicht geändert werden. Bitte versuchen sie es zu einem anderen Zeitpunkt erneut.');
+								$('#feedbackPositivePasswordCh').fadeOut();
+								$('#feedbackNegativePasswordCh').fadeIn('slow');
+								//TODO plot failure of finding email in database to feedback div
+								return false;
+							}, 1500);
 						}
 					});
 				}
 				else//response is false -> login failed -> oldPassword is wrong
 				{
-					console.log(self.TAG + ' user login failed with old password');
-					$('#feedbackNegativePasswordCh').html('Sie haben ein falsches Passwort als "Altes Passwort" angegeben.');
-					$('#feedbackPositivePasswordCh').fadeOut('slow');
-					$('#feedbackNegativePasswordCh').fadeIn('slow');
-					return false;
+					setTimeout(function () {
+						Spinner.hide($('#BtnChangePassword'));
+						console.log(self.TAG + ' user login failed with old password');
+						$('#feedbackNegativePasswordCh').html('Sie haben ein falsches Passwort als "Altes Passwort" angegeben.');
+						$('#feedbackPositivePasswordCh').fadeOut('slow');
+						$('#feedbackNegativePasswordCh').fadeIn('slow');
+						return false;
+					}, 1500);
 				}
 			});
 		}
@@ -117,7 +126,7 @@ PwdChangeController.prototype.bindEvents = function() {
 			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
 			{
 				$('#pwdChangeCapslock').removeClass('hidden');
-				$('#pwdChangeCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+				$('#pwdChangeCapslock').html('<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
 			}
 		},keydown: function(e){
 			var kc = e.keyCode ? e.keyCode : e.which;
@@ -132,7 +141,7 @@ PwdChangeController.prototype.bindEvents = function() {
 			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
 			{
 				$('#pwdChangeOldCapslock').removeClass('hidden');
-				$('#pwdChangeOldCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+				$('#pwdChangeOldCapslock').html('<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
 			}
 		},keydown: function(e){
 			var kc = e.keyCode ? e.keyCode : e.which;
@@ -151,7 +160,7 @@ PwdChangeController.prototype.bindEvents = function() {
 			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
 			{
 				$('#pwdChangeRepCapslock').removeClass('hidden');
-				$('#pwdChangeRepCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+				$('#pwdChangeRepCapslock').html('<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
 			}
 		},keydown: function(e){
 			var kc = e.keyCode ? e.keyCode : e.which;
