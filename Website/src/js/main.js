@@ -11,5 +11,6 @@ jQuery(function () {
 	ContentHandler.loadView('loginform.html', '#login', function () {
 		app.loginCtrl.initialize();
 	});
-	
+
+	PopOvers.bind('.navigation'); // init popover info for header links
 });

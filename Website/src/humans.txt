@@ -12,10 +12,10 @@
 
 # THANKS
 
-    <name>
+#   <name>
 
 # TECHNOLOGY COLOPHON
 
     CSS3, HTML5
     Apache Server Configs, jQuery, Modernizr, Normalize.css
-    Grunt, Bootstrap, sql.js
+    Grunt, Bootstrap, sql.js, Node.js, express.js

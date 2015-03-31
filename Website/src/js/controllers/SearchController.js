@@ -132,7 +132,8 @@ var SearchController = (function () {
 	};
 
 	var handleSearchResult = function (resultSet) {
-		searchResult = extendResultForDemoPurpose(resultSet);
+		//searchResult = extendResultForDemoPurpose(resultSet); // for demo reason to show more results and display paginator :)
+		searchResult = resultSet;
 
 		setTimeout(function () {
 			renderPagination(searchResult.length, resultsPerPage);
