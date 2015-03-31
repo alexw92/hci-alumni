@@ -47,20 +47,19 @@ PwdRecoveryController.prototype.coverEmailIdentity = function(userMail){
 
 PwdRecoveryController.prototype.bindEvents = function() {
 	var self = this;
-	console.log(this.TAG + 'submit');
 	//change password button
 	$("#btnSubmitRecoveryPassword").on('click', function(event){
 		event.preventDefault();
-		console.log('password recovery btn clicked');
 		self.pwdRecoveryForm.validate();
 		if(self.pwdRecoveryForm.isValid())
 		{
 			var user = new User();
 			var dbHandler = new DatabaseHandler();
 			var emailToFind = self.pwdRecContainer.find('[name = passwordRecovery]').val();
+				
+			Spinner.show($('#btnSubmitRecoveryPassword'));
 			
 			//generate new password
-			
 			dbHandler.getUserByEmail(emailToFind, function(response){
 				if(response.email == emailToFind)
 				{
@@ -81,12 +80,15 @@ PwdRecoveryController.prototype.bindEvents = function() {
 								password: newPassword
 							};
 							dbHandler.sendMail('send-password', mailData, function(response){
-								console.log(response);
 								if(!response.error)
 								{
-									$('#feedbackPositiveRecovery').html('Es wurde Ihnen eine E-Mail mit neuen Logindaten zugesendet!');
-									$('#feedbackPositiveRecovery').fadeIn('slow');
-									$('#feedbackNegativeRecovery').fadeOut('slow');
+									setTimeout(function () {
+										Spinner.hide($('#btnSubmitRecoveryPassword'));
+										$('#feedbackPositiveRecovery').html('Es wurde Ihnen eine E-Mail mit neuen Logindaten zugesendet!');
+										$('#feedbackPositiveRecovery').fadeIn('slow');
+										$('#feedbackNegativeRecovery').fadeOut('slow');
+									}, 1500);	
+
 								}
 								else
 								{
@@ -103,11 +105,17 @@ PwdRecoveryController.prototype.bindEvents = function() {
 				}
 				else
 				{
-					console.log(self.TAG + ' no User object found by email');
+					setTimeout(function () {
+					Spinner.hide($('#btnSubmitRecoveryPassword'));
 					$('#feedbackNegativeRecovery').html('Es tut uns leid, es wurde kein Account zu dieser E-Mail gefunden!');
 					$('#feedbackPositiveRecovery').fadeOut('slow');
 					$('#feedbackNegativeRecovery').fadeIn('slow');
-					//TODO plot failure of finding email in database to feedback div
+					$(':input', '#pwdRecoveryForm')
+						.not(':button, :submit, :reset, :hidden, :radio')
+						.val('');
+					self.pwdRecoveryForm.resetForm();
+					}, 1500);
+
 				}
 			});
 		}
@@ -127,44 +135,57 @@ PwdRecoveryController.prototype.bindEvents = function() {
 			var user = new User(), 
 				dbHandler = new DatabaseHandler(),
 				userToFind = self.emailRecContainer.find('[name = emailRecovery]').val();
+				
+			Spinner.show($('#btnSubmitRecoveryEmail'));	
 
-				dbHandler.getUserByUsername(userToFind, function(response){
-					if(response.username == userToFind)
-					{
-						var userMail = response.email;
-						console.log(self.TAG + ' user found by username, returning email...');
-						//TODO Email Magic  
-						var mailData = {
-							recipient: response.firstname + ' ' + response.lastname,
-							recipient_mail: userMail,
-							username: response.username,
-							lastname: response.lastname,
-							salutation: response.title
-						};
-						dbHandler.sendMail('send-account', mailData, function(response){
-							if(!response.error)
-							{
-								var coveredEmailString = self.coverEmailIdentity(userMail);
-								$('#feedbackPositiveEmailRecovery').html('Es wurde Ihnen eine Nachricht an die E-Mail-Adresse: <b>' + coveredEmailString + '</b>, mit welcher Sie sich registriert haben, gesendet!');
-								$('#feedbackPositiveEmailRecovery').fadeIn('slow');
-								$('#feedbackNegativeEmailRecovery').fadeOut('slow');
-							}
-							else
-							{
-								console.log(self.TAG + ' sendMail failure');
-							}
-						});
-					//TODO plot email in feedback div / send email to user
-					}
-					else
-					{
+			dbHandler.getUserByUsername(userToFind, function(response){
+				if(response.username == userToFind)
+				{
+					var userMail = response.email;
+					console.log(self.TAG + ' user found by username, returning email...');
+					//TODO Email Magic  
+					var mailData = {
+						recipient: response.firstname + ' ' + response.lastname,
+						recipient_mail: userMail,
+						username: response.username,
+						lastname: response.lastname,
+						salutation: response.title
+					};
+					dbHandler.sendMail('send-account', mailData, function(response){
+						if(!response.error)
+						{
+							setTimeout(function () {
+							Spinner.hide($('#btnSubmitRecoveryEmail'));
+							var coveredEmailString = self.coverEmailIdentity(userMail);
+							$('#feedbackPositiveEmailRecovery').html('Es wurde Ihnen eine Nachricht an die E-Mail-Adresse: <b>' + coveredEmailString + '</b>, mit welcher Sie sich registriert haben, gesendet!');
+							$('#feedbackPositiveEmailRecovery').fadeIn('slow');
+							$('#feedbackNegativeEmailRecovery').fadeOut('slow');
+							}, 1500);
+						}
+						else
+						{
+							console.log(self.TAG + ' sendMail failure');
+						}
+					});
+				//TODO plot email in feedback div / send email to user
+				}
+				else
+				{
+					setTimeout(function () {
+						Spinner.hide($('#btnSubmitRecoveryEmail'));
 						console.log(self.TAG + ' no user found by username...')
 						$('#feedbackNegativeEmailRecovery').html('Es tut uns Leid, es wurde kein Account zu diesem Benutzernamen gefunden!');
 						$('#feedbackPositiveEmailRecovery').fadeOut('slow');
 						$('#feedbackNegativeEmailRecovery').fadeIn('slow');
-					}
+						$(':input', '#mailRecoveryForm')
+							.not(':button, :submit, :reset, :hidden, :radio')
+							.val('');
+						self.emailRecoveryForm.resetForm();
+					}, 1500);
+					
+				}
 
-				});
+			});
 		}
 		else
 		{

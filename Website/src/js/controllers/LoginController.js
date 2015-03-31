@@ -6,7 +6,8 @@ var LoginController = (function () {
 		loginBtn = null,
 		inputUser = null,
 		inputPassword = null,
-		errorSpan = null;
+		errorSpan = null,
+		warningspan = null;
 
 	/**
 	 * private methods
@@ -17,6 +18,7 @@ var LoginController = (function () {
 		inputUser = $(loginPnl).find('#login-user');
 		inputPassword = $(loginPnl).find('#login-password');
 		errorSpan = $(loginPnl).find('#login-error-msg');
+		warningSpan = $(loginPnl).find('#login-warning-msg');
 	};
 
 	var bindLoginEvents = function () {
@@ -25,10 +27,27 @@ var LoginController = (function () {
 			initLoginMechanism();
 		});
 
-		$(inputPassword.selector).on('keyup', function (e) {
-			e.preventDefault();
-			if(e.keyCode === 13)
-				initLoginMechanism();
+		$(inputPassword.selector).on({
+			keyup: function (e) {
+				e.preventDefault();
+				if(e.keyCode === 13)
+					initLoginMechanism();
+			},
+			keypress: function(e) {
+				var kc = e.keyCode ? e.keyCode : e.which;
+				var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+				if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
+				{
+					showWarning(' Warnung: Sie haben die Feststelltaste gedrückt!');
+				}
+			},
+			keydown: function(e){
+				var kc = e.keyCode ? e.keyCode : e.which;
+				if (kc == 20)
+				{
+					hideWarning();
+				}
+			}
 		});
 
 		$(inputUser.selector + ", " + inputPassword.selector).on('focus', function () {
@@ -50,7 +69,18 @@ var LoginController = (function () {
 		Spinner.show(loginBtn);
 		dbHandler.checkValidLogin(credentials.username, credentials.password, function (isValid) {
 			if(isValid === true) {
-				loadUserDataAndLogin(credentials);
+				if(dbHandler.isUserUnlocked(credentials.username, function(response) {
+					if(response){
+						loadUserDataAndLogin(credentials);
+					}
+					else{
+						setTimeout(function () {
+						showError('Sie haben Ihren Benutzeraccount noch nicht freigeschaltet');
+						Spinner.hide(loginBtn);
+						activateButton($(loginBtn).attr('id'));
+						}, 2000);
+					}
+				}));
 			}
 			else {
 				clearPasswordField();
@@ -133,9 +163,17 @@ var LoginController = (function () {
 	var showError = function (message) {
 		$(errorSpan).text(message).show();
 	};
+	
+	var showWarning = function (message) {
+		$(warningSpan).text(message).show();
+	};
 
 	var hideError = function () {
 		$(errorSpan).hide();
+	};
+	
+	var hideWarning = function() {
+		$(warningSpan).hide();
 	};
 
 	var activateButton = function (btnID) {
