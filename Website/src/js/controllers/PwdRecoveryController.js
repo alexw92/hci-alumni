@@ -16,6 +16,35 @@ PwdRecoveryController.prototype.exampleFunction = function() {
 	console.log(this.TAG + 'constructor called');
 };
 
+//found on stackoverflow
+String.prototype.replaceAt=function(index, character) {
+    return this.substr(0, index) + character + this.substr(index+character.length);
+}
+
+PwdRecoveryController.prototype.coverEmailIdentity = function(userMail){
+	var coveredEmailString = userMail,
+		positionOfAt = userMail.indexOf('@'),
+		positionOfFirstCoveredLetter = 4;
+	
+	//very short email  e.g. *@mail.de / ***@mail.de
+	if(positionOfFirstCoveredLetter >= positionOfAt && positionOfAt != -1)
+	{
+		for(var iterator = positionOfAt; iterator > 0; iterator--)
+		{
+			coveredEmailString = coveredEmailString.replaceAt(iterator, '*');
+		}
+	}
+	else //replace every letter between postion 4 and index of '@'
+	{
+		for(var iterator = positionOfFirstCoveredLetter; iterator < positionOfAt; ++iterator)
+		{
+			coveredEmailString = coveredEmailString.replaceAt(iterator, '*');
+		}
+	}
+	return coveredEmailString;
+};
+
+
 PwdRecoveryController.prototype.bindEvents = function() {
 	var self = this;
 	console.log(this.TAG + 'submit');
@@ -102,11 +131,12 @@ PwdRecoveryController.prototype.bindEvents = function() {
 				dbHandler.getUserByUsername(userToFind, function(response){
 					if(response.username == userToFind)
 					{
+						var userMail = response.email;
 						console.log(self.TAG + ' user found by username, returning email...');
 						//TODO Email Magic  
 						var mailData = {
 							recipient: response.firstname + ' ' + response.lastname,
-							recipient_mail: response.email,
+							recipient_mail: userMail,
 							username: response.username,
 							lastname: response.lastname,
 							salutation: response.title
@@ -114,7 +144,8 @@ PwdRecoveryController.prototype.bindEvents = function() {
 						dbHandler.sendMail('send-account', mailData, function(response){
 							if(!response.error)
 							{
-								$('#feedbackPositiveEmailRecovery').html('Es wurde Ihnen eine Nachricht an die E-Mail-Adresse, mit welcher Sie sich registriert haben, gesendet!');
+								var coveredEmailString = self.coverEmailIdentity(userMail);
+								$('#feedbackPositiveEmailRecovery').html('Es wurde Ihnen eine Nachricht an die E-Mail-Adresse: <b>' + coveredEmailString + '</b>, mit welcher Sie sich registriert haben, gesendet!');
 								$('#feedbackPositiveEmailRecovery').fadeIn('slow');
 								$('#feedbackNegativeEmailRecovery').fadeOut('slow');
 							}
@@ -225,3 +256,25 @@ PwdRecoveryController.prototype.initValidationEmail = function () {
     });
     this.emailRecoveryForm = emailRecContainer.data('formValidation');
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

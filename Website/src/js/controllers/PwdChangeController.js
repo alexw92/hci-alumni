@@ -66,7 +66,7 @@ PwdChangeController.prototype.bindEvents = function() {
 			}
 			newPassword = self.pwdChangeContainer.find('[name = newPassword]').val();
 
-			//TODO check gerenrated password with userinput
+			//check gerenrated password with userinput
 			dbHandler.checkValidLogin(usernameForPwdChange, oldPassword, function(response){
 				if(response) //login success pwd can be changed
 				{
@@ -111,12 +111,53 @@ PwdChangeController.prototype.bindEvents = function() {
 			$('#newPasswordHint').css("background-color",self.hintColor);
 		}, focusout: function(){
 			$('#newPasswordHint').css("background-color","white");
+		},keypress: function(e) {
+			var kc = e.keyCode ? e.keyCode : e.which;
+			var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
+			{
+				$('#pwdChangeCapslock').removeClass('hidden');
+				$('#pwdChangeCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+			}
+		},keydown: function(e){
+			var kc = e.keyCode ? e.keyCode : e.which;
+			if (kc == 20){
+				$('#pwdChangeCapslock').addClass('hidden');
+			}
+		}
+	});
+	$('#oldPassword').on({keypress: function(e) {
+			var kc = e.keyCode ? e.keyCode : e.which;
+			var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
+			{
+				$('#pwdChangeOldCapslock').removeClass('hidden');
+				$('#pwdChangeOldCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+			}
+		},keydown: function(e){
+			var kc = e.keyCode ? e.keyCode : e.which;
+			if (kc == 20){
+				$('#pwdChangeOldCapslock').addClass('hidden');
+			}
 		}
 	});
 	$('#newPasswordRepeat').on({focus: function() {
 			$('#newPasswordHint').css("background-color",self.hintColor);
 		}, focusout: function(){
 			$('#newPasswordHint').css("background-color","white");
+		},keypress: function(e) {
+			var kc = e.keyCode ? e.keyCode : e.which;
+			var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
+			{
+				$('#pwdChangeRepCapslock').removeClass('hidden');
+				$('#pwdChangeRepCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+			}
+		},keydown: function(e){
+			var kc = e.keyCode ? e.keyCode : e.which;
+			if (kc == 20){
+				$('#pwdChangeRepCapslock').addClass('hidden');
+			}
 		}
 	});
 };
