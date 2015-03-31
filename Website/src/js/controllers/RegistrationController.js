@@ -174,12 +174,38 @@ RegistrationController.prototype.bindEvents = function() {
 			$('#passwordHint').css("background-color",self.hintColor);
 		}, focusout: function(){
 			$('#passwordHint').css("background-color","white");
+		},keypress: function(e) {
+			var kc = e.keyCode ? e.keyCode : e.which;
+			var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
+			{
+				$('#pwdCapslock').removeClass('hidden');
+				$('#pwdCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+			}
+		},keydown: function(e){
+			var kc = e.keyCode ? e.keyCode : e.which;
+			if (kc == 20){
+				$('#pwdCapslock').addClass('hidden');
+			}
 		}
 	});
 	$('#passwordRpt').on({focus: function() {
 			$('#passwordHint').css("background-color",self.hintColor);
 		}, focusout: function(){
 			$('#passwordHint').css("background-color","white");
+		},keypress: function(e) {
+			var kc = e.keyCode ? e.keyCode : e.which;
+			var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+			if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
+			{
+				$('#pwdRepCapslock').removeClass('hidden');
+				$('#pwdRepCapslock').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' + ' Warnung: Sie haben die Feststelltaste gedrückt!');
+			}
+		},keydown: function(e){
+			var kc = e.keyCode ? e.keyCode : e.which;
+			if (kc == 20){
+				$('#pwdRepCapslock').addClass('hidden');
+			}
 		}
 	});
 	//password hint background-color changing on mouseover
