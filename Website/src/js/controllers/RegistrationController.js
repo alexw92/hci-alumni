@@ -34,6 +34,12 @@ RegistrationController.prototype.bindEvents = function() {
 			console.log('$(this).val()');
 		}
 	});
+	$('#registrationForm').keydown(function(e) {
+		if(e.keyCode == 13) 
+		{
+			$('#btnSubmitReg').trigger('click');
+		}
+	});
 
 	//reset button
 	$('#btnAbortReg').on('click', function(event){

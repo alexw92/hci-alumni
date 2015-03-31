@@ -36,12 +36,19 @@ PwdChangeController.prototype.bindEvents = function() {
 	var self = this;
 	console.log(this.TAG + 'submit');
 	//reset button
-	$('#BtnabortPasswordChange').on('click', function(){
+	$('#BtnabortPasswordChange').on('click', function(event){
 		event.preventDefault();
 		$(':input', '#pwdChangeForm')
 			.not(':button, :submit, :reset, :hidden')
             .val('');
 		self.pwdChangeForm.resetForm();
+	});
+	
+	$('#pwdChangeForm').keydown(function(e) {
+		if(e.keyCode == 13) 
+		{
+			$('#BtnChangePassword').trigger('click');
+		}
 	});
 	$("#BtnChangePassword").on('click', function(event){
 		event.preventDefault();
