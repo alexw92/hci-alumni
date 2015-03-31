@@ -245,13 +245,29 @@ textarea {
   background-color: white;
 }
 
-
-
-#myCarousel
-{
-	data-pause: hover;
-	data-interval: false;
-	data-keyboard: true;
+.carousel {
+  height: 250px;
+  border-radius: 25px;
+}
+.carousel-control {
+  border-radius: 25px;
+}
+.carousel-inner {
+  height: 250px;
+  background-color: #666666;
+  border-radius: 25px;
+}
+.carousel-user-img {
+  width: 150px;
+  padding-top: 15px;
+  margin: auto;
+}
+.carousel-user-item {
+    margin-left: 20%;
+    margin-top: 30px;
+}
+.carousel-caption {
+  left: 30%;
 }
 
 .col-extended-search {
