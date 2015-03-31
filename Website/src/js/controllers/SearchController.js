@@ -254,6 +254,8 @@ var SearchController = (function () {
 		$(searchPanel).find('.search-result-wrapper')
 			.html(domElements);
 		$(searchPanel).find('#search-result').show();
+
+		PopOvers.bind('#search-result');
 		Spinner.hide(searchSpinner);
 	};
 
