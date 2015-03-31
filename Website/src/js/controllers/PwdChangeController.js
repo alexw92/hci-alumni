@@ -247,7 +247,7 @@ PwdChangeController.prototype.initValidationNewPassword = function () {
                     },
                     identical: 
 					{
-                        field: 'password',
+                        field: 'newPassword',
                         message: 'Ihr Passwort stimmt nicht überein'
                     },
                     regexp: 
