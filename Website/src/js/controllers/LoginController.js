@@ -20,35 +20,46 @@ var LoginController = (function () {
 	};
 
 	var bindLoginEvents = function () {
-		$(loginPnl).find('#btn-submit-login').on('click', function () {
-			hideError();
+		$(loginPnl).find('#btn-submit-login').on('click', function (e) {
+			e.preventDefault();
+			initLoginMechanism();
+		});
 
-			var credentials = getLoginInput();
-
-			if(isCredentialsEmpty(credentials)) {
-				showError('Benutzername und Passwort eingeben');
-				return;
-			}
-
-			deactivateButton($(loginBtn).attr('id'));
-			Spinner.show(loginBtn);
-			dbHandler.checkValidLogin(credentials.username, credentials.password, function (isValid) {
-				if(isValid === true) {
-					loadUserDataAndLogin(credentials);
-				}
-				else {
-					clearPasswordField();
-					setTimeout(function () {
-						showError('Nutzername und Passwort stimmen nicht überein');
-						Spinner.hide(loginBtn);
-						activateButton($(loginBtn).attr('id'));
-					}, 2000);
-				}
-			});
+		$(inputPassword.selector).on('keyup', function (e) {
+			e.preventDefault();
+			if(e.keyCode === 13)
+				initLoginMechanism();
 		});
 
 		$(inputUser.selector + ", " + inputPassword.selector).on('focus', function () {
 			hideError();
+		});
+	};
+
+	var initLoginMechanism = function () {
+		hideError();
+
+		var credentials = getLoginInput();
+
+		if(isCredentialsEmpty(credentials)) {
+			showError('Benutzername und Passwort eingeben');
+			return;
+		}
+
+		deactivateButton($(loginBtn).attr('id'));
+		Spinner.show(loginBtn);
+		dbHandler.checkValidLogin(credentials.username, credentials.password, function (isValid) {
+			if(isValid === true) {
+				loadUserDataAndLogin(credentials);
+			}
+			else {
+				clearPasswordField();
+				setTimeout(function () {
+					showError('Nutzername und Passwort stimmen nicht überein');
+					Spinner.hide(loginBtn);
+					activateButton($(loginBtn).attr('id'));
+				}, 2000);
+			}
 		});
 	};
 
