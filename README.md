@@ -18,7 +18,7 @@ Prototypische Umsetzung des Alumni Portal der Universität Würzburg. Der Protot
 * Öffne ein zweites Konsolenfenster und wechsel in das Verzeichnis `Server` des Repository.
 * Führe dort den Befehl `npm install` aus, um die notwendigen Pakete zu installieren.
 
-Die Entwicklungs- und Build-Umgebung ist nun vollständig eingerichtet. Starte im Ordner `Website` mit `grunt serve` einen lokalen Webserver, der den aktuellen Prototypen des Alumni-Portals ausliefert. Nutze das zweite Konsolenfenster, um im Verzeichnis `Server` mit dem Befehl `node backend.js` das Backend mit Datenbank zu starten. Die Webseite ist nun unter (localhost:3000) erreichbar.
+Die Entwicklungs- und Build-Umgebung ist nun vollständig eingerichtet. Starte im Ordner `Website` mit `grunt serve` einen lokalen Webserver, der den aktuellen Prototypen des Alumni-Portals ausliefert. Nutze das zweite Konsolenfenster, um im Verzeichnis `Server` mit dem Befehl `node backend.js` das Backend mit Datenbank zu starten. Die Webseite ist nun unter [localhost:3000](localhost:3000) erreichbar.
 
 ## Verwendete Frameworks / Technologien
 
